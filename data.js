@@ -281,7 +281,8 @@ const pageData = [
         modded: "Vanilla",
 
         videos: [
-            '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            `<iframe width="560" height="315" src="https://www.youtube.com/embed/eCbkRTBqYr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
         ],
         header_image: 4,
         images: [
