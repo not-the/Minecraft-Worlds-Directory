@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worlds Directory</title>
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Overlay (Generate and display world info when one is clicked) -->
+    <div id="overlay_container">
+        <div id="backdrop" onclick="closeContent()">
+
+        </div>
+        <div id="content">
+            <!-- Back Button -->
+            <div id="content_back" title="Back (Esc)" onclick="closeContent()">
+                <img src="images/arrow.png" alt="Back Button" id="back_arrow" class="rotate90">Back
+            </div>
+
+            <!-- Gallery -->
+            <div id="header_area">
+                <!-- Buttons -->
+                <!-- <img
+                    src="images/arrow.png"
+                    alt="Left"
+                    id="button_left"
+                    onclick="galleryScroll('left')">
+                <img
+                    src="images/arrow.png"
+                    alt="Right"
+                    id="button_right"
+                    onclick="galleryScroll('right')"> -->
+                <!-- End Buttons -->
+                
+                <!-- Header image -->
+                <img src="" alt="Header Image" id="header_image" onclick="viewImage(pageData[selection].header_image)">
+    
+                <!-- Title -->
+                <div class="content_inner title_container">
+                    <h1 id="title">
+                        Finna SMP
+                    </h1>
+                </div>
+            </div>
+    
+            <!-- Info -->
+            <div id="info_top" class="block content_margin">
+                <!-- Description -->
+                <h3>Description:</h3>
+                <p id="description">
+                    Couldn't wait for caves and cliffs, huh?
+                </p>
+                <!-- World download -->
+                <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer">
+                    World Download 
+                </a>
+    
+            </div>
+    
+            <!-- Extra Info -->
+            <div>
+                <!-- Description -->
+                <div class="content_inner info_area content_margin">
+                    <!-- Table -->
+                    <table>
+                        <!-- Start/End dates -->
+                        <tr>
+                            <th>
+                                Started:
+                            </th>
+                            <td>
+                                <p id="start_date">
+                                    startDate
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Ended:
+                            </th>
+                            <td id="end_date">
+                                endDate
+                            </td>
+                        </tr>
+                        <!-- Version -->
+                        <tr>
+                            <th>
+                                Version:
+                            </th>
+                            <td id="version">
+                                version / modded
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- End Table -->
+        
+                    <!-- Player List -->
+                    <!-- <b>Players:</b>
+                    <p id="players">
+
+                    </p> -->
+        
+                </div>
+
+                <div id="videos">
+
+                </div>
+    
+                <h2 class="content_margin">Images</h2>
+                <div id="small_gallery" class="wrap">
+                    <button id="load_images" onclick="loadImages()">
+                        Load Images
+                    </button>
+                    
+                </div>
+            </div>
+    
+    
+        </div>
+    </div>
+
+    <!-- When image is clicked -->
+    <div id="image_viewer" class="flex" onclick="closeImage()">
+        <!-- Viewer navigation -->
+        <div class="viewer_nav">
+            <!-- Previous -->
+            <!-- <img src="images/arrow.png" class="rotate90 viewer_button" alt="Previous Image" title="Previous Image" onclick="viewerScroll('up')"> -->
+            <!-- Next -->
+            <!-- <img src="images/arrow.png" class="rotate270 viewer_button" alt="Next Image" title="Next Image" onclick="viewerScroll('down')"> -->
+        </div>
+
+        <div id="viewer_tooltip">
+            Use the scroll wheel or arrow keys to navigate
+        </div>
+
+        <div id="viewer_info">
+            Filename:<br>
+            0 / 0
+        </div>
+
+        <!-- Enlarged Image -->
+        <img src="" alt="" id="enlarged">
+    </div>
+    
+    <!-- Main -->
+    <main id="main">
+        <div class="main_container">
+            <!-- Title -->
+            <div class="title_area">
+                <h1>Minecraft Worlds</h1>
+                <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel</b> to go to next/previous image</p> 
+            </div>
+
+            <!-- Sort by -->
+            <div class="sort_container">
+                <p style="padding-top: 16px"><b>Sort by:</b></p>
+                <select name="list_sort" id="list_sort">
+                    <option value="Relevant">Relevant</option>
+                    <option value="New-Old">Newest to oldest</option>
+                    <option value="Old-New">Oldest to newest</option>
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Modded">Modded</option>
+                    <option value="World_download">World Download</option>
+                </select>
+            </div>
+
+
+            <!-- List -->
+            <div id="main_list">
+                <h2 style="text-align: center; margin-top: 40px;">⚠️ Something went wrong</h2>
+                <!-- World 0 (Template) -->
+                <!-- <div id="world0" class="world_item">
+                    Click Detection
+                    <div class="open_area" onclick="openContent(0)"></div>
+
+                    Download
+                    <a class="download_button list_dl" id="download0" target="_blank" rel="noopener noreferrer">
+                        World Download
+                    </a>
+
+                    Title
+                    <h2 class="title">
+                        Title Text
+                    </h2>
+                    <p class="mini_info">2021 - Present</p>
+                </div> -->
+
+                <!-- End Template -->
+            </div>
+
+            <div id="number_hidden">
+                <i>6 results were hidden because they did not match your filter</i>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer_container">
+            <b>Image Attribution:</b>
+            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        </div>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
