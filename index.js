@@ -17,6 +17,7 @@ const sortBy =          dom('#list_sort');
 const mainList =        dom('#main_list');
 const numberHidden =    dom('#number_hidden');
 
+const bigBackground =   dom('#main_bg_img');
 const overlayContainer = dom('#overlay_container');
 const content =         dom('#content');
 const backdrop =        dom('#backdrop');
@@ -140,7 +141,7 @@ function populateList() {
         listHTML +=
         `<div id="${d.name.split(' ').join('_')}" class="world_item" style="background: ${d.header_image ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${d.name}/${d.images[ d.header_image ]}')">
             <!-- Click Detection -->
-            <div class="open_area" onclick="openContent(${di})"></div>
+            <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})"></div>
         
             <!-- Download -->
             <a class="download_button list_dl ${d.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${d.download == '' ? '' : `href="${d.download}"`}>
@@ -264,6 +265,23 @@ function closeContent() {
         // backdrop.classList.remove('visible');
         // backdrop.classList.remove('fade_out');
     }, 300);
+}
+
+// Big background on mouse over
+function bigBackgroundSrc(num) {
+    let d = pageData[num];
+
+    // Set big background
+    bigBackground.classList.remove('big_background_animate');
+    bigBackground.classList.add('big_background_animate');
+    bigBackground.style.background =
+        `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+        linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+        url('images/${d.name}/${d.images[ d.header_image ]}')`;
+
+    setTimeout(() => {
+        bigBackground.classList.remove('big_background_animate');
+    }, 500);
 }
 
 // Image viewer button navigation

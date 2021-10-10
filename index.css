@@ -96,12 +96,35 @@ p {
 }
 
 /* List */
+#main_bg_img {
+    height: 100vh;
+    width: 100%;
+
+    position: absolute;
+    z-index: -1;
+
+    /* background:
+        linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+        linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+        url('images/Finna SMP/2021-07-12_19.01.18.png'); */
+}
+.big_background_animate {
+    animation: big_background 0.5s ease forwards;
+}
+@keyframes big_background {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+}
+
 .main_container {
     max-width: 850px;
     margin: 0 auto;
     padding: 20px;
 }
 .title_area {
+    margin-top: 32px;
     max-width: calc(100% - 200px);
 }
 .world_item {
@@ -163,7 +186,7 @@ p {
     overflow: hidden;
     position: fixed;
     background: rgba(0, 0, 0, 0.3);
-    /* backdrop-filter: blur(20px); */
+    backdrop-filter: blur(12px);
 
     visibility: hidden;
 }
