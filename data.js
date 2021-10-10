@@ -507,6 +507,26 @@ const pageData = [
     // All The Mods 3 Remix
 
     // Singleplayer worlds?
+
+    // JJ's Stone Tool Survival
+    {
+        name: "Stone Tool Survival",
+        alt_names: [],
+        description: "JJ's singleplayer world. Rules: only up to stone tools, leather armor only, no torches, and no sleeping.",
+        owners: "JJCVIP",
+        
+        download: "https://drive.google.com/file/d/1da-FwzTAX536XCHfWZ5N2-O_IDMX2N1V/view?usp=sharing",
+        pack_download: "",
+    
+        startDate: "2021",
+        endDate: "2021",
+        version: "1.17.1",
+        modded: "Vanilla",
+    
+        videos: [],
+        images: [],
+        players: ["JJCVIP"]
+    }
 ]
 
 console.log("World data loaded");
