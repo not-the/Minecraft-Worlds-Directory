@@ -103,6 +103,8 @@ p {
     position: absolute;
     z-index: -1;
 
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     /* background:
         linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
         linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
