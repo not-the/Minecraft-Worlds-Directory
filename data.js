@@ -8,7 +8,7 @@ const template = {
     name: "",
     alt_names: [],
     description: "",
-    hosted_by: "",
+    owners: "",
     
     download: "",
     pack_download: "",
@@ -30,7 +30,7 @@ const pageData = [
         name: "Vanilla servor",
         alt_names: [ "Finna Vanilla", "Finnacraft", "Boomercraft", "Vanilla Server" ],
         description: "",
-        hosted_by: "NotNone",
+        owners: "NotNone",
         download: "https://drive.google.com/file/d/1KUeNkPzIc_DfrN5HXyg-kxYI6tK_EF1A/view?usp=sharing",
 
         startDate: "10-24-2019",
@@ -139,7 +139,7 @@ const pageData = [
         name: "1.17 Creative Server",
         alt_names: ["Cathedral World", "1.17 snapshot Creative"],
         description: "",
-        hosted_by: "",
+        owners: "",
         
         download: "https://drive.google.com/file/d/1EPOKo9lHLvqeAUFYk_ExSBT4mtk40CQt/view?usp=sharing",
         pack_download: "",
@@ -184,7 +184,7 @@ const pageData = [
     {
         name: "Create-ish",
         alt_names: [],
-        hosted_by: "NotNone",
+        owners: "NotNone",
         download: "",
         pack_download: "",
 
@@ -256,7 +256,7 @@ const pageData = [
         name: "Finna SMP",
         alt_names: ["1.17 Vanilla server"],
         description: "",
-        hosted_by: "NotNone",
+        owners: "NotNone",
         download: "",
 
         startDate: "6-18-2021",
@@ -339,7 +339,7 @@ const pageData = [
         name: "Nether Nomads",
         alt_names: [],
         description: "",
-        hosted_by: "Hollow14",
+        owners: "Hollow14",
         download: "",
         pack_download: "",
 
@@ -380,7 +380,7 @@ const pageData = [
         name: "Voxel Fields",
         alt_names: [],
         description: "",
-        hosted_by: "NotNone or timandy1, unsure",
+        owners: "NotNone or timandy1, unsure",
         download: "",
         pack_download: "",
     
@@ -407,7 +407,7 @@ const pageData = [
         name: "Voxel Fields 2 Plus",
         alt_names: ["VF2+"],
         description: "The VF2+ modded server, in which a bridge was built. Drawbridge bunker, airship, and delighted meal machines too.",
-        hosted_by: "NotNone",
+        owners: "NotNone",
         
         download: "",
         pack_download: "",
@@ -486,7 +486,7 @@ const pageData = [
     {
         name: "Voxel Fields 3",
         alt_names: [],
-        hosted_by: "timandy1, NotNone",
+        owners: "timandy1, NotNone",
         download: "",
         pack_download: "",
     
