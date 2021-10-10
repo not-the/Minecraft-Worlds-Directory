@@ -45,7 +45,7 @@ const pageData = [
         version: "1.15 - 1.16",
         modded: "Vanilla",
 
-        videos: [],
+        videos: ['<iframe width="560" height="315" src="https://www.youtube.com/embed/loobwdIdOPE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'],
         header_image: 62,
         images: [
             "2019-10-22_20.29.11.png",

@@ -12,6 +12,7 @@ const enlarged =        dom('#enlarged');
 const viewerInfo =      dom('#viewer_info');
 const viewerTooltip =   dom('#viewer_tooltip');
 
+const imageSort =       dom('#image_sort');
 const sortBy =          dom('#list_sort');
 const mainList =        dom('#main_list');
 const numberHidden =    dom('#number_hidden');
@@ -75,7 +76,17 @@ sortBy.addEventListener('change', e => {
 
     sort = sortBy.value;
     populateList();
-})
+});
+
+// Image sorting
+var imageSortValue = 'Old-New';
+imageSort.addEventListener('change', e => {
+    if(imageSortValue !== imageSort.value) {
+        imageSortValue = imageSort.value;
+        loadImages();
+    }
+});
+
 
 // // List item template
 //#region 
@@ -164,26 +175,37 @@ function loadImages() {
     var imgHTML = "";
 
     if(imagesList.length !== 0) {
-        // When there are images available
-        for(ii = 0; ii < imagesList.length; ii++) {
-            // console.log(imagesList[ii]);
-            imgHTML +=
-                `<img
+        // When there are images available 'Old-New' 'New-Old'
+        // for(ii = 0; ii < imagesList.length; ii++) {...}
+
+        if(imageSortValue == 'Old-New') {
+            for(ii = 0; ii < imagesList.length; ii++) {
+                // console.log(imagesList[ii]);
+                imgHTML += `<img
                     src="images/${pageData[selection].name}/${imagesList[ii]}"
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
-                    onclick="viewImage(${ii})">`
+                    onclick="viewImage(${ii})">`;
+            }
+        } else {
+            for(ii = imagesList.length - 1; ii >= 0; ii--) {
+                // console.log(imagesList[ii]);
+                imgHTML += `<img
+                    src="images/${pageData[selection].name}/${imagesList[ii]}"
+                    alt="${imagesList[ii]}"
+                    id="image${ii}"
+                    title="${imagesList[ii]}"
+                    onclick="viewImage(${ii})">`;
+            }
         }
+
 
         smallGallery.innerHTML = imgHTML;
     } else {
         smallGallery.innerHTML = '<p style="text-align: center">No images available</p>';
     }
     
-
-    
-
 }
 
 // Open item from list

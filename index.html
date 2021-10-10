@@ -113,15 +113,24 @@
 
                 </div>
     
+                <!-- Images -->
                 <h2 class="content_margin">Images</h2>
+                <!-- Sort -->
+                <div class="sort_container" style="margin-right: 50px;">
+                    <p style="padding-top: 16px"><b>Sort by:</b></p>
+                    <select name="image_sort" id="image_sort">
+                        <option value="Old-New">Oldest to newest</option>
+                        <option value="New-Old">Newest to oldest</option>
+                    </select>
+                </div>
+
+                <!-- Gallery -->
                 <div id="small_gallery" class="wrap">
                     <button id="load_images" onclick="loadImages()">
                         Load Images
                     </button>
-                    
                 </div>
             </div>
-    
     
         </div>
     </div>
