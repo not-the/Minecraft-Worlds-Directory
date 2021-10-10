@@ -14,6 +14,7 @@ const viewerTooltip =   dom('#viewer_tooltip');
 
 const sortBy =          dom('#list_sort');
 const mainList =        dom('#main_list');
+const numberHidden =    dom('#number_hidden');
 
 const overlayContainer = dom('#overlay_container');
 const content =         dom('#content');
@@ -67,7 +68,17 @@ onmousemove = e => {
     }, 1000);
 }
 
+// List sort event listener
+var sort = 'Relevant';
+sortBy.addEventListener('change', e => {
+    console.log(`Sorting by ${sortBy.value}`);
+
+    sort = sortBy.value;
+    populateList();
+})
+
 // // List item template
+//#region 
 // `<div id="world0" class="world_item">
 //     <!-- Click Detection -->
 //     <div class="open_area" onclick="openContent(0)"></div>
@@ -83,6 +94,7 @@ onmousemove = e => {
 //     </h2>
 //     <p class="mini_info">2021 - Present</p>
 // </div>`;
+//#endregion
 
 
 // Variables
@@ -93,16 +105,29 @@ var viewerOpen = false;
 var galleryTooltipComplete = false;
 
 function populateList() {
-    
     var listHTML = '';
+    let resultCount = 0;
 
     for(di = 0; di < pageData.length; di++) {
         // console.log(pageData[di]);
 
         let d = pageData[di];
 
+        // Vanilla sort: Skip modded
+        if(sort == 'Vanilla' && !(d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
+            continue;
+        }
+        
+        // Modded sort: Skip vanilla
+        else if(sort == 'Modded' && (d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
+            continue;
+        } else if(sort == 'World_download' && d.download == '') {
+            continue;
+        }
+        resultCount++;
+
         listHTML +=
-        `<div id="world0" class="world_item" style="background: ${d.header_image ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${d.name}/${d.images[ d.header_image ]}')">
+        `<div id="${d.name.split(' ').join('_')}" class="world_item" style="background: ${d.header_image ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${d.name}/${d.images[ d.header_image ]}')">
             <!-- Click Detection -->
             <div class="open_area" onclick="openContent(${di})"></div>
         
@@ -115,11 +140,17 @@ function populateList() {
             <h2 class="title">
                 ${d.name}
             </h2>
-            <p class="mini_info">${d.startDate} to ${d.endDate}</p>
+            <p class="mini_info">${sort == 'Modded' ? d.modded : `${d.startDate} to ${d.endDate}`}</p>
         </div>`;
     }
 
     mainList.innerHTML = listHTML;
+    console.log(resultCount, pageData.length, pageData.length - resultCount);
+
+    if(resultCount - pageData.length > 0) {
+        console.log("Some results are hidden");
+        numberHidden.innerText = `${pageData.length - resultCount} results were hidden because they did not match your filter`;
+    }
 }
 
 // Populate list on page load
@@ -159,6 +190,7 @@ function loadImages() {
 function openContent(num) {
     contentOpen = true;
 
+    // Avoid changing page if the same item is being reopened
     if(num !== selection) {
         fillPage(num);
     }
@@ -198,7 +230,7 @@ function closeContent() {
     backdrop.classList.remove('visible');
 
     download_button.removeAttribute("href");
-    videos.innerHTML = null;
+    videos.innerHTML = '';
     smallGallery.innerHTML =
         `<button id="load_images" onclick="loadImages()">
             Load Images
@@ -231,6 +263,13 @@ var imageID;
 function viewImage(id) {
     console.log(`Enlarging image ${id}`);
     viewerOpen = true;
+
+    // Auto hide navigation tooltip
+    if(galleryTooltipComplete == false) {
+        setInterval(() => {
+            viewerTooltip.classList.add('hidden');
+        }, 5000);
+    }
 
     // Disable content scroll
     content.classList.add('overflow_hidden');
@@ -300,7 +339,8 @@ function fillPage(num) {
     }
 
     // If videos are available
-    if(d.videos.length !== 0) {
+    if(d.videos.length > 0) {
+        console.log('Yes video');
         let videoHTML = '<h2 class="content_margin">Videos</h2>';
         for(vi = 0; vi < d.videos.length; vi++) {
             // console.log(d.videos[vi]);

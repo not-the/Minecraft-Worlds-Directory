@@ -33,8 +33,8 @@ const pageData = [
         owners: "NotNone",
         download: "https://drive.google.com/file/d/1KUeNkPzIc_DfrN5HXyg-kxYI6tK_EF1A/view?usp=sharing",
 
-        startDate: "10-24-2019",
-        endDate: "9-22-2020",
+        startDate: "October 2019", // 10-24-2019
+        endDate: "September 2020", // 9-22-2020
         version: "1.15 - 1.16",
         modded: "Vanilla",
 
@@ -144,8 +144,8 @@ const pageData = [
         download: "https://drive.google.com/file/d/1EPOKo9lHLvqeAUFYk_ExSBT4mtk40CQt/view?usp=sharing",
         pack_download: "",
     
-        startDate: "?",
-        endDate: "?",
+        startDate: "March 2021",
+        endDate: "June 2021",
         version: "21w14a",
         modded: "Vanilla Snapshot",
     
@@ -185,7 +185,7 @@ const pageData = [
         name: "Create-ish",
         alt_names: [],
         owners: "NotNone",
-        download: "",
+        download: "https://drive.google.com/file/d/1M1X7tuBXsV0c2ZTZyYWw91II3t1ZPfvs/view?usp=sharing",
         pack_download: "",
 
         startDate: "December 2020",
@@ -375,29 +375,6 @@ const pageData = [
             "BigMansJay"
         ]
     },
-    // Voxel Fields 1.6.4 Kal/Liam/Vio
-    {
-        name: "Voxel Fields",
-        alt_names: [],
-        description: "",
-        owners: "NotNone or timandy1, unsure",
-        download: "",
-        pack_download: "",
-    
-        startDate: "?",
-        endDate: "?",
-        version: "1.6.4",
-        modded: "Voxel Fields modpack",
-    
-        videos: [],
-        header_image: 0,
-        images: [],
-        players: [
-            "NotNone",
-            "timandy1",
-            "ViolatedRunz"
-        ]
-    },
 
     // Voxel Fields (1 or 2, not sure) server, short lived, glass ceiling
     // World is likely lost but I would have to check
@@ -500,6 +477,30 @@ const pageData = [
         players: [
             "NotNone",
             "timandy1"
+        ]
+    },
+
+    // Voxel Fields 1.6.4 Kal/Liam/Vio
+    {
+        name: "Voxel Fields",
+        alt_names: [],
+        description: "",
+        owners: "NotNone or timandy1, unsure",
+        download: "",
+        pack_download: "",
+    
+        startDate: "?",
+        endDate: "?",
+        version: "1.6.4",
+        modded: "Voxel Fields modpack",
+    
+        videos: [],
+        header_image: 0,
+        images: [],
+        players: [
+            "NotNone",
+            "timandy1",
+            "ViolatedRunz"
         ]
     },
 

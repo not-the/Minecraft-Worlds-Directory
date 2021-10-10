@@ -59,7 +59,7 @@
                 </p>
                 <!-- World download -->
                 <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer">
-                    World Download 
+                    World Download
                 </a>
     
             </div>
@@ -155,16 +155,16 @@
             <!-- Title -->
             <div class="title_area">
                 <h1>Minecraft Worlds</h1>
-                <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel</b> to go to next/previous image</p> 
+                <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel/arrow keys</b> to go to next/previous image</p> 
             </div>
 
             <!-- Sort by -->
             <div class="sort_container">
-                <p style="padding-top: 16px"><b>Sort by:</b></p>
+                <p style="padding-top: 16px"><b>Filter:</b></p>
                 <select name="list_sort" id="list_sort">
-                    <option value="Relevant">Relevant</option>
-                    <option value="New-Old">Newest to oldest</option>
-                    <option value="Old-New">Oldest to newest</option>
+                    <option value="Relevant">All</option>
+                    <!-- <option value="New-Old">Newest to oldest</option>
+                    <option value="Old-New">Oldest to newest</option> -->
                     <option value="Vanilla">Vanilla</option>
                     <option value="Modded">Modded</option>
                     <option value="World_download">World Download</option>
@@ -195,8 +195,8 @@
                 <!-- End Template -->
             </div>
 
-            <div id="number_hidden">
-                <i>6 results were hidden because they did not match your filter</i>
+            <div class="number_hidden_container">
+                <i id="number_hidden"></i>
             </div>
         </div>
     </main>
