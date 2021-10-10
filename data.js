@@ -9,6 +9,8 @@ const template = {
     alt_names: [],
     description: "",
     owners: "",
+    mode: "",
+    gamemode: "",
     
     download: "",
     pack_download: "",
@@ -30,8 +32,13 @@ const pageData = [
         name: "Vanilla servor",
         alt_names: [ "Finna Vanilla", "Finnacraft", "Boomercraft", "Vanilla Server" ],
         description: "",
+        owners: "",
         owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "https://drive.google.com/file/d/1KUeNkPzIc_DfrN5HXyg-kxYI6tK_EF1A/view?usp=sharing",
+        // pack_download: "",
 
         startDate: "October 2019", // 10-24-2019
         endDate: "September 2020", // 9-22-2020
@@ -140,6 +147,8 @@ const pageData = [
         alt_names: ["Cathedral World", "1.17 snapshot Creative"],
         description: "",
         owners: "",
+        mode: "Multiplayer",
+        gamemode: "Creative",
         
         download: "https://drive.google.com/file/d/1EPOKo9lHLvqeAUFYk_ExSBT4mtk40CQt/view?usp=sharing",
         pack_download: "",
@@ -185,6 +194,9 @@ const pageData = [
         name: "Create-ish",
         alt_names: [],
         owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "https://drive.google.com/file/d/1M1X7tuBXsV0c2ZTZyYWw91II3t1ZPfvs/view?usp=sharing",
         pack_download: "",
 
@@ -257,7 +269,11 @@ const pageData = [
         alt_names: ["1.17 Vanilla server"],
         description: "",
         owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "",
+        // pack_download: "",
 
         startDate: "6-18-2021",
         endDate: "Present",
@@ -340,6 +356,9 @@ const pageData = [
         alt_names: [],
         description: "",
         owners: "Hollow14",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "",
         pack_download: "",
 
@@ -385,6 +404,8 @@ const pageData = [
         alt_names: ["VF2+"],
         description: "The VF2+ modded server, in which a bridge was built. Drawbridge bunker, airship, and delighted meal machines too.",
         owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
         
         download: "",
         pack_download: "",
@@ -464,6 +485,9 @@ const pageData = [
         name: "Voxel Fields 3",
         alt_names: [],
         owners: "timandy1, NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "",
         pack_download: "",
     
@@ -486,6 +510,9 @@ const pageData = [
         alt_names: [],
         description: "",
         owners: "NotNone or timandy1, unsure",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
         download: "",
         pack_download: "",
     
@@ -514,6 +541,8 @@ const pageData = [
         alt_names: [],
         description: "JJ's singleplayer world. Rules: only up to stone tools, leather armor only, no torches, and no sleeping.",
         owners: "JJCVIP",
+        mode: "Singleplayer",
+        gamemode: "Survival",
         
         download: "https://drive.google.com/file/d/1da-FwzTAX536XCHfWZ5N2-O_IDMX2N1V/view?usp=sharing",
         pack_download: "",
