@@ -491,7 +491,7 @@ const pageData = [
             mode: "Multiplayer",
             gamemode: "Survival",
             
-            download: "",
+            download: "https://drive.google.com/file/d/1rphOhS2Mw2xUk2X7ayBQiUPSPXGk-JJ8/view?usp=sharing",
             pack_download: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-3-remix",
         
             startDate: "July 2020",
