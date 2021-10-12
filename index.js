@@ -50,6 +50,16 @@ body.addEventListener('keydown', e => {
         if(e.code == "ArrowLeft") { viewerScroll('up'); }
         else if(e.code == "ArrowRight") { viewerScroll('down'); }
     }
+
+    // Left and right arrow keys to navigate between world items
+    // if(contentOpen == true && viewerOpen == false) {
+    //     if(e.code == 'ArrowLeft') {
+    //         closeContent();
+    //         setInterval(() => {
+    //             openContent(selection + 1);
+    //         }, 500);
+    //     }
+    // }
 });
 
 // Image viewer scroll to navigate
@@ -62,20 +72,31 @@ imageViewer.addEventListener('mousewheel', e => {
 
 // Mouse movement, hide info when mouse is immobile
 var mouseTimer;
+var mouseTimerLong;
 onmousemove = e => {
     // console.log(e.movementX, e.movementY);
+    // Clear any previous timers
+    clearInterval(mouseTimer);
+    clearInterval(mouseTimerLong);
+
+    // Unhide
     viewerInfo.classList.remove('viewer_info_delay');
+    enlarged.classList.remove('hide_mouse');
+
+    // Fade out image info
     mouseTimer = setInterval(() => {
         viewerInfo.classList.add('viewer_info_delay');
     }, 1000);
+
+    // Hide mouse
+    mouseTimerLong = setInterval(() => {
+        enlarged.classList.add('hide_mouse');
+    }, 2000);
 }
 
 // List sort event listener
-var sort = 'Relevant';
 sortBy.addEventListener('change', e => {
     console.log(`Sorting by ${sortBy.value}`);
-
-    sort = sortBy.value;
     populateList();
 });
 
@@ -111,11 +132,13 @@ imageSort.addEventListener('change', e => {
 
 // Variables
 var gallery = [];
-var selection;
+var selection; // Number ID of current item
 var contentOpen = false;
 var viewerOpen = false;
 var galleryTooltipComplete = false;
 
+
+// Populate world list
 function populateList() {
     var listHTML = '';
     let resultCount = 0;
@@ -126,14 +149,14 @@ function populateList() {
         let d = pageData[di];
 
         // Vanilla sort: Skip modded
-        if(sort == 'Vanilla' && !(d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
+        if(sortBy.value == 'Vanilla' && !(d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
             continue;
         }
         
         // Modded sort: Skip vanilla
-        else if(sort == 'Modded' && (d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
+        else if(sortBy.value == 'Modded' && (d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
             continue;
-        } else if(sort == 'World_download' && d.download == '') {
+        } else if(sortBy.value == 'World_download' && d.download == '') {
             continue;
         }
         resultCount++;
@@ -152,7 +175,7 @@ function populateList() {
             <h2 class="title">
                 ${d.name}
             </h2>
-            <p class="mini_info">${sort == 'Modded' ? d.modded : `${d.startDate} to ${d.endDate}`}</p>
+            <p class="mini_info">${sortBy.value == 'Modded' ? d.modded : `${d.startDate} to ${d.endDate}`}</p>
         </div>`;
     }
 
@@ -164,11 +187,6 @@ function populateList() {
         numberHidden.innerText = `${pageData.length - resultCount} results were hidden because they did not match your filter`;
     }
 }
-
-// Populate list on page load
-populateList();
-
-var debug;
 
 // Load images
 function loadImages() {
@@ -268,20 +286,30 @@ function closeContent() {
 }
 
 // Big background on mouse over
-function bigBackgroundSrc(num) {
+var bigBackgroundID;
+function bigBackgroundSrc(num, animate) {
     let d = pageData[num];
 
-    // Set big background
-    bigBackground.classList.remove('big_background_animate');
-    bigBackground.classList.add('big_background_animate');
-    bigBackground.style.background =
+    // Only change if new bg is different
+    if(bigBackgroundID !== num) {
+        bigBackgroundID = num;
+        // Set big background
+        bigBackground.style.background =
         `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
         linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
         url('images/${d.name}/${d.images[ d.header_image ]}')`;
 
-    setTimeout(() => {
-        bigBackground.classList.remove('big_background_animate');
-    }, 500);
+        // Animate
+        if(animate !== 'no') {
+            bigBackground.classList.remove('big_background_animate');
+            bigBackground.classList.add('big_background_animate');
+    
+    
+            setTimeout(() => {
+                bigBackground.classList.remove('big_background_animate');
+            }, 500);
+        }
+    }
 }
 
 // Image viewer button navigation
@@ -334,6 +362,7 @@ function viewImageSrc() {
     enlarged.src = `images/${d.name}/${d.images[imageID]}`;
 }
 
+// Close enlarged image
 function closeImage() {
     viewerOpen = false;
 
@@ -390,4 +419,36 @@ function fillPage(num) {
     }
 }
 
-fillPage(2);
+// fillPage(2);
+
+// Run when page loads -----------------------------------
+populateList();
+
+// Pick a random big background image
+let randomBG = Math.floor(Math.random() * pageData.length);
+console.log(randomBG);
+bigBackgroundSrc(randomBG, 'no');
+
+// URL Handling
+//#region 
+// Open #Name portion of URL if used
+if(document.location.hash) {
+    let spaced = document.location.hash.split('_').join(' ').substring(1);
+    console.log(`Hash in URL found, navigating to: ${spaced}`);
+
+    // Loop through pageData to find an item with a matching name
+    for(i = 0; i < pageData.length; i++) {
+        if(pageData[i].name == spaced) {
+            console.log(pageData[i].name);
+            openContent(i);
+            break;
+        }
+    }
+}
+
+// Set filter if search parameter is used
+if(document.location.search) {
+    sortBy.value = document.location.search.substring(1);
+    populateList();
+}
+//#endregion

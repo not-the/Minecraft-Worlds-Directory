@@ -46,6 +46,10 @@ iframe {
 .overflow_hidden {overflow: hidden !important;}
 .opacity0 {opacity: 0;}
 
+.hide_mouse {
+    cursor: none !important;
+}
+
 /* Select */
 .sort_container {
     float: right;
@@ -137,7 +141,7 @@ p {
 }
 .world_item {
     height: 100px;
-    background: rgba(255, 255, 255, 0.05);
+    /* background: rgba(255, 255, 255, 0.05); */
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 
     /* background:
@@ -563,7 +567,14 @@ th {
         margin: 0;
         float: none;
     }
+    #content .sort_container {
+        margin: 50px;
+        margin-top: 0;
+    }
     select {
         width: 100%;
+    }
+    .title_area {
+        max-width: unset;
     }
 }
