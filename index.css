@@ -368,6 +368,37 @@ p {
     height: 8px;
     width: 8px;
 } */
+
+/* Copy link */
+#copy_link {
+    margin-right: 16px;
+    filter: brightness(50%);
+    cursor: pointer;
+}
+#copy_link:hover {
+    filter: brightness(100%);
+}
+#copy_link:hover::before {
+    content: 'Copy a link to this page';
+    position: absolute;
+    transform: translateX(calc(-50% + 20px));
+    top: -50px;
+    width: 200px;
+    text-align: center;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    animation: backdrop_fade 0.2s ease forwards;
+}
+#copy_link.copied:hover::before {
+    content: 'Copied!';
+}
+#copy_link img {
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+}
+
+/* Download Button */
 .download_button, button {
     min-width: 185px;
     text-align: center;
@@ -381,7 +412,7 @@ p {
 
     cursor: pointer;
 }
-#content .download_button {
+#content .buttons_container {
     float: right;
     margin-top: -60px;
 }
@@ -435,7 +466,7 @@ p {
     width: 100%;
 }
 #description {
-    max-width: calc(100% - 190px);
+    max-width: calc(100% - 250px);
     padding-bottom: 12px;
 }
 
@@ -508,8 +539,8 @@ th {
     width: 100%;
     background: rgb(37, 37, 37);
     color: rgb(212, 212, 212);
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 .footer_container {
     max-width: 800px;
@@ -576,5 +607,11 @@ th {
     }
     .title_area {
         max-width: unset;
+    }
+    #description {
+        max-width: 100%;
+    }
+    #content .buttons_container {
+        margin-top: 16px;
     }
 }

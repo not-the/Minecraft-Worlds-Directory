@@ -22,6 +22,8 @@ const overlayContainer = dom('#overlay_container');
 const content =         dom('#content');
 const backdrop =        dom('#backdrop');
 
+const copyLinkButton =        dom('#copy_link');
+
 // Info
 const title =           dom('#title');
 const description =     dom('#description');
@@ -261,6 +263,7 @@ function openContent(num) {
 // Close Content
 function closeContent() {
     contentOpen = false;
+    copyLinkButton.classList.remove('copied');
 
     // Enable body scroll
     body.classList.remove('overflow_hidden');
@@ -420,6 +423,18 @@ function fillPage(num) {
 }
 
 // fillPage(2);
+
+// Copy URL Button
+function copyLink() {
+    copyLinkButton.classList.add('copied');
+
+    const copyMe = dom('#copy_me');
+    copyMe.value = `${document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_')}`;
+    copyMe.focus();
+    copyMe.select();
+    document.execCommand("copy");
+    // copyMe.value = '';
+}
 
 // Run when page loads -----------------------------------
 populateList();

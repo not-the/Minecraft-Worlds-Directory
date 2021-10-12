@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- URL Copying workaround -->
+    <textarea name="copy_me" id="copy_me" cols="30" rows="10" style="position: absolute; left: -100%"></textarea>
+
     <!-- Overlay (Generate and display world info when one is clicked) -->
     <div id="overlay_container">
         <div id="backdrop" onclick="closeContent()">
@@ -58,10 +61,17 @@
                     Couldn't wait for caves and cliffs, huh?
                 </p>
                 <!-- World download -->
-                <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer">
-                    World Download
-                </a>
-    
+                <div class="buttons_container flex">
+                    <!-- Copy link button -->
+                    <div id="copy_link" class="button_styling" onclick="copyLink()">
+                        <img src="images/link.png" alt="Copy Link">
+                    </div>
+
+                    <!-- Download button -->
+                    <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer">
+                        World Download
+                    </a>
+                </div>
             </div>
     
             <!-- Extra Info -->
@@ -134,7 +144,7 @@
     
         </div>
     </div>
-
+    
     <!-- When image is clicked -->
     <div id="image_viewer" class="flex" onclick="closeImage()">
         <!-- Viewer navigation -->
@@ -220,6 +230,7 @@
         <div class="footer_container">
             <b>Image Attribution:</b>
             <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <a target="_blank" href="https://icons8.com/icon/7867/link">Link</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
         </div>
     </footer>
 
