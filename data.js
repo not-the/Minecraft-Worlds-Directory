@@ -626,7 +626,7 @@ const pageData = [
         pack_download: "",
     
         startDate: "9-10-2021",
-        endDate: "Ongoing",
+        endDate: "Present",
         version: "1.12.2",
         modded: "Voxel Fields 3 modpack",
     

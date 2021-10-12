@@ -250,7 +250,9 @@ p {
     }
 }
 #content_back {
-    position: absolute;
+    position: sticky;
+    text-shadow: 0px 1px 10px black;
+    margin-top: -81px;
     z-index: 51;
     left: 0;
     top: 8px;
@@ -267,6 +269,7 @@ p {
     width: 32px;
     margin-bottom: -10px;
     padding-right: 16px;
+    filter: drop-shadow(0px 1px 10px black)
 }
 .rotate90 {transform: rotate(90deg);}
 .rotate270 {transform: rotate(270deg);}
@@ -395,7 +398,7 @@ p {
 #copy_link img {
     height: 40px;
     width: 40px;
-    padding: 4px;
+    padding: 5px;
 }
 
 /* Download Button */
