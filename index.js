@@ -38,6 +38,7 @@ const videos =          dom('#videos');
 
 // Keyboard controls
 body.addEventListener('keydown', e => {
+    // console.log(e.key);
     // Escape to go back
     if(e.code == "Escape") {
         if(viewerOpen) {
@@ -47,10 +48,22 @@ body.addEventListener('keydown', e => {
         }
     }
 
-    // Image viewer arrow keys
+    // While image viewer is open
     if(viewerOpen) {
+        // Image viewer arrow keys
         if(e.code == "ArrowLeft") { viewerScroll('up'); }
         else if(e.code == "ArrowRight") { viewerScroll('down'); }
+
+        // F to fullscreen
+        if(e.code == 'KeyF') {
+            if(!document.fullscreenElement) {
+                body.requestFullscreen();
+                viewerTooltip.classList.add('hidden');
+                galleryTooltipComplete = true;
+            } else {
+                document.exitFullscreen();
+            }
+        }
     }
 
     // Left and right arrow keys to navigate between world items
@@ -62,6 +75,7 @@ body.addEventListener('keydown', e => {
     //         }, 500);
     //     }
     // }
+
 });
 
 // Image viewer scroll to navigate
@@ -339,7 +353,8 @@ function viewImage(id) {
     if(galleryTooltipComplete == false) {
         setInterval(() => {
             viewerTooltip.classList.add('hidden');
-        }, 5000);
+            galleryTooltipComplete = true;
+        }, 10000);
     }
 
     // Disable content scroll

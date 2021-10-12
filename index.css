@@ -305,6 +305,7 @@ p {
     }
 }
 #viewer_tooltip {
+    min-width: 500px;
     position: absolute;
     font-size: 20pt;
     text-align: center;
