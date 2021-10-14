@@ -44,11 +44,9 @@ iframe {
 .visible {visibility: visible !important;}
 .hidden {visibility: hidden !important;}
 .overflow_hidden {overflow: hidden !important;}
-.opacity0 {opacity: 0;}
+.opacity0 {opacity: 0 !important;}
 
-.hide_mouse {
-    cursor: none !important;
-}
+.hide_mouse {cursor: none !important;}
 
 /* Select */
 .sort_container {

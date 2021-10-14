@@ -39,6 +39,12 @@ const videos =          dom('#videos');
 // Keyboard controls
 body.addEventListener('keydown', e => {
     // console.log(e.key);
+
+    // Enter to select (For accessibility / keyboard navigation)
+    if(e.code == 'Enter') {
+        document.activeElement.click();
+    }
+
     // Escape to go back
     if(e.code == "Escape") {
         if(viewerOpen) {
@@ -180,7 +186,7 @@ function populateList() {
         listHTML +=
         `<div id="${d.name.split(' ').join('_')}" class="world_item" style="background: ${d.header_image ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${d.name}/${d.images[ d.header_image ]}')">
             <!-- Click Detection -->
-            <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})"></div>
+            <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
         
             <!-- Download -->
             <a class="download_button list_dl ${d.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${d.download == '' ? '' : `href="${d.download}"`}>
@@ -246,6 +252,12 @@ function loadImages() {
 // Open item from list
 function openContent(num) {
     contentOpen = true;
+
+    // Accesibility: disable tab index of main list when it isn't visible
+    // This doesn't work, even if it did it would do this for everything including selectable elements inside of the content viewer
+    // document.querySelectorAll('div', 'a', 'select', 'button').forEach(element => {
+    //     this.tabIndex = -1;
+    // })
 
     // Avoid changing page if the same item is being reopened
     if(num !== selection) {
