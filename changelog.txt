@@ -1,0 +1,24 @@
+1.1 - 12/5/2021
+- Fixed issue where the world items would appear above the backdrop
+- Added "Terralith CO-OP" world and screenshots
+- On smaller viewports (620px and less) the image viewer information has left left padding
+- Added my own images to "Stone Tool Survival"
+- Added a "Please enable javascript" message when javascript is turned off
+- Changed size and font weight of the description and information text
+- Content menu now says how many images there are next to the images heading
+- Fixed issue where the main background image would increase the height of the page and briefly show the scrollbar
+- Added a parallax effect to the main background image
+- Added an option to disable parallax in the footer
+- Fixed issue where Create-ish would have a video heading when it shouldn't
+- World items without a header image are no longer transparent in the list
+- Website will now pick a random image out of ALL images on page load, instead of being limited to header images
+- Main BG is now centered to the page
+- Page will now display a featured image on the user's first visit
+- Added some links to the footer
+- You can now directly link to an image (on-page link, not to the actual file), clicking the filename will copy a link to your clipboard
+- Moved "Stone Tool Survival" and "Terralith CO-OP" to the top of the page as they are the newest
+- Added Voxel Fields 3 screenshots
+- Player list
+- Server owner will have a crown next to their name in the players list
+- Gamemode and multiplayer mode are now on the page
+- Added images to "Voxel Fields 3"

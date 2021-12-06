@@ -10,7 +10,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;500;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- URL Copying workaround -->
@@ -79,7 +81,7 @@
                 <!-- Description -->
                 <div class="content_inner info_area content_margin">
                     <!-- Table -->
-                    <table>
+                    <table class="flex1">
                         <!-- Start/End dates -->
                         <tr>
                             <th>
@@ -108,7 +110,26 @@
                                 version / modded
                             </td>
                         </tr>
+                        <!-- Gamemode & Multiplayer mode -->
+                        <tr>
+                            <th>
+                                Mode:
+                            </th>
+                            <td id="mode">
+                                gamemode / mode
+                            </td>
+                        </tr>
                     </table>
+
+                    <!-- Player List -->
+                    <details open class="players_dropdown flex1">
+                        <summary><b class="weight900">Players</b></summary>
+                        <p class="secondary_text">Note: Clicking a username will take you to NameMC</p>
+                        <div id="players">
+                            Error
+                        </div>
+                    </details>
+
                     <!-- End Table -->
         
                     <!-- Player List -->
@@ -124,7 +145,7 @@
                 </div>
     
                 <!-- Images -->
-                <h2 class="content_margin">Images</h2>
+                <h2 class="content_margin">Images <span class="secondary_text small">(<span id="image_count">-</span>)</span></h2>
                 <!-- Sort -->
                 <div class="sort_container" style="margin-right: 50px;">
                     <p style="padding-top: 16px"><b>Sort by:</b></p>
@@ -146,7 +167,7 @@
     </div>
     
     <!-- When image is clicked -->
-    <div id="image_viewer" class="flex" onclick="closeImage()">
+    <div id="image_viewer" class="flex">
         <!-- Viewer navigation -->
         <div class="viewer_nav">
             <!-- Previous -->
@@ -160,17 +181,22 @@
         </div>
 
         <div id="viewer_info">
-            Filename:<br>
-            0 / 0
+            <!-- File info -->
+            <div>
+                Filename:<br>
+                0 / 0  
+            </div>
         </div>
 
         <!-- Enlarged Image -->
-        <img src="" alt="" id="enlarged">
+        <img src="" alt="" id="enlarged" onclick="closeImage()">
     </div>
 
     <!-- Main background image -->
-    <div id="main_bg_img">
+    <div class="bg_img_container">
+        <div id="main_bg_img">
 
+        </div>
     </div>
     
     <!-- Main -->
@@ -199,6 +225,12 @@
             <!-- List -->
             <div id="main_list">
                 <h2 style="text-align: center; margin-top: 40px;">⚠️ Something went wrong</h2>
+                <noscript>
+                    <p style="text-align: center; margin-top: 32px;">
+                        Please enable javascript
+                    </p>
+                    
+                </noscript>
                 <!-- World 0 (Template) -->
                 <!-- <div id="world0" class="world_item">
                     Click Detection
@@ -228,9 +260,31 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="footer_container">
-            <b>Image Attribution:</b>
-            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-            <a target="_blank" href="https://icons8.com/icon/7867/link">Link</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+            <div class="column">
+                <b>Image Attribution:</b>
+                <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                <a target="_blank" href="https://icons8.com/icon/7867/link">Link</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br><br>
+            </div>
+
+            <div class="column">
+                <b>Options:</b><br>
+                <label for="disable_parallax" onclick="toggleParallax()">
+                    <input type="checkbox" id="disable_parallax"> Disable parallax
+                </label>
+                <br>
+                <div class="social_container flex">
+                    <a href="https://www.notkal.com/" title="not">
+                        <img src="./images/pineapple.png" alt="My website" class="social_img">
+                    </a>
+                    <a href="https://github.com/not-the" title="Github">
+                        <img src="./images/github.png" alt="Github" class="social_img">
+                    </a>
+                </div>
+
+                
+            </div>
+            
         </div>
     </footer>
 

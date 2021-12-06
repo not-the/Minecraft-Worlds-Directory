@@ -7,6 +7,7 @@ function dom(sel) {return document.querySelector(sel);}
 const body =            dom('body');
 const headerImage =     dom('#header_image');
 const smallGallery =    dom('#small_gallery');
+const imageCount =      dom('#image_count');
 const imageViewer =     dom('#image_viewer');
 const enlarged =        dom('#enlarged');
 const viewerInfo =      dom('#viewer_info');
@@ -30,6 +31,7 @@ const description =     dom('#description');
 const start_date =      dom('#start_date');
 const end_date =        dom('#end_date');
 const version =         dom('#version');
+const mode =            dom('#mode');
 const players =         dom('#players');
 const download_button = dom('#download_button');
 const download_url =    dom('#download_url');
@@ -91,6 +93,13 @@ imageViewer.addEventListener('mousewheel', e => {
     viewerTooltip.classList.add('hidden');
     viewerScroll(direction);
 });
+
+// Main page background parallax
+onscroll = () => {
+    if(localStorage.getItem('disable_parallax') == 'true') return;
+    parallax();
+}
+function parallax() { bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px'; }
 
 // Mouse movement, hide info when mouse is immobile
 var mouseTimer;
@@ -267,6 +276,7 @@ function openContent(num) {
     selection = num;
 
     console.log(`Opening world ${num}`);
+    // updateHash();
 
     // Content
     content.classList.add('visible');
@@ -306,6 +316,10 @@ function closeContent() {
             Load Images
         </button>`;
 
+    // Remove hash data
+    // updateHash();
+    document.location.hash = '';
+
     setTimeout(() => {
         content.classList.remove('visible');
         content.classList.remove('content_out');
@@ -316,17 +330,28 @@ function closeContent() {
 
 // Big background on mouse over
 var bigBackgroundID;
-function bigBackgroundSrc(num, animate) {
+function bigBackgroundSrc(num, animate, any) {
     let d = pageData[num];
 
     // Only change if new bg is different
     if(bigBackgroundID !== num) {
         bigBackgroundID = num;
         // Set big background
-        bigBackground.style.background =
-        `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
-        linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-        url('images/${d.name}/${d.images[ d.header_image ]}')`;
+        if(!any) {
+            bigBackground.style.background =
+            `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+            linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+            url('images/${d.name}/${d.images[ d.header_image ]}')`;
+        } else {
+            // Random non-header image
+            let roll = Math.floor(Math.random() * d.images.length);
+
+            bigBackground.style.background =
+            `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+            linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+            url('images/${d.name}/${d.images[ roll ]}')`;
+        }
+
 
         // Animate
         if(animate !== 'no') {
@@ -378,6 +403,8 @@ function viewImage(id) {
     imageID = id;
 
     viewImageSrc(id);
+
+    // updateHash();
 }
 
 // Set enlarged image
@@ -385,11 +412,15 @@ function viewImageSrc() {
     let d = pageData[selection];
 
     // File info
-    viewerInfo.innerText = `Filename: ${d.images[imageID]}\n
-    ${imageID + 1} / ${d.images.length}`;
+    viewerInfo.innerHTML = `<p class="weight100 hover_underline pointer" onclick="copyImageURL()" id="copy_image_url">Filename: ${d.images[imageID]}</p>
+    <p>${imageID + 1} / ${d.images.length}</p>`;
 
     // Change image
     enlarged.src = `images/${d.name}/${d.images[imageID]}`;
+}
+function copyImageURL() {
+    copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
+    dom("#copy_image_url").classList.add('copied');
 }
 
 // Close enlarged image
@@ -402,6 +433,8 @@ function closeImage() {
     // Animate
     imageViewer.classList.remove('image_in');
     imageViewer.classList.add('image_out');
+
+    // updateHash();
 
     setTimeout(() => {
         imageViewer.classList.remove('visible');
@@ -423,6 +456,9 @@ function fillPage(num) {
     start_date.innerText = `${d.startDate}`;
     end_date.innerText = `${d.endDate}`;
     version.innerText = `${d.version} / ${d.modded}`;
+    mode.innerText = `${d.gamemode} ${d.mode}`
+    imageCount.innerText = d.images.length;
+
     // players.innerText = playerList;
     if(d.download.length > 3) {
         download_button.classList.remove('disabled');
@@ -447,16 +483,35 @@ function fillPage(num) {
         }
         videos.innerHTML = videoHTML;
     }
+
+    // Players list
+    let playerHTML = '<p>Player list not available</p>';
+    if(d.players.length != 0) {
+        playerHTML = '';
+        for(let pi = 0; pi < d.players.length; pi++) {
+            let username = d.players[pi];
+            playerHTML +=
+            `<a href="https://namemc.com/profile/${username}${username.includes('.') ? '' : '.1'}" target="_blank" rel="noopener noreferrer">
+                ${username == d.owners ? '<img src="./images/crown.png" alt="Owner" class="inline_icon owner_crown" title="Server Owner">' : ''}
+                ${username.includes('.') ? username.split('.')[0] : username}</a>, `;
+        }
+    }
+    players.innerHTML = playerHTML.substring(0, playerHTML.length - 2);
 }
 
 // fillPage(2);
 
 // Copy URL Button
-function copyLink() {
+function copyLink(url = 'auto-page') {
     copyLinkButton.classList.add('copied');
 
     const copyMe = dom('#copy_me');
-    copyMe.value = `${document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_')}`;
+    if(url == 'auto-page') {
+        copyMe.value = `${document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_')}`;
+    } else {
+        copyMe.value = url;
+    }
+    
     copyMe.focus();
     copyMe.select();
     document.execCommand("copy");
@@ -467,15 +522,56 @@ function copyLink() {
 populateList();
 
 // Pick a random big background image
-let randomBG = Math.floor(Math.random() * pageData.length);
+let randomBG;
+function rollBG() {
+    // Give preset image if first page visit
+    if(localStorage.getItem('first_visit') == null) {
+        bigBackground.style.background =
+        `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+        linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+        url("${featuredIMG}")`;
+
+        localStorage.setItem('first_visit', 'false');
+        return;
+    }
+
+    randomBG = Math.floor(Math.random() * pageData.length);
+
+    if(pageData[randomBG].images.length == 0) rollBG();
+}
+rollBG();
+
 console.log(randomBG);
-bigBackgroundSrc(randomBG, 'no');
+bigBackgroundSrc(randomBG, 'no', true);
 
 // URL Handling
 //#region 
-// Open #Name portion of URL if used
+
+
+
+
+// Update hash whenever you navigate the page
+// function updateHash() {
+//     let hash;
+
+//     if(contentOpen) {
+//         hash += `#${ pageData[selection].name.split(' ').join('_') }`
+
+//         if(viewerOpen) {
+//             hash += `/${imageID}`;
+//         }
+//     } else {
+//         hash = '';
+//     }
+
+//     document.location.hash = hash;
+// }
+
+
+// Open #Name portion of URL on load if used
 if(document.location.hash) {
-    let spaced = document.location.hash.split('_').join(' ').substring(1);
+    let hash = document.location.hash;
+    let spaced = document.location.hash.split('/')[0].split('_').join(' ').substring(1);
     console.log(`Hash in URL found, navigating to: ${spaced}`);
 
     // Loop through pageData to find an item with a matching name
@@ -486,7 +582,15 @@ if(document.location.hash) {
             break;
         }
     }
+
+    // Navigate to specific screenshot
+    if(hash.includes('/')) {
+        let imageID = document.location.hash.split('/')[1];
+
+        viewImage(imageID);
+    }
 }
+
 
 // Set filter if search parameter is used
 if(document.location.search) {
@@ -494,3 +598,27 @@ if(document.location.search) {
     populateList();
 }
 //#endregion
+
+
+
+
+
+// User options
+// Disable parallax
+const checkboxParallax = dom('#disable_parallax');
+function toggleParallax() {
+    let state = checkboxParallax.checked;
+    localStorage.setItem('disable_parallax', state);
+
+    if(state == true) {
+        bigBackground.style.top = '0px';
+    } else {
+        parallax();
+    }
+
+}
+
+// Restore on load
+if(localStorage.getItem('disable_parallax') != null) {
+    checkboxParallax.checked = localStorage.getItem('disable_parallax') == 'true' ? true : false;
+}
