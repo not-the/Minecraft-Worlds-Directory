@@ -7,6 +7,7 @@
 - Support for "Unlisted" users
 - Fixed info table flexing to match the height of the players list
 - Removed NameMC note since that isn't going to continue being the case and it looks cleaner without it
+- Vanilla Servor's player list is now the complete list
 
 1.1 - 12/5/2021
 - Fixed issue where the world items would appear above the backdrop
