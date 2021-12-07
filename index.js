@@ -236,7 +236,8 @@ function loadImages() {
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
-                    onclick="viewImage(${ii})">`;
+                    onclick="viewImage(${ii})"
+                    loading="lazy">`;
             }
         } else {
             for(ii = imagesList.length - 1; ii >= 0; ii--) {
@@ -246,7 +247,8 @@ function loadImages() {
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
-                    onclick="viewImage(${ii})">`;
+                    onclick="viewImage(${ii})"
+                    loading="lazy">`;
             }
         }
 
@@ -288,6 +290,9 @@ function openContent(num) {
 
     // Disable body scroll
     body.classList.add('overflow_hidden');
+
+    // Auto load images
+    // loadImages();
 
     // Hide after animation completes
     setTimeout(() => {
@@ -413,7 +418,7 @@ function viewImageSrc() {
 
     // File info
     viewerInfo.innerHTML = `<p class="weight100 hover_underline pointer" onclick="copyImageURL()" id="copy_image_url">Filename: ${d.images[imageID]}</p>
-    <p>${imageID + 1} / ${d.images.length}</p>`;
+    <p>${imageID + 1} / ${d.images.length} ${imageID == d.header_image ? '<img src="./images/star.png" alt="Header image" class="inline_icon" title="Header image">' : ''}</p>`;
 
     // Change image
     enlarged.src = `images/${d.name}/${d.images[imageID]}`;
@@ -490,8 +495,14 @@ function fillPage(num) {
         playerHTML = '';
         for(let pi = 0; pi < d.players.length; pi++) {
             let username = d.players[pi];
+            let href = '';
+            let css = '';
+            if(username != 'Unlisted') {
+                href = ` href="https://namemc.com/profile/${username}${username.includes('.') ? '' : '.1'}" target="_blank" rel="noopener noreferrer"`;
+            } else { css = 'secondary_text'; }
+            
             playerHTML +=
-            `<a href="https://namemc.com/profile/${username}${username.includes('.') ? '' : '.1'}" target="_blank" rel="noopener noreferrer">
+            `<a${href} class="${css}">
                 ${username == d.owners ? '<img src="./images/crown.png" alt="Owner" class="inline_icon owner_crown" title="Server Owner">' : ''}
                 ${username.includes('.') ? username.split('.')[0] : username}</a>, `;
         }

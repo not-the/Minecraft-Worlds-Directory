@@ -12,9 +12,11 @@
 *:target {
     outline: 2px solid white;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
-    scroll-behavior: smooth;
     background: var(--content-bg);
     color: white;
     font-family: 'Inter', sans-serif;
@@ -39,6 +41,10 @@ body {
     vertical-align: middle;
     width: 20px;
 }
+#image_viewer .inline_icon {
+    height: 16px;
+    width: 16px;
+}
 
 iframe {
     /* height: 315px;
@@ -62,6 +68,7 @@ iframe {
 /* Collapsible */
 summary {
     cursor: pointer;
+    padding-bottom: 6px;
 }
 summary:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -134,7 +141,7 @@ p {
     margin-bottom: 4px;
 }
 .secondary_text {
-    color: rgb(172, 172, 172);
+    color: rgb(172, 172, 172) !important;
 }
 .small {
     padding-left: 4px;
@@ -473,7 +480,8 @@ p {
 }
 
 /* Download Button */
-.download_button, button {
+.download_button,
+button {
     min-width: 185px;
     text-align: center;
     background: var(--accent-blue);
@@ -519,6 +527,10 @@ select:hover*/ {
 
     z-index: 30;
 }
+.pack_dl {
+    background-color: rgb(41, 196, 54);
+}
+
 #load_images {
     float: none;
     margin: 0;
@@ -536,7 +548,7 @@ select:hover*/ {
 
 /* Content Info */
 .info_area {
-    margin-top: 12px;
+    margin-top: 16px;
     display: flex;
 }
 .info_area *,
@@ -560,6 +572,7 @@ table * {
 table {
     margin-left: -2px;
     margin-bottom: 32px;
+    align-self: flex-start;
 }
 
 th, td {

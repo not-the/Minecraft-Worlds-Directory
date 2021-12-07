@@ -70,7 +70,7 @@
                     </div>
 
                     <!-- Download button -->
-                    <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer">
+                    <a href="" id="download_button" class="download_button" target="_blank" rel="noopener noreferrer" tabindex=0>
                         World Download
                     </a>
                 </div>
@@ -87,10 +87,8 @@
                             <th>
                                 Started:
                             </th>
-                            <td>
-                                <p id="start_date">
-                                    startDate
-                                </p>
+                            <td id="start_date">
+                                startDate
                             </td>
                         </tr>
                         <tr>
@@ -124,7 +122,7 @@
                     <!-- Player List -->
                     <details open class="players_dropdown flex1">
                         <summary><b class="weight900">Players</b></summary>
-                        <p class="secondary_text">Note: Clicking a username will take you to NameMC</p>
+                        <!-- <p class="secondary_text">Note: Clicking a username will take you to NameMC</p> -->
                         <div id="players">
                             Error
                         </div>
@@ -229,8 +227,8 @@
                     <p style="text-align: center; margin-top: 32px;">
                         Please enable javascript
                     </p>
-                    
                 </noscript>
+
                 <!-- World 0 (Template) -->
                 <!-- <div id="world0" class="world_item">
                     Click Detection

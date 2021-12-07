@@ -219,7 +219,6 @@ const pageData = [
         name: "Vanilla servor",
         alt_names: [ "Finna Vanilla", "Finnacraft", "Boomercraft", "Vanilla Server" ],
         description: "",
-        owners: "",
         owners: "NotNone",
         mode: "Multiplayer",
         gamemode: "Survival",
@@ -323,8 +322,16 @@ const pageData = [
             "Screeish",
             "laganrat",
             "Woff1",
-            "Tahyari"
-
+            "Tahyari",
+            "cade7475",
+            "Dbzstar139",
+            "Raxyneous",
+            "Luke2282",
+            "BaconTime69",
+            "iicvcv",
+            "mastertelecastr",
+            "Unlisted",
+            "Unlisted", // alt
         ]
     },
 
@@ -333,7 +340,7 @@ const pageData = [
         name: "1.17 Creative Server",
         alt_names: ["Cathedral World", "1.17 snapshot Creative"],
         description: "",
-        owners: "",
+        owners: "Hollow14, NotNone",
         mode: "Multiplayer",
         gamemode: "Creative",
         
@@ -704,8 +711,8 @@ const pageData = [
         ],
         players: [
             // Incomplete list
-            "NotNone",
             "Hollow14",
+            "NotNone",
             "JJCVIP",
             "Gunther_The_God",
             "Tahyari",
@@ -794,7 +801,9 @@ const pageData = [
             "NotNone",
             "Hollow14",
             "timandy1",
-            "JJCVIP"
+            "JJCVIP",
+            "neutronz.3",
+            "Gunther_The_God",
         ]
     },
 
