@@ -1022,7 +1022,7 @@ const pageData = [
     
         startDate: "2017",
         endDate: "2017",
-        version: "1.6.4",
+        version: "1.7.10",
         modded: "Voxel Fields 2 modpack",
     
         videos: [],
