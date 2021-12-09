@@ -281,6 +281,7 @@ function openContent(num) {
     // updateHash();
 
     // Content
+    content.scrollTo(0, 0);
     content.classList.add('visible');
     content.classList.add('content_in');
 
