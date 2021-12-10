@@ -196,6 +196,8 @@
 
         </div>
     </div>
+
+    <!-- View BG image -->
     
     <!-- Main -->
     <main id="main">
@@ -206,7 +208,7 @@
                 <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel/arrow keys</b> to go to next/previous image</p> 
             </div>
 
-            <!-- Sort by -->
+            <!-- Filter -->
             <div class="sort_container">
                 <p style="padding-top: 16px"><b>Filter:</b></p>
                 <select name="list_sort" id="list_sort">
@@ -215,7 +217,18 @@
                     <option value="Old-New">Oldest to newest</option> -->
                     <option value="Vanilla">Vanilla</option>
                     <option value="Modded">Modded</option>
+                    <option value="Singleplayer">Singleplayer</option>
+                    <option value="Multiplayer">Multiplayer</option>
                     <option value="World_download">World Download</option>
+                </select>
+            </div>
+
+            <!-- Sort -->
+            <div class="sort_container" style="margin-right: 8px;">
+                <p style="padding-top: 16px"><b>Sort by:</b></p>
+                <select name="list_order" id="list_order">
+                    <option value="Relevant">Relevant</option>
+                    <option value="Chronological">Chronological</option>
                 </select>
             </div>
 

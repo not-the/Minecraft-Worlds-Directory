@@ -1,3 +1,13 @@
+1.4 - 12/8/2021
+- More Terralith CO-OP screenshots and changed its header image
+- Changed featured image back to the red trees image
+- Moved Finna SMP up the list so that the list is closer to chronological order (it still isn't)
+- Fixed issue where videos would disappear if you closed then reopened the same world
+- You can now filter by Singleplayer/Multiplayer
+- Fixed bug where a gradient wouldn't appear when the header image was the first one (0)
+- Ability to sort the list chronologically and list separators
+- Moved some worlds around within the default sort (Relevant)
+
 1.3 - 12/8/2021
 - New Terralith CO-OP screenshots
 - Added a world: Voxel Fields 2

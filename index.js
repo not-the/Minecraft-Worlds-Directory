@@ -15,6 +15,7 @@ const viewerTooltip =   dom('#viewer_tooltip');
 
 const imageSort =       dom('#image_sort');
 const sortBy =          dom('#list_sort');
+const orderSort =       dom('#list_order');
 const mainList =        dom('#main_list');
 const numberHidden =    dom('#number_hidden');
 
@@ -125,12 +126,16 @@ onmousemove = e => {
     }, 2000);
 }
 
-// List sort event listener
+// List filter event listener
 sortBy.addEventListener('change', e => {
     console.log(`Sorting by ${sortBy.value}`);
     populateList();
 });
-
+// List sort order
+orderSort.addEventListener('change', e => {
+    console.log(`Sorting by ${orderSort.value}`);
+    populateList();
+});
 // Image sorting
 var imageSortValue = 'Old-New';
 imageSort.addEventListener('change', e => {
@@ -174,41 +179,56 @@ function populateList() {
     var listHTML = '';
     let resultCount = 0;
 
-    for(di = 0; di < pageData.length; di++) {
-        // console.log(pageData[di]);
-
-        let d = pageData[di];
-
-        // Vanilla sort: Skip modded
-        if(sortBy.value == 'Vanilla' && !(d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
-            continue;
+    for(si = 0; si < sort_order[orderSort.value].length; si++) {
+        let compare = sort_order[orderSort.value]
+        
+        if(compare[si][0] == '#') {
+            listHTML += `<h2 class="list_separator">${compare[si].substring(1)}</h2>`;
         }
-        
-        // Modded sort: Skip vanilla
-        else if(sortBy.value == 'Modded' && (d.modded == 'Vanilla' || d.modded == 'Vanilla Snapshot') ) {
-            continue;
-        } else if(sortBy.value == 'World_download' && d.download == '') {
-            continue;
-        }
-        resultCount++;
 
-        listHTML +=
-        `<div id="${d.name.split(' ').join('_')}" class="world_item" style="background: ${d.header_image ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${d.name}/${d.images[ d.header_image ]}')">
-            <!-- Click Detection -->
-            <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
-        
-            <!-- Download -->
-            <a class="download_button list_dl ${d.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${d.download == '' ? '' : `href="${d.download}"`}>
-                ${d.download == '' ? 'No Download' : `World Download`}
-            </a>
-        
-            <!-- Title -->
-            <h2 class="title">
-                ${d.name}
-            </h2>
-            <p class="mini_info">${sortBy.value == 'Modded' ? d.modded : `${d.startDate} to ${d.endDate}`}</p>
-        </div>`;
+        // Loop list to find next item
+        for(di = 0; di < pageData.length; di++) {
+            // console.log(pageData[di]);
+
+            let world = pageData[di];
+
+            if(world.name != compare[si] ) continue;
+
+            // Vanilla sort: Skip modded
+            if(sortBy.value == 'Vanilla' && !(world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
+            // Modded sort: Skip vanilla
+            else if(sortBy.value == 'Modded' && (world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
+            else if(sortBy.value == 'World_download' && world.download == '') continue;
+            // Singleplayer sort
+            else if(sortBy.value == 'Singleplayer' && !(world.mode == 'Singleplayer') ) continue;
+            // Multiplayer sort
+            else if(sortBy.value == 'Multiplayer' && !(world.mode == 'Multiplayer') ) continue;
+
+
+            resultCount++;
+
+            let blurb = sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
+
+            listHTML +=
+            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
+                <!-- Click Detection -->
+                <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
+            
+                <!-- Download -->
+                <a class="download_button list_dl ${world.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${world.download == '' ? '' : `href="${world.download}"`}>
+                    ${world.download == '' ? 'No Download' : `World Download`}
+                </a>
+            
+                <!-- Title -->
+                <h2 class="title">
+                    ${world.name}
+                </h2>
+                <p class="mini_info">${blurb}</p>
+            </div>`;
+        }
     }
+
+
 
     mainList.innerHTML = listHTML;
     console.log(resultCount, pageData.length, pageData.length - resultCount);
@@ -316,7 +336,7 @@ function closeContent() {
     backdrop.classList.remove('visible');
 
     download_button.removeAttribute("href");
-    videos.innerHTML = '';
+    // videos.innerHTML = '';
     smallGallery.innerHTML =
         `<button id="load_images" onclick="loadImages()">
             Load Images
@@ -471,12 +491,12 @@ function fillPage(num) {
         download_button.innerText = "World Download";
         // download_button.addAttribute("href");
         download_button.href = `${d.download}`;
-        console.log("Yes URL");
+        // console.log("Yes URL");
     } else {
         download_button.classList.add('disabled');
         download_button.innerText = "No Download";
         // download_button.removeAttribute("href");
-        console.log("No URL");
+        // console.log("No URL");
     }
 
     // If videos are available
@@ -488,6 +508,8 @@ function fillPage(num) {
             videoHTML += d.videos[vi];
         }
         videos.innerHTML = videoHTML;
+    } else {
+        videos.innerHTML = '';
     }
 
     // Players list

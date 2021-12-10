@@ -85,8 +85,10 @@ details {
 
 /* Select */
 .sort_container {
+    position: sticky;
+    z-index: 10;
     float: right;
-    margin-top: -80px;
+    margin-top: -16px;
 }
 #content .sort_container {
     margin-top: -60px;
@@ -210,7 +212,9 @@ p {
 
     transition-property: transform, filter, box-shadow;
     transition-duration: 0.15s;
-
+}
+.world_item,
+.list_separator {
     animation: list_anim 0.5s ease;
 }
 @keyframes list_anim {
@@ -236,6 +240,12 @@ p {
 .world_item p {
     padding-left: 32px;
 }
+/* Separators */
+.list_separator {
+    margin-bottom: -10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
 
 /* Content Overlay */
 #overlay_container {
@@ -516,7 +526,8 @@ select:hover*/ {
     width: 100%;
     height: 100%;
 }
-.main_list {
+#main_list {
+    padding-top: 16px;
     position: relative;
 }
 .list_dl {

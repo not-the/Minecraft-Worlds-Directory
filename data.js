@@ -53,7 +53,7 @@ const pageData = [
         modded: "Custom Pack",
     
         videos: [],
-        header_image: 13, // 152 is good too
+        header_image: 168, // 152 and 168 are good too
         images: [
             '2021-12-05_18.28.36.png',
             '2021-12-05_18.29.24.png',
@@ -219,6 +219,58 @@ const pageData = [
             '2021-12-08_21.56.56.png',
             '2021-12-08_21.57.04.png',
             '2021-12-08_22.03.54.png',
+            '2021-12-09_18.32.06.png',
+            '2021-12-09_18.38.35.png',
+            '2021-12-09_18.38.38.png',
+            '2021-12-09_19.00.44.png',
+            '2021-12-09_19.04.03.png', // 168 house image
+            '2021-12-09_20.29.49.png',
+            '2021-12-09_21.13.39.png',
+            '2021-12-09_21.15.03.png',
+            '2021-12-09_21.15.13.png',
+            '2021-12-09_21.17.17.png',
+            '2021-12-09_21.19.28.png',
+            '2021-12-09_21.30.08.png',
+            '2021-12-09_21.31.29.png',
+            '2021-12-09_21.32.11.png',
+            '2021-12-09_21.33.11.png',
+            '2021-12-09_21.37.42.png',
+            '2021-12-09_21.41.59.png',
+            '2021-12-09_21.42.28.png',
+            '2021-12-09_21.43.55.png',
+            '2021-12-09_21.44.44.png',
+            '2021-12-09_21.48.26.png',
+            '2021-12-09_21.48.37.png',
+            '2021-12-09_21.54.04.png',
+            '2021-12-09_22.09.38.png',
+            '2021-12-09_22.24.54.png',
+            '2021-12-09_22.48.47.png',
+            '2021-12-09_22.49.43.png',
+            '2021-12-09_22.50.20.png',
+            '2021-12-09_22.50.28.png',
+            '2021-12-09_22.52.40.png',
+            '2021-12-09_22.53.44.png',
+            '2021-12-09_22.55.16.png',
+            '2021-12-09_22.55.22.png',
+            '2021-12-09_22.55.25.png',
+            '2021-12-09_22.55.34.png',
+            '2021-12-09_23.03.09.png',
+            '2021-12-09_23.03.16.png',
+            '2021-12-09_23.07.25.png',
+            '2021-12-09_23.07.29.png',
+            '2021-12-09_23.09.11.png',
+            '2021-12-09_23.10.38.png',
+            '2021-12-09_23.11.10.png',
+            '2021-12-09_23.11.47.png',
+            '2021-12-09_23.12.38.png',
+            '2021-12-09_23.12.42.png',
+            '2021-12-09_23.12.45.png',
+            '2021-12-09_23.12.52.png',
+            '2021-12-09_23.12.58.png',
+            '2021-12-09_23.13.02.png',
+            '2021-12-09_23.14.25.png',
+            '2021-12-09_23.18.15.png',
+            '2021-12-09_23.22.59.png',
         ],
         players: ["timandy1", "NotNone"]
     },
@@ -263,6 +315,94 @@ const pageData = [
             '2021-12-05_23.18.25.png',
         ],
         players: ["JJCVIP"]
+    },
+
+    // Finna SMP / Vanilla server 1.17
+    {
+        name: "Finna SMP",
+        alt_names: ["1.17 Vanilla server"],
+        description: "",
+        owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
+        download: "",
+        // pack_download: "",
+
+        startDate: "6-18-2021",
+        endDate: "Present",
+        version: "1.17",
+        modded: "Vanilla",
+
+        videos: [
+            '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            `<iframe width="560" height="315" src="https://www.youtube.com/embed/eCbkRTBqYr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+        ],
+        header_image: 4,
+        images: [
+            "2021-06-19_21.13.23.png",
+            "2021-07-02_19.12.41.png",
+            "2021-07-12_19.01.12.png",
+            "2021-07-12_19.01.18.png",
+            "2021-07-12_19.18.25.png", //Main image
+            "2021-07-13_23.54.50.png",
+            "2021-07-13_23.58.48.png",
+            "2021-07-14_00.43.39.png",
+            "2021-07-17_01.39.56.png",
+            "2021-07-17_15.23.12.png",
+            "2021-07-17_16.15.35.png",
+            "2021-07-17_17.03.22.png",
+            "2021-07-19_16.35.21.png",
+            "2021-07-22_02.35.06.png",
+            "2021-07-23_01.07.30.png",
+            "2021-07-25_17.08.33.png",
+            "2021-07-27_00.21.29.png",
+            "2021-07-27_00.21.32.png",
+            "2021-07-27_00.22.25.png",
+            "2021-07-27_00.22.28.png",
+            "2021-07-27_00.22.35.png",
+            "2021-07-28_01.32.32.png",
+            "2021-07-28_01.33.18.png",
+            "2021-07-29_19.46.37.png",
+            "2021-07-29_21.00.27.png",
+            "2021-07-30_01.44.42.png",
+            "2021-07-31_21.10.10.png",
+            "2021-07-31_21.29.46.png",
+            "2021-08-02_01.46.02.png",
+            "2021-08-02_02.17.09.png",
+            "2021-08-02_22.04.17 crop.png",
+            "2021-08-02_22.18.03.png",
+            "2021-08-02_22.38.32.png",
+            "2021-08-04_20.25.10.png",
+            "2021-08-04_20.32.30.png",
+            "2021-08-04_21.14.22.png",
+            "2021-08-06_18.20.52.png",
+            "2021-08-07_01.36.38.png",
+            "2021-08-07_18.07.42.png",
+            "2021-08-08_00.09.58.png",
+            "2021-08-08_00.13.15.png",
+            "2021-08-08_00.32.01.png",
+            "2021-08-08_01.00.15.png",
+            "2021-08-09_22.43.07.png",
+            "2021-08-11_00.03.46.png"
+        ],
+        players: [
+            // Incomplete list
+            "NotNone",
+            "Hollow14",
+            "JJCVIP",
+            "Jellybear76",
+            "Gunther_The_God",
+            "neutronz.3",
+            "Screeish",
+            "laganrat",
+            "Woff1",
+            "Ryguy_0",
+            "Tahyari",
+            "BigMansJay",
+            "RaysofXenon",
+            "JoeVSWrld"
+        ]
     },
 
     // Vanilla servor
@@ -507,6 +647,51 @@ const pageData = [
         ]
     },
 
+    // Nether Nomads
+    {
+        name: "Nether Nomads",
+        alt_names: [],
+        description: "",
+        owners: "Hollow14",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
+        download: "",
+        pack_download: "",
+
+    
+        startDate: "November 2020 (?)",
+        endDate: "November 2020",
+        version: "1.16",
+        modded: "Vanilla",
+    
+        videos: [],
+        header_image: 1,
+        images: [
+            "2020-11-22_15.55.01.png",
+            "2020-11-22_16.09.26.png",
+            "2020-11-22_16.11.26.png",
+            "2020-11-22_16.31.35.png",
+            "2020-11-22_17.20.14.png",
+            "2020-11-24_15.13.27.png",
+            "2020-11-24_17.29.56.png",
+            "2020-11-24_21.59.46.png",
+            "2020-11-28_15.47.57.png",
+            "2020-11-28_15.52.12.png",
+            "2020-11-29_23.07.06.png",
+            "2021-04-27_14.23.03.png"
+        ],
+        players: [
+            // Incomplete list
+            "Hollow14",
+            "NotNone",
+            "JJCVIP",
+            "Gunther_The_God",
+            "Tahyari",
+            "BigMansJay"
+        ]
+    },
+
     // All The Mods 3 Remix
     {
         name: "ATM3R",
@@ -635,139 +820,6 @@ const pageData = [
             "NotNone",
             "Hollow14",
             "timandy1"
-        ]
-    },
-    
-    // Finna SMP / Vanilla server 1.17
-    {
-        name: "Finna SMP",
-        alt_names: ["1.17 Vanilla server"],
-        description: "",
-        owners: "NotNone",
-        mode: "Multiplayer",
-        gamemode: "Survival",
-
-        download: "",
-        // pack_download: "",
-
-        startDate: "6-18-2021",
-        endDate: "Present",
-        version: "1.17",
-        modded: "Vanilla",
-
-        videos: [
-            '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-            `<iframe width="560" height="315" src="https://www.youtube.com/embed/eCbkRTBqYr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-        ],
-        header_image: 4,
-        images: [
-            "2021-06-19_21.13.23.png",
-            "2021-07-02_19.12.41.png",
-            "2021-07-12_19.01.12.png",
-            "2021-07-12_19.01.18.png",
-            "2021-07-12_19.18.25.png", //Main image
-            "2021-07-13_23.54.50.png",
-            "2021-07-13_23.58.48.png",
-            "2021-07-14_00.43.39.png",
-            "2021-07-17_01.39.56.png",
-            "2021-07-17_15.23.12.png",
-            "2021-07-17_16.15.35.png",
-            "2021-07-17_17.03.22.png",
-            "2021-07-19_16.35.21.png",
-            "2021-07-22_02.35.06.png",
-            "2021-07-23_01.07.30.png",
-            "2021-07-25_17.08.33.png",
-            "2021-07-27_00.21.29.png",
-            "2021-07-27_00.21.32.png",
-            "2021-07-27_00.22.25.png",
-            "2021-07-27_00.22.28.png",
-            "2021-07-27_00.22.35.png",
-            "2021-07-28_01.32.32.png",
-            "2021-07-28_01.33.18.png",
-            "2021-07-29_19.46.37.png",
-            "2021-07-29_21.00.27.png",
-            "2021-07-30_01.44.42.png",
-            "2021-07-31_21.10.10.png",
-            "2021-07-31_21.29.46.png",
-            "2021-08-02_01.46.02.png",
-            "2021-08-02_02.17.09.png",
-            "2021-08-02_22.04.17 crop.png",
-            "2021-08-02_22.18.03.png",
-            "2021-08-02_22.38.32.png",
-            "2021-08-04_20.25.10.png",
-            "2021-08-04_20.32.30.png",
-            "2021-08-04_21.14.22.png",
-            "2021-08-06_18.20.52.png",
-            "2021-08-07_01.36.38.png",
-            "2021-08-07_18.07.42.png",
-            "2021-08-08_00.09.58.png",
-            "2021-08-08_00.13.15.png",
-            "2021-08-08_00.32.01.png",
-            "2021-08-08_01.00.15.png",
-            "2021-08-09_22.43.07.png",
-            "2021-08-11_00.03.46.png"
-        ],
-        players: [
-            // Incomplete list
-            "NotNone",
-            "Hollow14",
-            "JJCVIP",
-            "Jellybear76",
-            "Gunther_The_God",
-            "neutronz.3",
-            "Screeish",
-            "laganrat",
-            "Woff1",
-            "Ryguy_0",
-            "Tahyari",
-            "BigMansJay",
-            "RaysofXenon",
-            "JoeVSWrld"
-        ]
-    },
-
-    // Nether Nomads
-    {
-        name: "Nether Nomads",
-        alt_names: [],
-        description: "",
-        owners: "Hollow14",
-        mode: "Multiplayer",
-        gamemode: "Survival",
-
-        download: "",
-        pack_download: "",
-
-    
-        startDate: "November 2020 (?)",
-        endDate: "November 2020",
-        version: "1.16",
-        modded: "Vanilla",
-    
-        videos: [],
-        header_image: 1,
-        images: [
-            "2020-11-22_15.55.01.png",
-            "2020-11-22_16.09.26.png",
-            "2020-11-22_16.11.26.png",
-            "2020-11-22_16.31.35.png",
-            "2020-11-22_17.20.14.png",
-            "2020-11-24_15.13.27.png",
-            "2020-11-24_17.29.56.png",
-            "2020-11-24_21.59.46.png",
-            "2020-11-28_15.47.57.png",
-            "2020-11-28_15.52.12.png",
-            "2020-11-29_23.07.06.png",
-            "2021-04-27_14.23.03.png"
-        ],
-        players: [
-            // Incomplete list
-            "Hollow14",
-            "NotNone",
-            "JJCVIP",
-            "Gunther_The_God",
-            "Tahyari",
-            "BigMansJay"
         ]
     },
 
@@ -1075,13 +1127,49 @@ const pageData = [
             "ViolatedRunz"
         ]
     },
-
-
-    // Singleplayer worlds temporarily moved to top because they're new
 ]
 
+const sort_order = {
+    Relevant: [
+        '#All',
+        'Terralith CO-OP',
+        'Stone Tool Survival',
+        'Finna SMP',
+        'Vanilla servor',
+        '1.17 Creative Server',
+        'Create-ish',
+        'Nether Nomads',
+        'ATM3R',
+        'Voxel Fields 3',
+        'Voxel Fields 2 Plus',
+        'Voxel Fields 2',
+        'Voxel Fields',
+    ],
+    Chronological: [
+        '#2021',
+        'Terralith CO-OP',
+        'Stone Tool Survival',
+        'Voxel Fields 3',
+        'Finna SMP',
+        '1.17 Creative Server',
+    
+        '#2020',
+        'Vanilla servor',
+        'Create-ish',
+        'Nether Nomads',
+        'ATM3R',
+        'Voxel Fields 2 Plus',
+    
+        '#2017',
+        'Voxel Fields 2',
+        'Voxel Fields',
+    ],
+};
+
+
+
 // Featured image (always shows on first page visit)
-// const featuredIMG = 'images/Terralith CO-OP/2021-12-05_19.35.49.png';
-const featuredIMG = 'images/Terralith CO-OP/2021-12-08_21.38.17.png';
+const featuredIMG = 'images/Terralith CO-OP/2021-12-05_19.35.49.png'; // Red trees
+// const featuredIMG = 'images/Terralith CO-OP/2021-12-08_21.38.17.png'; // Purple jungle
 
 console.log("World data loaded");
