@@ -1148,17 +1148,19 @@ const sort_order = {
     Chronological: [
         '#2021',
         'Terralith CO-OP',
-        'Stone Tool Survival',
         'Voxel Fields 3',
+        'Stone Tool Survival',
         'Finna SMP',
         '1.17 Creative Server',
     
         '#2020',
-        'Vanilla servor',
         'Create-ish',
         'Nether Nomads',
         'ATM3R',
         'Voxel Fields 2 Plus',
+
+        '#2019',
+        'Vanilla servor',
     
         '#2017',
         'Voxel Fields 2',

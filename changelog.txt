@@ -1,4 +1,7 @@
-1.4 - 12/8/2021
+1.5 - 12/15/2021
+- Fixed chronological ordering (Vanilla Servor is now in 2019 where it belongs and stone tool survival is lower)
+
+1.4 - 12/10/2021
 - More Terralith CO-OP screenshots and changed its header image
 - Changed featured image back to the red trees image
 - Moved Finna SMP up the list so that the list is closer to chronological order (it still isn't)
