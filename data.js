@@ -321,7 +321,7 @@ const pageData = [
     {
         name: "Finna SMP",
         alt_names: ["1.17 Vanilla server"],
-        description: "",
+        description: "SMP started after the release of 1.17",
         owners: "NotNone",
         mode: "Multiplayer",
         gamemode: "Survival",
@@ -335,8 +335,20 @@ const pageData = [
         modded: "Vanilla",
 
         videos: [
-            '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
-            `<iframe width="560" height="315" src="https://www.youtube.com/embed/eCbkRTBqYr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/RjzOS95pC78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Digging Timelapse unedited',
+                desc: false,
+                date: 'Jul 25, 2021',
+                uploader: 'notnone',
+            },
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/eCbkRTBqYr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Smeltery pt 1',
+                desc: false,
+                date: 'Aug 7, 2021',
+                uploader: 'jjcvip',
+            },
         ],
         header_image: 4,
         images: [
@@ -422,7 +434,15 @@ const pageData = [
         version: "1.15 - 1.16",
         modded: "Vanilla",
 
-        videos: ['<iframe width="560" height="315" src="https://www.youtube.com/embed/loobwdIdOPE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'],
+        videos: [
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/loobwdIdOPE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Boomercraft #1:World Tour',
+                desc: false,
+                date: 'Jul 8, 2020',
+                uploader: 'jjcvip',
+            },
+        ],
         header_image: 62,
         images: [
             "2019-10-22_20.29.11.png",
@@ -578,6 +598,7 @@ const pageData = [
     {
         name: "Create-ish",
         alt_names: [],
+        description: 'Custom Vanilla+ modpack based around the Create mod JJTopia is a front for the KGB',
         owners: "NotNone",
         mode: "Multiplayer",
         gamemode: "Survival",
@@ -659,7 +680,6 @@ const pageData = [
         download: "",
         pack_download: "",
 
-    
         startDate: "November 2020 (?)",
         endDate: "November 2020",
         version: "1.16",
@@ -688,7 +708,8 @@ const pageData = [
             "JJCVIP",
             "Gunther_The_God",
             "Tahyari",
-            "BigMansJay"
+            "BigMansJay",
+            "Screeish",
         ]
     },
 
@@ -1168,6 +1189,18 @@ const sort_order = {
     ],
 };
 
+const profileData = {
+    notnone: {
+        pfp: './images/notnone.gif',
+        name: 'NotNone',
+        ign: 'NotNone',
+    },
+    jjcvip: {
+        pfp: './images/jjcvip.jpg',
+        name: 'JJCVIP',
+        ign: 'JJCVIP',
+    }
+}
 
 
 // Featured image (always shows on first page visit)

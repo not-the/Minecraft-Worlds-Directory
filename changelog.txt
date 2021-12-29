@@ -1,3 +1,12 @@
+1.6 - 12/28/2021
+- Content back button is no longer full width
+- Switched over the scroll event listener to {passive: true} (Don't actually know what this does exactly but it's supposed to help performance)
+- Videos now have the correct margins
+- Players is no longer collapsible and it has a player count next to it
+- Redesigned videos to display more information besid each video
+- Videos title also has the video count next to it
+- Added some descriptions
+
 1.5 - 12/15/2021
 - Fixed chronological ordering (Vanilla Servor is now in 2019 where it belongs and stone tool survival is lower)
 

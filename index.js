@@ -7,6 +7,7 @@ function dom(sel) {return document.querySelector(sel);}
 const body =            dom('body');
 const headerImage =     dom('#header_image');
 const smallGallery =    dom('#small_gallery');
+const playerCount =     dom('#player_count');
 const imageCount =      dom('#image_count');
 const imageViewer =     dom('#image_viewer');
 const enlarged =        dom('#enlarged');
@@ -93,7 +94,7 @@ imageViewer.addEventListener('mousewheel', e => {
     galleryTooltipComplete = true;
     viewerTooltip.classList.add('hidden');
     viewerScroll(direction);
-});
+}, {passive: true});
 
 // Main page background parallax
 onscroll = () => {
@@ -482,7 +483,8 @@ function fillPage(num) {
     start_date.innerText = `${d.startDate}`;
     end_date.innerText = `${d.endDate}`;
     version.innerText = `${d.version} / ${d.modded}`;
-    mode.innerText = `${d.gamemode} ${d.mode}`
+    mode.innerText = `${d.gamemode} ${d.mode}`;
+    playerCount.innerText = d.players.length;
     imageCount.innerText = d.images.length;
 
     // players.innerText = playerList;
@@ -502,10 +504,25 @@ function fillPage(num) {
     // If videos are available
     if(d.videos.length > 0) {
         console.log('Yes video');
-        let videoHTML = '<h2 class="content_margin">Videos</h2>';
+        let videoHTML = `<h2>Videos <span class="secondary_text small">(<span id="player_count">${d.videos.length}</span>)</span></h2>`;
         for(vi = 0; vi < d.videos.length; vi++) {
+            let video = d.videos[vi];
             // console.log(d.videos[vi]);
-            videoHTML += d.videos[vi];
+
+            videoHTML +=
+            `<div class="video_item flex">
+                ${video.iframe}
+                <div>
+                    <h3>${video.title}</h3>
+                    <p class="secondary_text">${video.date}</p>
+                    <p class="secondary_text" style="font-weight: 100;">${video.desc == false ? 'No description available' : video.titdescle}</p>
+
+                    <div class="uploader_card flex">
+                        <img src="${profileData[video.uploader].pfp}" alt="" class="yt_pfp">
+                        <p class="yt_name">${profileData[video.uploader].name}</p>
+                    </div>
+                </div>
+            </div>`;
         }
         videos.innerHTML = videoHTML;
     } else {
