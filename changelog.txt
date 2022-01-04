@@ -1,14 +1,25 @@
+1.7 - 1/3/2022
+- Fixed #content bobbing up and down in mobile safari (Apple thought it would be artsy to have the viewport change size every time you switch scroll directions)
+- Misc CSS improvements
+- Fixed the image gallery having the incorrect margins
+- Moved Finna SMP to the top of relevant sort
+- You can once again click outside of the image in the image viewer to close it (as you would expect)
+- Under "Sort by" you can now choose "Show all videos" which displays a list of videos instead of worlds
+
+
 1.6 - 12/28/2021
 - Content back button is no longer full width
 - Switched over the scroll event listener to {passive: true} (Don't actually know what this does exactly but it's supposed to help performance)
 - Videos now have the correct margins
 - Players is no longer collapsible and it has a player count next to it
-- Redesigned videos to display more information besid each video
+- Redesigned videos to display more information beside each video
 - Videos title also has the video count next to it
 - Added some descriptions
 
+
 1.5 - 12/15/2021
 - Fixed chronological ordering (Vanilla Servor is now in 2019 where it belongs and stone tool survival is lower)
+
 
 1.4 - 12/10/2021
 - More Terralith CO-OP screenshots and changed its header image
@@ -20,10 +31,12 @@
 - Ability to sort the list chronologically and list separators
 - Moved some worlds around within the default sort (Relevant)
 
+
 1.3 - 12/8/2021
 - New Terralith CO-OP screenshots
 - Added a world: Voxel Fields 2
 - #content is scrolled to the top when it is opened
+
 
 1.2 - 12/6/2021
 - #content download button is now keyboard focusable (Issue #2)
@@ -35,6 +48,7 @@
 - Fixed info table flexing to match the height of the players list
 - Removed NameMC note since that isn't going to continue being the case and it looks cleaner without it
 - Vanilla Servor's player list is now the complete list
+
 
 1.1 - 12/5/2021
 - Fixed issue where the world items would appear above the backdrop

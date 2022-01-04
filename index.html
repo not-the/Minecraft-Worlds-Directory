@@ -120,7 +120,7 @@
                     </table>
 
                     <!-- Player List -->
-                    <div class="players_dropdown flex1">
+                    <div class="flex1">
                         <b class="weight900">Players</b> <span class="secondary_text small" style="font-weight: 500;">(<span id="player_count" style="font-weight: 500;">-</span>)</span></h2>
                         <!-- <p class="secondary_text">Note: Clicking a username will take you to NameMC</p> -->
                         <div id="players">
@@ -167,7 +167,7 @@
                 </div>
 
                 <!-- Gallery -->
-                <div id="small_gallery" class="wrap">
+                <div id="small_gallery" class="content_margin wrap">
                     <button id="load_images" onclick="loadImages()">
                         Load Images
                     </button>
@@ -179,6 +179,9 @@
     
     <!-- When image is clicked -->
     <div id="image_viewer" class="flex">
+        <!-- Backdrop -->
+        <div id="viewer_backdrop" onclick="closeImage()"></div>
+        
         <!-- Viewer navigation -->
         <div class="viewer_nav">
             <!-- Previous -->
@@ -187,10 +190,12 @@
             <!-- <img src="images/arrow.png" class="rotate270 viewer_button" alt="Next Image" title="Next Image" onclick="viewerScroll('down')"> -->
         </div>
 
+        <!-- Keybinds tooltip -->
         <div id="viewer_tooltip">
             Use the scroll wheel or arrow keys to navigate. Press F to enter fullscreen.
         </div>
 
+        <!-- Image info -->
         <div id="viewer_info">
             <!-- File info -->
             <div>
@@ -242,6 +247,8 @@
                 <select name="list_order" id="list_order">
                     <option value="Relevant">Relevant</option>
                     <option value="Chronological">Chronological</option>
+                    <option value="Videos">Show all videos</option>
+                    <!-- <option value="Screens">Show all screenshots</option> -->
                 </select>
             </div>
 

@@ -25,7 +25,7 @@ const overlayContainer = dom('#overlay_container');
 const content =         dom('#content');
 const backdrop =        dom('#backdrop');
 
-const copyLinkButton =        dom('#copy_link');
+const copyLinkButton =  dom('#copy_link');
 
 // Info
 const title =           dom('#title');
@@ -135,7 +135,10 @@ sortBy.addEventListener('change', e => {
 // List sort order
 orderSort.addEventListener('change', e => {
     console.log(`Sorting by ${orderSort.value}`);
-    populateList();
+
+    if(orderSort.value != 'Videos' && orderSort.value != 'Screens') {populateList();}
+    else if(orderSort.value == 'Videos') {populateListVideos();}
+    // else {populateListImages();}
 });
 // Image sorting
 var imageSortValue = 'Old-New';
@@ -229,8 +232,6 @@ function populateList() {
         }
     }
 
-
-
     mainList.innerHTML = listHTML;
     console.log(resultCount, pageData.length, pageData.length - resultCount);
 
@@ -240,8 +241,48 @@ function populateList() {
     }
 }
 
+// Populate list with videos
+function populateListVideos() {
+    var listHTML = '';
+
+    // Loop list to find next item
+    for(di = 0; di < pageData.length; di++) {
+        let world = pageData[di];
+
+        if(world.videos.length < 1) continue;
+
+        listHTML += `<h2 class="list_separator">${world.name}</h2><br>`;
+        // Videos loop
+        for(let vi = 0; vi < world.videos.length; vi++) {
+            let video = world.videos[vi];
+            listHTML += videosHTML(video);
+        }
+    }
+
+    mainList.innerHTML = listHTML;
+}
+
+// Populate list with images
+// function populateListImages() {
+//     var listHTML = '';
+
+//     // Loop list to find next item
+//     for(di = 0; di < pageData.length; di++) {
+//         let world = pageData[di];
+
+//         if(world.images.length < 1) continue;
+
+//         listHTML += `<h2 class="list_separator">${world.name}</h2><br>`;
+//         // Images loop
+//         for(let vi = 0; vi < world.images.length; vi++) {
+//             selection = di;
+//             listHTML += loadImages(mainList);
+//         }
+//     }
+// }
+
 // Load images
-function loadImages() {
+function loadImages(destination = smallGallery) {
     let imagesList = pageData[selection].images;
     var imgHTML = "";
 
@@ -274,9 +315,11 @@ function loadImages() {
         }
 
 
-        smallGallery.innerHTML = imgHTML;
+        destination.innerHTML = imgHTML;
+        // return imgHTML;
     } else {
-        smallGallery.innerHTML = '<p style="text-align: center">No images available</p>';
+        destination.innerHTML = '<p style="text-align: center">No images available</p>';
+        // return '<p style="text-align: center">No images available</p>';
     }
     
 }
@@ -379,12 +422,10 @@ function bigBackgroundSrc(num, animate, any) {
             url('images/${d.name}/${d.images[ roll ]}')`;
         }
 
-
         // Animate
-        if(animate !== 'no') {
+        if(animate != 'no') {
             bigBackground.classList.remove('big_background_animate');
             bigBackground.classList.add('big_background_animate');
-    
     
             setTimeout(() => {
                 bigBackground.classList.remove('big_background_animate');
@@ -509,20 +550,7 @@ function fillPage(num) {
             let video = d.videos[vi];
             // console.log(d.videos[vi]);
 
-            videoHTML +=
-            `<div class="video_item flex">
-                ${video.iframe}
-                <div>
-                    <h3>${video.title}</h3>
-                    <p class="secondary_text">${video.date}</p>
-                    <p class="secondary_text" style="font-weight: 100;">${video.desc == false ? 'No description available' : video.titdescle}</p>
-
-                    <div class="uploader_card flex">
-                        <img src="${profileData[video.uploader].pfp}" alt="" class="yt_pfp">
-                        <p class="yt_name">${profileData[video.uploader].name}</p>
-                    </div>
-                </div>
-            </div>`;
+            videoHTML += videosHTML(video);
         }
         videos.innerHTML = videoHTML;
     } else {
@@ -548,6 +576,24 @@ function fillPage(num) {
         }
     }
     players.innerHTML = playerHTML.substring(0, playerHTML.length - 2);
+}
+
+// Video HTML
+function videosHTML(video) {
+    return `
+    <div class="video_item flex">
+        ${video.iframe}
+        <div>
+            <h3>${video.title}</h3>
+            <p class="secondary_text">${video.date}</p>
+            <p class="secondary_text" style="font-weight: 100;">${video.desc == false ? 'No description available' : video.titdescle}</p>
+
+            <div class="uploader_card flex">
+                <img src="${profileData[video.uploader].pfp}" alt="" class="yt_pfp">
+                <p class="yt_name">${profileData[video.uploader].name}</p>
+            </div>
+        </div>
+    </div>`;
 }
 
 // fillPage(2);
@@ -589,11 +635,13 @@ function rollBG() {
     randomBG = Math.floor(Math.random() * pageData.length);
 
     if(pageData[randomBG].images.length == 0) rollBG();
+    
+    bigBackgroundSrc(randomBG, 'no', true);
 }
 rollBG();
 
 console.log(randomBG);
-bigBackgroundSrc(randomBG, 'no', true);
+
 
 // URL Handling
 //#region 

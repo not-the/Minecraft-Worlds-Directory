@@ -1153,9 +1153,9 @@ const pageData = [
 const sort_order = {
     Relevant: [
         '#All',
+        'Finna SMP',
         'Terralith CO-OP',
         'Stone Tool Survival',
-        'Finna SMP',
         'Vanilla servor',
         '1.17 Creative Server',
         'Create-ish',
@@ -1186,7 +1186,7 @@ const sort_order = {
         '#2017',
         'Voxel Fields 2',
         'Voxel Fields',
-    ],
+    ]
 };
 
 const profileData = {
