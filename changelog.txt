@@ -1,3 +1,11 @@
+1.8 - 1/7/2022
+- The page no longer generates the list every time it is loaded and instead has the default list in the HTML (slight increase in performance hopefully, also the list's HTML is still generated when you sort or filter)
+- When listing all videos the text beside the video will now have a text-shadow to improve readability
+- Added a "World": UHC
+- Added a parallax + dim effect to the #content header image has you scroll down (this is also disabled when "Disable Parallax" is checked)
+- The scrollbar will now overlay the page instead of getting its own area (in supported browsers)
+
+
 1.7 - 1/3/2022
 - Fixed #content bobbing up and down in mobile safari (Apple thought it would be artsy to have the viewport change size every time you switch scroll directions)
 - Misc CSS improvements

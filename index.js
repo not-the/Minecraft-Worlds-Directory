@@ -96,12 +96,26 @@ imageViewer.addEventListener('mousewheel', e => {
     viewerScroll(direction);
 }, {passive: true});
 
+
+
 // Main page background parallax
 onscroll = () => {
-    if(localStorage.getItem('disable_parallax') == 'true') return;
     parallax();
 }
-function parallax() { bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px'; }
+content.onscroll = () => {
+    contentParallax();
+}
+function parallax() {
+    if(localStorage.getItem('disable_parallax') == 'true') return;
+    bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px';
+}
+function contentParallax() {
+    if(content.scrollTop > 500) return;
+    if(localStorage.getItem('disable_parallax') == 'true') return;
+    headerImage.style.filter = `brightness(${100 - (content.scrollTop / 20)}%)`;
+    headerImage.style.marginTop = `${content.scrollTop * 0.5}px`;
+}
+
 
 // Mouse movement, hide info when mouse is immobile
 var mouseTimer;
@@ -616,7 +630,8 @@ function copyLink(url = 'auto-page') {
 }
 
 // Run when page loads -----------------------------------
-populateList();
+// Now off because the page no longer generates html on page load, only when filters/sort is applied
+// populateList();
 
 // Pick a random big background image
 let randomBG;

@@ -1148,6 +1148,61 @@ const pageData = [
             "ViolatedRunz"
         ]
     },
+
+
+
+    // Misc/Non-worlds
+
+    // UHC
+    {
+        name: "UHC",
+        alt_names: [],
+        description: "Custom Ultra Hardcore mode where we played on a new seed each time",
+        owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "UHC",
+
+        download: "",
+        // pack_download: "",
+
+        startDate: "July 15, 2020",
+        endDate: "April 18, 2021",
+        version: "1.16",
+        modded: "Vanilla",
+
+        videos: [
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Z7kq1lCp4RA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Minecraft UHC 7/25/2020',
+                desc: false,
+                date: 'Jul 30, 2020',
+                uploader: 'notnone',
+            },
+        ],
+        header_image: 0,
+        images: [
+            '2020-07-15_16.47.35.png',
+            '2020-07-15_17.10.30.png',
+            '2020-07-15_17.10.33.png',
+            '2020-07-15_17.41.59.png',
+            '2020-07-15_19.46.21.png',
+            '2020-07-15_20.14.42.png',
+            '2020-07-25_17.11.41.png',
+            '2020-07-25_17.50.28.png',
+            '2020-07-25_18.34.53.png',
+            '2020-07-25_18.41.06.png',
+        ],
+        players: [
+            // Incomplete list
+            "NotNone",
+            "Hollow14",
+            "JJCVIP",
+            "neutronz.3",
+            "laganrat",
+            "Woff1",
+            "Screeish",
+        ]
+    },
 ]
 
 const sort_order = {
@@ -1165,6 +1220,9 @@ const sort_order = {
         'Voxel Fields 2 Plus',
         'Voxel Fields 2',
         'Voxel Fields',
+
+        '#Other',
+        'UHC',
     ],
     Chronological: [
         '#2021',
@@ -1186,6 +1244,9 @@ const sort_order = {
         '#2017',
         'Voxel Fields 2',
         'Voxel Fields',
+
+        '#Other',
+        'UHC',
     ]
 };
 

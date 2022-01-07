@@ -20,6 +20,8 @@ body {
     background: var(--content-bg);
     color: white;
     font-family: 'Inter', sans-serif;
+
+    overflow: overlay;
 }
 .weight100 {font-weight: 100;}
 .weight900 {font-weight: 900 !important;}
@@ -47,8 +49,9 @@ body {
 }
 
 iframe {
-    width: 50%;
-    height: 240px;
+    max-width: 50%;
+    width: 400px;
+    height: 225px;
 
     margin-bottom: 40px;
     margin-right: 20px;
@@ -106,16 +109,18 @@ option {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    background: var(--content-bg);
+    /* background: var(--content-bg); */
     width: 6px;
     height: 6px;
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgb(73, 73, 73);
+    /* background-color: rgb(73, 73, 73); */
+    background-color: gray;
 }
 ::-webkit-scrollbar-thumb:active {
-    background: rgb(54, 54, 54);
+    /* background: rgb(54, 54, 54); */
+    background-color: rgb(73, 73, 73);
 }
 
 /* General */
@@ -216,6 +221,10 @@ p {
 #main_list .video_item {
     animation: list_anim 0.5s ease;
 }
+#main_list .video_item h3,
+#main_list .video_item p {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
 @keyframes list_anim {
     from {
         opacity: 0;
@@ -264,9 +273,13 @@ p {
 
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(12px);
+    /* transition */
 
     visibility: hidden;
 }
+/* #backdrop.visible {
+    
+} */
 .fade_in {animation: backdrop-fade 2s ease;}
 .fade_out {animation: backdrop-fade 2s ease reverse forwards}
 @keyframes backdrop_fade {
@@ -281,8 +294,10 @@ p {
     width: 100%;
     max-width: 1000px;
     height: calc(100vh - 20px);
+    
     overflow-y: auto;
     overflow-x: hidden;
+    overflow: overlay;
 
     background: var(--content-bg);
     border: 1px solid rgb(46, 46, 46);
@@ -624,6 +639,7 @@ th {
     position: relative;
     padding: 20px 0;
     margin-top: 16px;
+    margin-bottom: 32px;
 }
 
 #small_gallery img {
@@ -680,8 +696,8 @@ th {
     width: 100%;
     background: rgb(37, 37, 37);
     color: rgb(212, 212, 212);
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 .footer_container {
     max-width: 800px;
