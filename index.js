@@ -225,7 +225,8 @@ function populateList() {
 
             resultCount++;
 
-            let blurb = sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
+            let blurb = orderSort.value == 'Screen_Count' ? `${world.images.length} screenshots`
+            : sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
 
             listHTML +=
             `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">

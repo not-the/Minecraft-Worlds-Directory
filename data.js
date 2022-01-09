@@ -1247,7 +1247,23 @@ const sort_order = {
 
         '#Other',
         'UHC',
-    ]
+    ],
+    Screen_Count: [
+        '#All',
+        'Terralith CO-OP',
+        'Voxel Fields 3',
+        'ATM3R',
+        'Vanilla servor',
+        'Voxel Fields 2 Plus',
+        'Create-ish',
+        'Finna SMP',
+        'Stone Tool Survival',
+        '1.17 Creative Server',
+        'Voxel Fields 2',
+        'Nether Nomads',
+        'UHC',
+        'Voxel Fields',
+    ],
 };
 
 const profileData = {

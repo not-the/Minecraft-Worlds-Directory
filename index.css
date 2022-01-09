@@ -99,6 +99,9 @@ select {
     background: var(--secondary-color);
     color: white;
 }
+select:disabled {
+    cursor: not-allowed;
+}
 option {
     border: none;
 }
@@ -296,7 +299,7 @@ p {
     height: calc(100vh - 20px);
     
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     overflow: overlay;
 
     background: var(--content-bg);
@@ -788,7 +791,7 @@ footer .column:not(:last-of-type) {
         bottom: 16px;
     }
     .sort_container {
-        margin: 0;
+        margin: 0 !important;
         float: none;
     }
     #content .sort_container {
@@ -819,5 +822,21 @@ footer .column:not(:last-of-type) {
     }
     .footer_container {
         display: unset;
+    }
+
+
+    .video_item {
+        display: unset;
+    }
+    .video_item h3 {
+        margin-top: -24px;
+    }
+    .uploader_card {
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgb(46, 46, 46);
+        margin-bottom: 24px;
+    }
+    iframe {
+        max-width: 100%;
     }
 }

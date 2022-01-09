@@ -1,3 +1,9 @@
+1.9 - 1/9/2022
+- Option to sort by number of screenshots
+- Video descriptions will now go underneath the video at smaller viewport widths
+- Fixed the sort by dropdown having extra right margin on mobile/small viewports
+- Fixed the content popup being horizontally scrollable
+
 1.8 - 1/7/2022
 - The page no longer generates the list every time it is loaded and instead has the default list in the HTML (slight increase in performance hopefully, also the list's HTML is still generated when you sort or filter)
 - When listing all videos the text beside the video will now have a text-shadow to improve readability
