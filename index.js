@@ -250,7 +250,7 @@ function populateList() {
             : sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
 
             listHTML +=
-            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/world/${world.name}/${world.images[ world.header_image ]}')">
+            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
                 <!-- Click Detection -->
                 <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
             
@@ -330,7 +330,7 @@ function loadImages(destination = smallGallery) {
             for(ii = 0; ii < imagesList.length; ii++) {
                 // console.log(imagesList[ii]);
                 imgHTML += `<img
-                    src="images/world/${pageData[selection].name}/${imagesList[ii]}"
+                    src="images/${pageData[selection].name}/${imagesList[ii]}"
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
@@ -341,7 +341,7 @@ function loadImages(destination = smallGallery) {
             for(ii = imagesList.length - 1; ii >= 0; ii--) {
                 // console.log(imagesList[ii]);
                 imgHTML += `<img
-                    src="images/world/${pageData[selection].name}/${imagesList[ii]}"
+                    src="images/${pageData[selection].name}/${imagesList[ii]}"
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
@@ -447,7 +447,7 @@ function bigBackgroundSrc(num, animate, any) {
             bigBackground.style.background =
             `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
             linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/world/${d.name}/${d.images[ d.header_image ]}')`;
+            url('images/${d.name}/${d.images[ d.header_image ]}')`;
         } else {
             // Random non-header image
             let roll = Math.floor(Math.random() * d.images.length);
@@ -455,7 +455,7 @@ function bigBackgroundSrc(num, animate, any) {
             bigBackground.style.background =
             `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
             linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/world/${d.name}/${d.images[ roll ]}')`;
+            url('images/${d.name}/${d.images[ roll ]}')`;
         }
 
         // Animate
@@ -531,7 +531,7 @@ function viewImageSrc() {
     
 
     // Change image
-    enlarged.src = `images/world/${d.name}/${d.images[imageID]}`;
+    enlarged.src = `images/${d.name}/${d.images[imageID]}`;
 }
 function copyImageURL() {
     copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
@@ -564,7 +564,7 @@ function fillPage(num) {
     // console.log(players);
 
     // Header Image
-    headerImage.src = d.images.length > 0 ? `images/world/${d.name}/${d.images[ d.header_image ]}` : `images/blank.png`;
+    headerImage.src = d.images.length > 0 ? `images/${d.name}/${d.images[ d.header_image ]}` : `images/blank.png`;
     headerImage.title = d.images[ d.header_image ];
     title.innerText = `${d.name}`;
     description.innerText = `${d.description}`;
