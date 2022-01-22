@@ -271,7 +271,7 @@ function populateList() {
     mainList.innerHTML = listHTML;
     console.log(resultCount, pageData.length, pageData.length - resultCount);
 
-    if(resultCount != pageData.length) {
+    if(resultCount != pageData.length && orderSort.value != 'Videos') {
         console.log("Some results are hidden");
         numberHidden.innerText = `${pageData.length - resultCount} items were hidden because they did not match your filter`;
     }

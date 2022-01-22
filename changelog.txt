@@ -1,3 +1,6 @@
+1.10.2 - 1/22/2022
+- Videos sort no longer incorrectly shows the hidden results notice at the bottom
+
 1.10.1 - 1/22/2022
 - Fixed issue where the JS was looking in the wrong location for images (I originally reverted a change to the folder structure without changing it back in the code)
 
