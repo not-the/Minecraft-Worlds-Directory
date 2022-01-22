@@ -38,6 +38,19 @@ const players =         dom('#players');
 const download_button = dom('#download_button');
 const download_url =    dom('#download_url');
 const videos =          dom('#videos');
+
+// Statistics
+const statsTooltip =    dom('#stats_tooltip');
+
+const playerPopup =     dom('#player_popup');
+const playerPopupBox =  dom('#player_popup_box');
+const statsUsername =   dom('#stats_username');
+const statsPlayerHead = dom('#stats_player_head');
+const statsWorld =      dom('#stats_world');
+const statsTable =      dom('#stats_table');
+
+const stats_collapse_all = dom('#stats_collapse_all');
+
 //#endregion
 
 // Keyboard controls
@@ -51,7 +64,9 @@ body.addEventListener('keydown', e => {
 
     // Escape to go back
     if(e.code == "Escape") {
-        if(viewerOpen) {
+        if(statsOpen) {
+            closeStats();
+        } else if(viewerOpen) {
             closeImage();
         } else if(contentOpen) {
             closeContent();
@@ -187,8 +202,11 @@ imageSort.addEventListener('change', e => {
 // Variables
 var gallery = [];
 var selection; // Number ID of current item
+var statsSelection;
+var allCollapsed = false;
 var contentOpen = false;
 var viewerOpen = false;
+var statsOpen = false;
 var galleryTooltipComplete = false;
 
 
@@ -216,11 +234,14 @@ function populateList() {
             if(sortBy.value == 'Vanilla' && !(world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
             // Modded sort: Skip vanilla
             else if(sortBy.value == 'Modded' && (world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
+            // World download filter
             else if(sortBy.value == 'World_download' && world.download == '') continue;
-            // Singleplayer sort
+            // Singleplayer filter
             else if(sortBy.value == 'Singleplayer' && !(world.mode == 'Singleplayer') ) continue;
-            // Multiplayer sort
+            // Multiplayer filter
             else if(sortBy.value == 'Multiplayer' && !(world.mode == 'Multiplayer') ) continue;
+            // Statistics filter
+            else if(sortBy.value == 'Statistics' && world.stats == false) continue;
 
 
             resultCount++;
@@ -229,7 +250,7 @@ function populateList() {
             : sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
 
             listHTML +=
-            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
+            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/world/${world.name}/${world.images[ world.header_image ]}')">
                 <!-- Click Detection -->
                 <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
             
@@ -250,9 +271,9 @@ function populateList() {
     mainList.innerHTML = listHTML;
     console.log(resultCount, pageData.length, pageData.length - resultCount);
 
-    if(resultCount - pageData.length > 0) {
+    if(resultCount != pageData.length) {
         console.log("Some results are hidden");
-        numberHidden.innerText = `${pageData.length - resultCount} results were hidden because they did not match your filter`;
+        numberHidden.innerText = `${pageData.length - resultCount} items were hidden because they did not match your filter`;
     }
 }
 
@@ -309,7 +330,7 @@ function loadImages(destination = smallGallery) {
             for(ii = 0; ii < imagesList.length; ii++) {
                 // console.log(imagesList[ii]);
                 imgHTML += `<img
-                    src="images/${pageData[selection].name}/${imagesList[ii]}"
+                    src="images/world/${pageData[selection].name}/${imagesList[ii]}"
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
@@ -320,7 +341,7 @@ function loadImages(destination = smallGallery) {
             for(ii = imagesList.length - 1; ii >= 0; ii--) {
                 // console.log(imagesList[ii]);
                 imgHTML += `<img
-                    src="images/${pageData[selection].name}/${imagesList[ii]}"
+                    src="images/world/${pageData[selection].name}/${imagesList[ii]}"
                     alt="${imagesList[ii]}"
                     id="image${ii}"
                     title="${imagesList[ii]}"
@@ -372,7 +393,7 @@ function openContent(num) {
     body.classList.add('overflow_hidden');
 
     // Auto load images
-    // loadImages();
+    loadImages();
 
     // Hide after animation completes
     setTimeout(() => {
@@ -426,7 +447,7 @@ function bigBackgroundSrc(num, animate, any) {
             bigBackground.style.background =
             `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
             linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/${d.name}/${d.images[ d.header_image ]}')`;
+            url('images/world/${d.name}/${d.images[ d.header_image ]}')`;
         } else {
             // Random non-header image
             let roll = Math.floor(Math.random() * d.images.length);
@@ -434,7 +455,7 @@ function bigBackgroundSrc(num, animate, any) {
             bigBackground.style.background =
             `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
             linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/${d.name}/${d.images[ roll ]}')`;
+            url('images/world/${d.name}/${d.images[ roll ]}')`;
         }
 
         // Animate
@@ -495,11 +516,22 @@ function viewImageSrc() {
     let d = pageData[selection];
 
     // File info
-    viewerInfo.innerHTML = `<p class="weight100 hover_underline pointer" onclick="copyImageURL()" id="copy_image_url">Filename: ${d.images[imageID]}</p>
-    <p>${imageID + 1} / ${d.images.length} ${imageID == d.header_image ? '<img src="./images/star.png" alt="Header image" class="inline_icon" title="Header image">' : ''}</p>`;
+    viewerInfo.innerHTML = /* htmla */
+    `<div>
+        <p class="weight100 hover_underline pointer" onclick="copyImageURL()" id="copy_image_url">Filename: ${d.images[imageID]}</p>
+        <p>${imageID + 1} / ${d.images.length} ${imageID == d.header_image ? '<img src="./images/star.png" alt="Header image" class="inline_icon" title="Header image">' : ''}</p>
+    </div>
+    
+    <div style="text-align: right">
+        ${d.image_caption[imageID] == undefined ?
+            `<p class="weight100 secondary_text">No caption</p>`
+          : `<p class="weight100"><i>"${d.image_caption[imageID]}"</i></p>`}
+        <p class="weight100">Source: <b>${d.image_credit[imageID] == undefined || d.image_credit.hasOwnProperty([imageID]) ? 'NotNone' : d.image_credit[imageID]}</b></p>
+    </div>`;
+    
 
     // Change image
-    enlarged.src = `images/${d.name}/${d.images[imageID]}`;
+    enlarged.src = `images/world/${d.name}/${d.images[imageID]}`;
 }
 function copyImageURL() {
     copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
@@ -532,7 +564,7 @@ function fillPage(num) {
     // console.log(players);
 
     // Header Image
-    headerImage.src = d.images.length > 0 ? `images/${d.name}/${d.images[ d.header_image ]}` : `images/blank.png`;
+    headerImage.src = d.images.length > 0 ? `images/world/${d.name}/${d.images[ d.header_image ]}` : `images/blank.png`;
     headerImage.title = d.images[ d.header_image ];
     title.innerText = `${d.name}`;
     description.innerText = `${d.description}`;
@@ -578,19 +610,36 @@ function fillPage(num) {
         playerHTML = '';
         for(let pi = 0; pi < d.players.length; pi++) {
             let username = d.players[pi];
-            let href = '';
+            // let href = '';
+            let onclick = '';
             let css = '';
             if(username != 'Unlisted') {
-                href = ` href="https://namemc.com/profile/${username}${username.includes('.') ? '' : '.1'}" target="_blank" rel="noopener noreferrer"`;
+                // href = ` href="https://namemc.com/profile/${username}${username.includes('.') ? '' : '.1'}" target="_blank" rel="noopener noreferrer"`;
+                onclick = `onclick="openStats('${username}', ${pi})"`;
             } else { css = 'secondary_text'; }
             
+            // Namemc link version
+            // playerHTML +=
+            // `<a${href} class="${css}">
+            //     ${username == d.owners ? '<img src="./images/crown.png" alt="Owner" class="inline_icon owner_crown" title="Server Owner">' : ''}
+            //     ${username.split('.')[0]}
+            // </a>, `;
+
             playerHTML +=
-            `<a${href} class="${css}">
+            `<span class="hover_underline pointer ${css}"${onclick}>
                 ${username == d.owners ? '<img src="./images/crown.png" alt="Owner" class="inline_icon owner_crown" title="Server Owner">' : ''}
-                ${username.includes('.') ? username.split('.')[0] : username}</a>, `;
+                ${username.split('.')[0]}</span>, `;
         }
     }
     players.innerHTML = playerHTML.substring(0, playerHTML.length - 2);
+    // Player stats tooltip
+    if(d.stats == true) {
+        statsTooltip.classList.remove('hidden');
+        statsTooltip.classList.remove('position_absolute');
+    } else {
+        statsTooltip.classList.add('hidden');
+        statsTooltip.classList.add('position_absolute');
+    }
 }
 
 // Video HTML
@@ -601,7 +650,7 @@ function videosHTML(video) {
         <div>
             <h3>${video.title}</h3>
             <p class="secondary_text">${video.date}</p>
-            <p class="secondary_text" style="font-weight: 100;">${video.desc == false ? 'No description available' : video.titdescle}</p>
+            <p class="secondary_text" style="font-weight: 100;">${video.desc == false ? 'No description available' : video.desc}</p>
 
             <div class="uploader_card flex">
                 <img src="${profileData[video.uploader].pfp}" alt="" class="yt_pfp">
@@ -657,6 +706,199 @@ function rollBG() {
 rollBG();
 
 console.log(randomBG);
+
+
+
+
+// Get JSON
+// https://stackoverflow.com/a/22790025/11039898
+function get(url, parse = false){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET", url, false);
+    Httpreq.send(null);
+
+    if(parse == true) return JSON.parse(Httpreq.responseText);
+    return Httpreq.responseText;          
+}
+
+// Statistics viewer
+const stats_nav_left =  dom('#stats_nav_left');
+const stats_nav_right = dom('#stats_nav_right');
+function openStats(player, num) {
+    statsSelection = num;
+    statsOpen = true;
+
+    let d = pageData[selection];
+
+    playerPopup.classList.add('visible');
+    playerPopupBox.scrollTo(0, 0);
+    updateStatsNav(num);
+
+    // Get and fill out info
+    let raw;
+    try { raw = get(`./stats/${d.name}/${mcUUID[player]}.json`, true); }
+    catch (error) {
+        console.error(error);
+        closeStats();
+        toast();
+    }
+    let stats = raw.stats;
+    let dver = raw.hasOwnProperty('DataVersion'); // MC has DataVersion value (if no = old)
+    // console.log(raw);
+
+    // Title
+    statsUsername.innerText = player.split('.')[0];
+    statsWorld.innerText = d.name;
+    statsPlayerHead.src = `./images/skin/${player}.png`;
+
+
+    // Raw data table
+    var tableHTML = '';
+
+
+    // Table Categories
+    // New MC format
+    if(dver == true) {
+        let keys = Object.keys(stats);
+
+        // Easy Table
+        // Playtime
+        let time_played = stats['minecraft:custom']['minecraft:play_one_minute'] || stats['minecraft:custom']['minecraft:play_time'];
+        dom('#stats_time_played').innerText = (time_played / 144000).toFixed(1) + ' hours'; // Raw value is in ticks, there are 20 ticks in a second
+
+        // Deaths
+        try {dom('#stats_deaths').innerText = numCommas(stats['minecraft:custom']['minecraft:deaths']);}
+        catch (error) {dom('#stats_deaths').innerText = '0'}
+
+        // Stone blocks mined
+        try {dom('#stats_mined_stone').innerText = numCommas(stats['minecraft:mined']['minecraft:stone']);} catch (error) {dom('#stats_mined_stone').innerText = '0';}
+        
+
+
+        // Raw data
+        for(i = 0; i < keys.length; i++) {
+            let inner = '<table>';
+            let innerkeys = Object.keys(stats[keys[i]]);
+            for(k = 0; k < innerkeys.length; k++) {
+                // console.log(stats[keys[i]][innerkeys[k]]);
+                inner += `
+                <tr>
+                    <th>
+                        ${innerkeys[k]}
+                    </th>
+                    <td>
+                        ${numCommas(stats[keys[i]][innerkeys[k]])}
+                    </td>
+                </tr>`;
+            }
+            inner += '</table>';
+    
+            
+            tableHTML += `
+            <details open>
+                <summary>${keys[i]}</summary>
+                ${inner}
+            </details>`;
+    
+            // console.log(stats);
+        }
+    }
+    // Old MC format
+    else {
+        // Easy Table
+        let time_played = raw['stat.playOneMinute'];
+        dom('#stats_time_played').innerText = (time_played / 144000).toFixed(1) + ' hours'; // Raw value is in ticks, there are 20 ticks in a second
+        dom('#stats_deaths').innerText = numCommas(raw['stat.deaths']);
+        dom('#stats_mined_stone').innerText = '---';
+        
+
+        // Raw data
+        let keys = Object.keys(raw);
+        tableHTML += '<table>';
+        for(i = 0; i < keys.length; i++) {
+            tableHTML += `
+            <tr>
+                <th>
+                    ${keys[i]}
+                </th>
+                <td>
+                    ${raw[keys[i]]}
+                </td>
+            </tr>`;
+        }
+        tableHTML += '</table>';
+    }
+
+    statsTable.innerHTML = tableHTML;
+
+    if(allCollapsed == true) collapseAll(true);
+}
+function closeStats() {
+    statsOpen = false;
+    playerPopup.classList.remove('visible');
+}
+function statsNav(direction) {
+    let d = pageData[selection];
+    let num = statsSelection;
+
+    if(direction == 'previous' && !(num == 0)) {
+        num--;
+    } else if(num != d.players.length - d.unlisted_players - 1) {
+        num++;
+    }
+
+    openStats(d.players[num], num);
+}
+function updateStatsNav(num) {
+    let d = pageData[selection];
+
+    // Arrow nav
+    if(num == 0) {
+        stats_nav_left.classList.add('disabled');
+    } else {
+        stats_nav_left.classList.remove('disabled');
+    }
+    if(num == pageData[selection].players.length - d.unlisted_players - 1) {
+        stats_nav_right.classList.add('disabled');
+    } else {
+        stats_nav_right.classList.remove('disabled');
+    }
+}
+function collapseAll(override) {
+    let all = document.querySelectorAll('details');
+
+    if(allCollapsed == false || override == true) {
+        allCollapsed = true;
+        stats_collapse_all.innerText = "Expand all";
+        all.forEach(element => {
+            element.open = false;
+        });
+    } else {
+        allCollapsed = false;
+        stats_collapse_all.innerText = "Collapse all";
+        all.forEach(element => {
+            element.open = true;
+        });
+    }
+}
+
+
+
+// Toast
+const mainToast = dom('#toast');
+var toastTimeout;
+function toast(text) {
+    if(!mainToast.classList.contains('in')) {
+        mainToast.classList.add('in');
+    }
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        mainToast.classList.remove('in');
+    }, 3000);
+}
+
+
 
 
 // URL Handling
@@ -733,7 +975,16 @@ function toggleParallax() {
 
 }
 
-// Restore on load
+// Restore settings on load
 if(localStorage.getItem('disable_parallax') != null) {
     checkboxParallax.checked = localStorage.getItem('disable_parallax') == 'true' ? true : false;
+}
+
+
+// Comma big numbers
+// https://stackoverflow.com/a/2901298/11039898
+function numCommas(num) {
+    var parts = num.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
 }

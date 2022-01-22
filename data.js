@@ -26,9 +26,9 @@ const template = {
     players: [],
 
     // Unused by recency sort option
-    sort: {
-        recency: 0,
-    }
+    // sort: {
+    //     recency: 0,
+    // }
 }
 // End Template
 
@@ -272,7 +272,11 @@ const pageData = [
             '2021-12-09_23.18.15.png',
             '2021-12-09_23.22.59.png',
         ],
-        players: ["timandy1", "NotNone"]
+        image_caption: {},
+        image_credit: {},
+
+        players: ["timandy1", "NotNone"],
+        stats: false,
     },
 
     // JJ's Stone Tool Survival
@@ -314,7 +318,11 @@ const pageData = [
             '2021-12-05_23.17.59.png',
             '2021-12-05_23.18.25.png',
         ],
-        players: ["JJCVIP"]
+        image_caption: {},
+        image_credit: {},
+
+        players: ["JJCVIP"],
+        stats: true,
     },
 
     // Finna SMP / Vanilla server 1.17
@@ -350,6 +358,8 @@ const pageData = [
                 uploader: 'jjcvip',
             },
         ],
+
+        // Images
         header_image: 4,
         images: [
             "2021-06-19_21.13.23.png",
@@ -398,6 +408,21 @@ const pageData = [
             "2021-08-09_22.43.07.png",
             "2021-08-11_00.03.46.png"
         ],
+        image_caption: {
+            1: "Starter setup",
+            3: "Enderman farm being built",
+            4: "NotNone starter bunker based on modded base",
+            26: "Trading \"hall\"",
+            33: "Court case being held at a temporary location",
+            34: "Court case being held at a temporary location",
+            36: "Hollow14's base being worked on",
+            39: "Creeper in the base",
+            41: "Ryguy and Woff1's base",
+            42: "Pool prank",
+        },
+        image_credit: {},
+
+        // Players
         players: [
             // Incomplete list
             "NotNone",
@@ -413,8 +438,9 @@ const pageData = [
             "Tahyari",
             "BigMansJay",
             "RaysofXenon",
-            "JoeVSWrld"
-        ]
+            "JoeVSWrld",
+        ],
+        stats: false,
     },
 
     // Vanilla servor
@@ -523,6 +549,9 @@ const pageData = [
             "2020-09-15_16.28.10.png",
             "2020-09-22_19.26.10.png"
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "Hollow14",
@@ -533,7 +562,7 @@ const pageData = [
             "Screeish",
             "laganrat",
             "Woff1",
-            "Tahyari",
+            // "Tahyari",
             "cade7475",
             "Dbzstar139",
             "Raxyneous",
@@ -541,9 +570,11 @@ const pageData = [
             "BaconTime69",
             "iicvcv",
             "mastertelecastr",
-            "Unlisted",
+            "Unlisted", // removed
+            "Unlisted", // unknown
             "Unlisted", // alt
-        ]
+        ],
+        stats: true,
     },
 
     // 1.17 snapshot Creative server - Cathedral world
@@ -563,7 +594,22 @@ const pageData = [
         version: "21w14a",
         modded: "Vanilla Snapshot",
     
-        videos: [],
+        videos: [
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/4rY3PvsXdeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'crawling',
+                desc: false,
+                date: 'April 26, 2021',
+                uploader: 'notnone',
+            },
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/PVkKmwSqSUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Bow',
+                desc: false,
+                date: 'May 28, 2021',
+                uploader: 'notnone',
+            },
+        ],
         header_image: 0,
         images: [
             "cathedral.png",
@@ -585,13 +631,17 @@ const pageData = [
             "2021-05-25_02.16.03.png",
             "2021-06-19_19.25.41.png"
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "Hollow14",
             "JJCVIP",
             "BigMansJay",
             "Screeish"
-        ]
+        ],
+        stats: false,
     },
 
     // Create-ish server
@@ -611,7 +661,15 @@ const pageData = [
         version: "1.15 - 1.16",
         modded: "Create-ish modpack",
 
-        videos: [],
+        videos: [
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/SU33F0VCCgE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'Create-ish Door',
+                desc: false,
+                date: 'March 15, 2021',
+                uploader: 'notnone',
+            },
+        ],
         header_image: 4,
         images: [
             "2020-12-30_20.00.13.png",
@@ -661,11 +719,18 @@ const pageData = [
             "2021-03-08_13.00.15.png",
             "2021-03-16_15.07.30.png"
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "Hollow14",
-            "JJCVIP"
-        ]
+            "JJCVIP",
+            "laganrat",
+            "timandy1",
+            "Gunther_The_God",
+        ],
+        stats: true,
     },
 
     // Nether Nomads
@@ -701,6 +766,9 @@ const pageData = [
             "2020-11-29_23.07.06.png",
             "2021-04-27_14.23.03.png"
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             // Incomplete list
             "Hollow14",
@@ -710,7 +778,8 @@ const pageData = [
             "Tahyari",
             "BigMansJay",
             "Screeish",
-        ]
+        ],
+        stats: false,
     },
 
     // All The Mods 3 Remix
@@ -837,11 +906,15 @@ const pageData = [
             "2020-11-01_16.47.02.png",
             "2020-11-01_16.47.06.png"
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "Hollow14",
             "timandy1"
-        ]
+        ],
+        stats: false,
     },
 
     // Voxel Fields (1 or 2, not sure) server, short lived, glass ceiling
@@ -991,10 +1064,14 @@ const pageData = [
             '2021-10-23_18.56.06.png',
             '2021-11-04_23.05.12.png',
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "timandy1"
-        ]
+        ],
+        stats: false,
     },
 
     // VF2+ Server Kal/Aidan/JJ bridge airship
@@ -1071,6 +1148,9 @@ const pageData = [
             "2020-06-15_20.12.57.png",
             "2020-06-15_20.27.09.png"
         ],
+        image_caption: {},
+        image_credit: {},
+        
         players: [
             "NotNone",
             "Hollow14",
@@ -1078,7 +1158,10 @@ const pageData = [
             "JJCVIP",
             "neutronz.3",
             "Gunther_The_God",
-        ]
+            "Screeish",
+            "Unlisted", // Alt
+        ],
+        stats: true,
     },
 
     // Voxel Fields 2
@@ -1116,10 +1199,14 @@ const pageData = [
             '2017-12-16_21.50.32.png',
             '2017-12-16_21.52.24.png',
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "timandy1",
             "NotNone",
-        ]
+        ],
+        stats: false,
     },
 
     // Voxel Fields 1.6.4 Kal/Liam/Vio
@@ -1142,16 +1229,18 @@ const pageData = [
         videos: [],
         header_image: 0,
         images: [],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             "NotNone",
             "timandy1",
             "ViolatedRunz"
-        ]
+        ],
+        stats: false,
     },
 
-
-
-    // Misc/Non-worlds
+    // ----- Misc/Non-worlds ----- //
 
     // UHC
     {
@@ -1192,6 +1281,9 @@ const pageData = [
             '2020-07-25_18.34.53.png',
             '2020-07-25_18.41.06.png',
         ],
+        image_caption: {},
+        image_credit: {},
+
         players: [
             // Incomplete list
             "NotNone",
@@ -1201,13 +1293,127 @@ const pageData = [
             "laganrat",
             "Woff1",
             "Screeish",
-        ]
+        ],
+        stats: false,
+    },
+
+    // Immersive Portals
+    {
+        name: "Immersive Portals House",
+        alt_names: [],
+        description: "Non-euclidean house made with the immersive portals mod",
+        owners: "NotNone",
+        mode: "Singleplayer",
+        gamemode: "Creative",
+        
+        download: "",
+        pack_download: "",
+    
+        startDate: "July 2020",
+        endDate: "N/A",
+        version: "1.16",
+        modded: "Immersive Portals + Pehkui (Fabric)",
+    
+        videos: [
+            {
+                iframe: '            <iframe width="560" height="315" src="https://www.youtube.com/embed/nMjkaCS7JzA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'my basement',
+                desc: 'https://www.curseforge.com/minecraft/mc-mods/immersive-portals-mod',
+                date: 'Feb 10, 2021',
+                uploader: 'notnone',
+            },
+            {
+                iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/ADQuHfeHHi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                title: 'hallway',
+                desc: false,
+                date: 'Feb 11, 2021',
+                uploader: 'notnone',
+            },
+        ],
+        header_image: 20,
+        images: [
+            '2020-07-27_01.28.17.png',
+            '2020-07-27_01.37.22.png',
+            '2020-07-27_01.41.17.png',
+            '2020-07-27_01.42.30.png',
+            '2020-07-27_01.51.34.png',
+            '2020-07-27_02.00.00.png',
+            '2020-07-27_02.00.12.png',
+            '2020-07-27_02.31.44.png',
+            '2020-07-27_02.31.46.png',
+            '2021-02-04_22.52.47.png',
+            '2021-02-04_23.01.26.png',
+            '2021-02-04_23.30.24.png',
+            '2021-02-10_22.25.31.png',
+            '2021-02-11_02.14.57.png',
+            '2021-02-11_02.31.58.png',
+            '2021-03-21_17.57.17.png',
+            '2022-01-21_17.58.20.png',
+            '2022-01-21_17.58.29.png',
+            '2022-01-21_17.58.36.png',
+            '2022-01-21_17.58.48.png',
+            '2022-01-21_17.59.12.png',
+            '2022-01-21_17.59.22.png',
+            '2022-01-21_17.59.27.png',
+            '2022-01-21_17.59.36.png',
+            '2022-01-21_18.00.01.png',
+            '2022-01-21_18.00.17.png',
+            '2022-01-21_18.00.28.png',
+            '2022-01-21_18.02.14.png',
+            '2022-01-21_18.02.19.png',
+            '2022-01-21_18.02.39.png',
+            '2022-01-21_18.02.55.png',
+            '2022-01-21_18.03.17.png',
+            '2022-01-21_18.03.31.png',
+            '2022-01-21_18.03.40.png',
+            '2022-01-21_18.03.46.png',
+            '2022-01-21_18.04.06.png',
+            '2022-01-21_18.04.16.png',
+            '2022-01-21_18.04.27.png',
+            '2022-01-21_18.04.35.png',
+            '2022-01-21_18.04.41.png',
+            '2022-01-21_18.04.54.png',
+            '2022-01-21_18.05.06.png',
+            '2022-01-21_18.05.13.png',
+            '2022-01-21_18.05.28.png',
+            '2022-01-21_18.05.35.png',
+            '2022-01-21_18.05.56.png',
+            '2022-01-21_18.06.10.png',
+            '2022-01-21_18.06.24.png',
+            '2022-01-21_18.06.27.png',
+            '2022-01-21_18.08.11.png',
+            '2022-01-21_18.08.21.png',
+            '2022-01-21_18.08.31.png',
+            '2022-01-21_18.08.49.png',
+            '2022-01-21_18.08.55.png',
+            '2022-01-21_18.09.09.png',
+            '2022-01-21_18.09.37.png',
+            '2022-01-21_18.10.02.png',
+        ],
+        image_caption: {},
+        image_credit: {},
+        
+        players: [
+            "NotNone",
+        ],
+        stats: false,
     },
 ]
+
+// Determine number of unlisted players
+for(w = 0; w < pageData.length; w++) {
+    let d = pageData[w];
+    let unlistedCount = 0;
+    for(i = 0; i < d.players.length; i++) {
+        if(d.players[i] == 'Unlisted') unlistedCount++;
+    }
+    d.unlisted_players = unlistedCount;
+}
 
 const sort_order = {
     Relevant: [
         '#All',
+        'Immersive Portals House',
         'Finna SMP',
         'Terralith CO-OP',
         'Stone Tool Survival',
@@ -1236,6 +1442,7 @@ const sort_order = {
         'Create-ish',
         'Nether Nomads',
         'ATM3R',
+        'Immersive Portals House',
         'Voxel Fields 2 Plus',
 
         '#2019',
@@ -1254,6 +1461,7 @@ const sort_order = {
         'Voxel Fields 3',
         'ATM3R',
         'Vanilla servor',
+        'Immersive Portals House',
         'Voxel Fields 2 Plus',
         'Create-ish',
         'Finna SMP',
@@ -1266,6 +1474,7 @@ const sort_order = {
     ],
 };
 
+// Video uploaders
 const profileData = {
     notnone: {
         pfp: './images/notnone.gif',
@@ -1277,6 +1486,34 @@ const profileData = {
         name: 'JJCVIP',
         ign: 'JJCVIP',
     }
+}
+
+const mcUUID = {
+    "NotNone":          'd12d0ce7-2152-454e-93ee-beffe332d2c8',
+    "Hollow14":         '2b9a7c17-b212-45f7-852f-224fa17f886c',
+    "JJCVIP":           '2cdcaf76-2fb8-46f7-8cef-2bfaf6d4bf5b',
+    "laganrat":         '46fcef72-b0f1-4200-8ee8-d732e57eb664',
+    "Jellybear76":      '5d1d70e7-82a2-442d-99d5-67ff09a732f4',
+    "Gunther_The_God":  'd138c874-b450-46bd-bbfe-7e7ab99d651f',
+    "neutronz.3":       '3c43c357-fe51-4c54-8a5b-f6be2f454207',
+    "Screeish":         '6dd9186a-15ae-40c2-a5bb-51dae8f65210',
+    "Woff1":            '187eb794-a14d-4e3b-927a-3c133459811c',
+    "Ryguy_0":          '221a6040-458d-4660-8420-3dd2f05e366a',
+    "Tahyari":          'ecb25e6f-c415-4ba0-907d-b88d64150ba7',
+    "BigMansJay":       'de48593e-e455-412f-99c2-0731a0021f08',
+    "RaysofXenon":      '97f2be7a-ba16-475f-b065-efaba93239b9',
+    "Raxyneous":        '744eb916-56c5-4c21-964e-7636891a64a4',
+    "JoeVSWrld":        '60f1ef9c-c80f-406a-ac77-36aa7a269969',
+
+    "cade7475":         '75f2cf46-a778-4c64-9347-b972df873bc5',
+    "Dbzstar139":       '429cde12-2099-4a32-8f00-51dc74d8e9cd',
+    "mastertelecastr":  'dbb3aaa3-1882-419f-9258-3316a2c7ae69',
+    "ForrestKnightt":   'dbb3aaa3-1882-419f-9258-3316a2c7ae69',
+    "timandy1":         'b159daa8-e70c-4414-86c6-82ee4e789847',
+    "BaconTime69":      'b6430c9d-15ae-4e35-8e04-2894600b7701',
+    "LilSiddy":         '3bff3256-a045-4b98-b182-42fd2e591bb6',
+    "Luke2282":         'ad9175ad-b607-4106-b167-634ecfef33d6',
+    "iicvcv":           'bbf8e0d7-69a4-4243-acd9-6269e73b7a2f',
 }
 
 

@@ -1,3 +1,15 @@
+1.10 - 1/20/2022
+- Decreased the font size of the "Copy a link" tooltips (12pt -> 11pt) and made their containers match the size of the text
+- Support for image sources and captions
+- Statistics viewer, along with statistics for: Vanilla servor, VF2 Plus, Stone Tool Survival, Create-ish
+- Support for (raw) statistics from older versions of the game
+- Added a number of videos
+- Added a world: Immsersive Portals House
+- For the worlds that have statistics the player lists should now be correct
+- Filter that only shows worlds with viewable statistics
+- When using filters there will be a "n number of results were hidden" notice at the bottom of the page
+- Images will now auto load
+
 1.9 - 1/9/2022
 - Option to sort by number of screenshots
 - Video descriptions will now go underneath the video at smaller viewport widths
@@ -8,7 +20,7 @@
 - The page no longer generates the list every time it is loaded and instead has the default list in the HTML (slight increase in performance hopefully, also the list's HTML is still generated when you sort or filter)
 - When listing all videos the text beside the video will now have a text-shadow to improve readability
 - Added a "World": UHC
-- Added a parallax + dim effect to the #content header image has you scroll down (this is also disabled when "Disable Parallax" is checked)
+- Added a parallax + dim effect to the #content header image as you scroll down (this is also disabled when "Disable Parallax" is checked)
 - The scrollbar will now overlay the page instead of getting its own area (in supported browsers)
 
 

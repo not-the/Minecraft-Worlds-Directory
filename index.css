@@ -1,8 +1,11 @@
 /* Universal */
 :root {
     --content-bg: rgb(29, 29, 29);
+    --border-color: rgb(46, 46, 46);
+
     --secondary-color: rgb(53, 53, 53);
     --accent-blue: rgb(70, 135, 255);
+    --error-red: rgb(233, 79, 79);
 }
 * {
     margin: 0;
@@ -63,17 +66,35 @@ iframe {
 
 .hide_mouse {cursor: none !important;}
 
+.position_absolute {position: absolute !important;}
+
 /* Collapsible */
 summary {
     cursor: pointer;
-    padding-bottom: 6px;
+    /* padding-bottom: 6px; */
+
+    padding: 12px;
+    padding-left: 4px;
+    position: sticky;
+    top: 0;
+    background-color: var(--content-bg);
+
+    /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.4); */
+    border-bottom: 1px solid var(--border-color);
+
+    transition: padding 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 summary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 12px;
+    background-color: #292929;
+    border-color: transparent;
 }
 details {
     margin-top: 4px;
     margin-bottom: 32px;
+}
+#player_popup details {
+    margin-bottom: 4px;
 }
 #players a {
     color: white;
@@ -303,7 +324,7 @@ p {
     overflow: overlay;
 
     background: var(--content-bg);
-    border: 1px solid rgb(46, 46, 46);
+    border: 1px solid var(--border-color);
     border-bottom: hidden;
 
     position: fixed;
@@ -405,6 +426,8 @@ p {
     color: black;
     font-weight: 500;
     animation: backdrop_fade 0.2s ease forwards;
+
+    font-size: 11pt;
 }
 #copy_image_url.copied:hover::before {
     content: 'Copied!';
@@ -461,6 +484,9 @@ p {
 .content_margin {
     margin: 0px 50px;
 }
+.content_padding {
+    padding: 0px 50px;
+}
 .title_container {
     position: absolute;
     left: 0px;
@@ -494,11 +520,13 @@ p {
     position: absolute;
     transform: translateX(calc(-50% + 20px));
     top: -50px;
-    width: 200px;
+    width: max-content;
     text-align: center;
     padding: 12px 20px;
     background: rgba(0, 0, 0, 0.7);
     animation: backdrop_fade 0.2s ease forwards;
+
+    font-size: 11pt;
 }
 #copy_link.copied:hover::before {
     content: 'Copied!';
@@ -592,7 +620,7 @@ select:hover*/ {
 }
 .video_item {
     height: 240px;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 .info_area, #small_gallery {
     width: 100%;
@@ -624,6 +652,13 @@ table {
     margin-bottom: 32px;
     align-self: flex-start;
 }
+#player_popup table tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+#player_popup table {
+    width: 100%;
+}
+
 
 th, td {
     text-align: left;
@@ -668,10 +703,10 @@ th {
 
     visibility: hidden;
 }
-#viewer_backdrop {
+.backdrop {
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
 }
 #enlarged {
     object-fit: cover;
@@ -744,6 +779,122 @@ footer .column:not(:last-of-type) {
     transform: scale(1.1, 1.1);
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25)) brightness(100%);
 }
+
+
+/* Statistics viewer */
+#player_popup {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 200;
+
+    visibility: hidden;
+}
+#player_popup_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 100%;
+    min-width: 540px;
+    max-height: 100vh;
+    /* width: fit-content; */
+    height: calc(95vh - 50px);
+
+    overflow: overlay;
+
+    background-color: var(--content-bg);
+    border: 1px solid rgb(46, 46, 46);
+    box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
+    padding: 0 32px 32px;
+
+    font-weight: 100;
+}
+#player_popup.visible .backdrop {
+    animation: backdrop_fade 0.2s;
+}
+#stats_table td {
+    text-align: right;
+}
+
+.stats_player_select {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    user-select: none;
+
+    display: flex;
+}
+.player_select_arrow {
+    box-sizing: content-box;
+    object-fit: contain;
+    width: 32px;
+    padding: 12px;
+    cursor: pointer;
+}
+.player_select_arrow.disabled {
+    cursor: unset;
+    opacity: 0.3;
+    pointer-events: none;
+}
+#stats_player_head {
+    box-sizing: content-box;
+    height: 48px;
+    width: 48px;
+    image-rendering: pixelated;
+    border: 2px solid white;
+    margin: 0 2px;
+
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    opacity: 0;
+}
+#player_popup.visible #stats_player_head {
+    opacity: 1;
+}
+
+
+/* Toasts */
+#toasts {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    
+    pointer-events: none;
+}
+#toast {
+    background-color: var(--content-bg);
+    border: 2px solid var(--border-color);
+    font-size: 11pt;
+
+    padding: 12px 24px;
+    border-radius: 100px;
+
+    transition-property: box-shadow, transform;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transform: translateY(0px);
+}
+#toast.in {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(85px);
+}
+.error_x {
+    font-weight: bolder;
+    font-size: 13pt;
+    color: var(--error-red);
+    padding-right: 6px;
+
+    vertical-align: middle;
+    display: inline-block;
+    transform: translateY(-1px) scale(1.3, 1.1);
+}
+
+
 
 /* Up to 1000px */
 @media (max-width: 1000px) {
