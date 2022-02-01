@@ -1,3 +1,16 @@
+1.11 - 1/31/2022
+- Fixed a bug where the "x items were hidden" message wouldn't go away when the number of hidden items was 0
+- Keyboard navigation: you are skipped to #content when it is opened
+- Added a back button to the statistics viewer
+- Fixed the #content gallery sort being the wrong width
+- Hopefully improved the way world items scale
+- Made an internal change so that image captions and credits' numbers match the number seen on the page
+- Fixed the statistics menu not fitting in smaller screen sizes
+- Added a number of captions
+- Added new images to Finna SMP
+- Fixed toasts being mishapen and/or always visible on smaller screen sizes
+- Gave dropdowns a drop shadow
+
 1.10.2 - 1/22/2022
 - Videos sort no longer incorrectly shows the hidden results notice at the bottom
 

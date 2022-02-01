@@ -15,10 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- URL Copying workaround -->
-    <textarea name="copy_me" id="copy_me" cols="30" rows="10" style="position: absolute; left: -100%"></textarea>
-
-    
     <!-- Statistics popup -->
     <div id="player_popup">
         <div class="backdrop" onclick="closeStats()"></div>
@@ -26,10 +22,21 @@
 
             <!-- Title -->
             <div class="stats_title_container">
-                <h2 id="stats_username"></h2>
-                <p class="secondary_text weight100">
-                    Statistics for <b id="stats_world">world name</b>
-                </p>
+                <!-- Header -->
+                <div class="stats_header">
+                    <!-- Back Button -->
+                    <div id="statistics_back" class="back_button" title="Back (Esc)" onclick="closeStats()" tabindex="0">
+                        <img src="images/arrow.png" alt="Back Button" id="back_arrow" class="rotate90">Back
+                    </div>
+                </div>
+                <!-- Title -->
+                <div>
+                    <h2 id="stats_username"></h2>
+                    <p class="secondary_text weight100">
+                        Statistics for <b id="stats_world">world name</b>
+                    </p>
+                </div>
+                <!-- Player navigation -->
                 <div class="stats_player_select">
                     <img src="./images/arrow.png" alt="Previous" title="Previous" class="player_select_arrow rotate90" id="stats_nav_left" onclick="statsNav('previous')">
                     <img src="./images/skin/NotNone.png" alt="Skin" id="stats_player_head">
@@ -68,7 +75,7 @@
         </div>
         <div id="content">
             <!-- Back Button -->
-            <div id="content_back" title="Back (Esc)" onclick="closeContent()" tabindex="0">
+            <div id="content_back" class="back_button" title="Back (Esc)" onclick="closeContent()" tabindex="0">
                 <img src="images/arrow.png" alt="Back Button" id="back_arrow" class="rotate90">Back
             </div>
 
@@ -356,7 +363,7 @@
                     <div class="open_area" onclick="openContent(1)" onmouseover="bigBackgroundSrc(1)" tabindex="0"></div>
                 
                     <!-- Download -->
-                    <a class="download_button list_dl " id="download1" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1da-FwzTAX536XCHfWZ5N2-O_IDMX2N1V/view?usp=sharing">
+                    <a class="download_button list_dl" id="download1" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1da-FwzTAX536XCHfWZ5N2-O_IDMX2N1V/view?usp=sharing">
                         World Download
                     </a>
                 
@@ -564,12 +571,16 @@
         </div>
     </footer>
 
+
     <!-- Notifications -->
     <div id="toasts">
         <div id="toast">
             <span class="error_x">X</span> No statistics data available
         </div>
     </div>
+
+    <!-- URL Copying workaround -->
+    <textarea name="copy_me" id="copy_me" cols="30" rows="10" style="position: absolute; left: -100%" tabindex="-1"></textarea>
 
 
     <!-- Javascript -->

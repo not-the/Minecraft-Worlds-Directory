@@ -25,7 +25,9 @@ const overlayContainer = dom('#overlay_container');
 const content =         dom('#content');
 const backdrop =        dom('#backdrop');
 
+// Buttons
 const copyLinkButton =  dom('#copy_link');
+const contentBack =     dom('#content_back');
 
 // Info
 const title =           dom('#title');
@@ -274,6 +276,8 @@ function populateList() {
     if(resultCount != pageData.length && orderSort.value != 'Videos') {
         console.log("Some results are hidden");
         numberHidden.innerText = `${pageData.length - resultCount} items were hidden because they did not match your filter`;
+    } else {
+        numberHidden.innerText = '';
     }
 }
 
@@ -392,6 +396,9 @@ function openContent(num) {
     // Disable body scroll
     body.classList.add('overflow_hidden');
 
+    // Skip main page and focus first element in #content
+    contentBack.focus();
+
     // Auto load images
     loadImages();
 
@@ -424,7 +431,7 @@ function closeContent() {
 
     // Remove hash data
     // updateHash();
-    document.location.hash = '';
+    // document.location.hash = '';
 
     setTimeout(() => {
         content.classList.remove('visible');
@@ -523,10 +530,10 @@ function viewImageSrc() {
     </div>
     
     <div style="text-align: right">
-        ${d.image_caption[imageID] == undefined ?
+        ${d.image_caption[imageID + 1] == undefined ?
             `<p class="weight100 secondary_text">No caption</p>`
-          : `<p class="weight100"><i>"${d.image_caption[imageID]}"</i></p>`}
-        <p class="weight100">Source: <b>${d.image_credit[imageID] == undefined || d.image_credit.hasOwnProperty([imageID]) ? 'NotNone' : d.image_credit[imageID]}</b></p>
+          : `<p class="weight100"><i>"${d.image_caption[imageID + 1]}"</i></p>`}
+        <p class="weight100">Source: <b>${d.image_credit[imageID + 1] == undefined || !(d.image_credit.hasOwnProperty([imageID + 1])) ? 'NotNone' : d.image_credit[imageID + 1]}</b></p>
     </div>`;
     
 
@@ -626,7 +633,7 @@ function fillPage(num) {
             // </a>, `;
 
             playerHTML +=
-            `<span class="hover_underline pointer ${css}"${onclick}>
+            `<span class="hover_underline pointer ${css}"${onclick} tabindex="0">
                 ${username == d.owners ? '<img src="./images/crown.png" alt="Owner" class="inline_icon owner_crown" title="Server Owner">' : ''}
                 ${username.split('.')[0]}</span>, `;
         }

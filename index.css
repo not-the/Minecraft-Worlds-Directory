@@ -119,6 +119,7 @@ select {
     border: 2px solid transparent;
     background: var(--secondary-color);
     color: white;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
 }
 select:disabled {
     cursor: not-allowed;
@@ -222,7 +223,8 @@ p {
     max-width: calc(100% - 200px);
 }
 .world_item {
-    height: 100px;
+    min-height: 100px;
+    height: fit-content;
     /* background: rgba(255, 255, 255, 0.05); */
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 
@@ -354,23 +356,28 @@ p {
         opacity: 0;
     }
 }
-#content_back {
-    position: sticky;
+.back_button {
     text-shadow: 0px 1px 10px black;
-    margin-top: -81px;
     z-index: 51;
-    left: 0;
-    top: 8px;
     cursor: pointer;
     padding: 30px;
     font-size: 13pt;
-    
     width: fit-content;
-    
     filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
 }
-#content_back:hover {
+#content_back {
+    position: sticky;
+    margin-top: -81px;
+    left: 0;
+    top: 8px;
+}
+.back_button:hover {
     text-decoration: underline;
+}
+#statistics_back {
+    margin-left: 18px;
+    padding-bottom: 4px;
+    padding-left: 0;
 }
 #back_arrow {
     width: 32px;
@@ -589,6 +596,10 @@ select:hover*/ {
 .pack_dl {
     background-color: rgb(41, 196, 54);
 }
+/* .dl_dropdown {
+    position: absolute;
+    background-color: var(--content-bg);
+} */
 
 #load_images {
     float: none;
@@ -784,7 +795,7 @@ footer .column:not(:last-of-type) {
 /* Statistics viewer */
 #player_popup {
     position: fixed;
-    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     z-index: 200;
@@ -797,8 +808,9 @@ footer .column:not(:last-of-type) {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    max-width: 100%;
-    min-width: 540px;
+
+    width: 540px;
+    max-width: 100% !important;
     max-height: 100vh;
     /* width: fit-content; */
     height: calc(95vh - 50px);
@@ -806,9 +818,13 @@ footer .column:not(:last-of-type) {
     overflow: overlay;
 
     background-color: var(--content-bg);
+    /* background-color: rgba(29, 29, 29, 0.6);
+    backdrop-filter: blur(10px); */
+
     border: 1px solid rgb(46, 46, 46);
     box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
-    padding: 0 32px 32px;
+    padding: 50px 32px 0 32px;
+
 
     font-weight: 100;
 }
@@ -818,11 +834,23 @@ footer .column:not(:last-of-type) {
 #stats_table td {
     text-align: right;
 }
+.stats_header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    height: 160px;
+    width: 100%;
+
+    /* background: linear-gradient(0deg, var(--content-bg) 0%, transparent 100%), url('./images/Vanilla servor/2020-07-07_14.04.24.png');
+    background-position: center; */
+}
 
 .stats_player_select {
     position: absolute;
     right: 32px;
-    top: 32px;
+    top: 87px;
     user-select: none;
 
     display: flex;
@@ -871,6 +899,7 @@ footer .column:not(:last-of-type) {
     border: 2px solid var(--border-color);
     font-size: 11pt;
 
+    width: max-content;
     padding: 12px 24px;
     border-radius: 100px;
 
@@ -925,14 +954,17 @@ footer .column:not(:last-of-type) {
     #content h1 {
         font-size: 24pt;
     }
+    #small_gallery {
+        padding-top: 0;
+    }
     #small_gallery img {
         width: 100%;
     }
     .world_item {
-        height: 160px;
+        min-height: 150px;
     }
     .world_item h2.title {
-        /* font-size: 20px; */
+        font-size: 24px;
         max-width: 100%;
     }
     .world_item .download_button {
@@ -942,11 +974,11 @@ footer .column:not(:last-of-type) {
         bottom: 16px;
     }
     .sort_container {
-        margin: 0 !important;
+        margin-top: 6px;
         float: none;
     }
     #content .sort_container {
-        margin: 50px;
+        margin: 0 50px !important;
         margin-top: 0;
     }
     select {
@@ -989,5 +1021,11 @@ footer .column:not(:last-of-type) {
     }
     iframe {
         max-width: 100%;
+    }
+
+    /* Statistics viewer */
+    #player_popup_box {
+        height: 100vh;
+        border: none;
     }
 }
