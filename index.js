@@ -6,6 +6,7 @@ function dom(sel) {return document.querySelector(sel);}
 // const galleryScrollArea = dom('#gallery_scroll_area');
 const body =            dom('body');
 const headerImage =     dom('#header_image');
+const headerImageOffset = dom('#header_img_offset');
 const smallGallery =    dom('#small_gallery');
 const playerCount =     dom('#player_count');
 const imageCount =      dom('#image_count');
@@ -40,6 +41,7 @@ const players =         dom('#players');
 const download_button = dom('#download_button');
 const download_url =    dom('#download_url');
 const videos =          dom('#videos');
+const notice =          dom('#notice');
 
 // Statistics
 const statsTooltip =    dom('#stats_tooltip');
@@ -52,8 +54,8 @@ const statsWorld =      dom('#stats_world');
 const statsTable =      dom('#stats_table');
 
 const stats_collapse_all = dom('#stats_collapse_all');
-
 //#endregion
+
 
 // Keyboard controls
 body.addEventListener('keydown', e => {
@@ -123,14 +125,18 @@ content.onscroll = () => {
     contentParallax();
 }
 function parallax() {
-    if(localStorage.getItem('disable_parallax') == 'true') return;
-    bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px';
+    window.requestAnimationFrame(() => {
+        if(localStorage.getItem('disable_parallax') == 'true') return;
+        bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px';
+    });
 }
 function contentParallax() {
-    if(content.scrollTop > 500) return;
-    if(localStorage.getItem('disable_parallax') == 'true') return;
-    headerImage.style.filter = `brightness(${100 - (content.scrollTop / 20)}%)`;
-    headerImage.style.marginTop = `${content.scrollTop * 0.5}px`;
+    window.requestAnimationFrame(() => {
+        if(content.scrollTop > 500) return;
+        if(localStorage.getItem('disable_parallax') == 'true') return;
+        headerImageOffset.style.filter = `brightness(${100 - (content.scrollTop / 20)}%)`;
+        headerImageOffset.style.transform = `translateY(${content.scrollTop * 0.5}px)`;
+    });
 }
 
 
@@ -172,7 +178,7 @@ orderSort.addEventListener('change', e => {
     // else {populateListImages();}
 });
 // Image sorting
-var imageSortValue = 'Old-New';
+var imageSortValue = 'New-Old';
 imageSort.addEventListener('change', e => {
     if(imageSortValue !== imageSort.value) {
         imageSortValue = imageSort.value;
@@ -541,7 +547,10 @@ function viewImageSrc() {
     enlarged.src = `images/${d.name}/${d.images[imageID]}`;
 }
 function copyImageURL() {
-    copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
+    // Page hash link
+    // copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
+    let d = pageData[selection];
+    copyLink(`${ document.location.href.split('#')[0]}images/${pageData[selection].name.split(' ').join('%20')}/${d.images[imageID]}`);
     dom("#copy_image_url").classList.add('copied');
 }
 
@@ -647,6 +656,15 @@ function fillPage(num) {
         statsTooltip.classList.add('hidden');
         statsTooltip.classList.add('position_absolute');
     }
+
+    // Notice message
+    if(d?.notice != undefined) {
+        notice.classList.add('visible');
+        notice.innerText = d.notice;
+
+    } else {
+        notice.classList.remove('visible');
+    }
 }
 
 // Video HTML
@@ -688,7 +706,7 @@ function copyLink(url = 'auto-page') {
 
 // Run when page loads -----------------------------------
 // Now off because the page no longer generates html on page load, only when filters/sort is applied
-// populateList();
+populateList();
 
 // Pick a random big background image
 let randomBG;

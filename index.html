@@ -95,7 +95,10 @@
                 <!-- End Buttons -->
                 
                 <!-- Header image -->
-                <img src="" alt="Header Image" id="header_image" onclick="viewImage(pageData[selection].header_image)">
+                <div id="header_img_offset">
+                    <img src="" alt="Header Image" id="header_image" onclick="viewImage(pageData[selection].header_image)">
+                </div>
+                
     
                 <!-- Title -->
                 <div class="content_inner title_container">
@@ -107,6 +110,10 @@
     
             <!-- Info -->
             <div id="info_top" class="block content_margin">
+                <div id="notice">
+                    ⚠ This world is missing some information. Feel free to help complete it.
+                </div>
+
                 <!-- Description -->
                 <b>Description:</b>
                 <p id="description">
@@ -212,8 +219,8 @@
                 <div class="sort_container" style="margin-right: 50px;">
                     <p style="padding-top: 16px"><b>Sort by:</b></p>
                     <select name="image_sort" id="image_sort">
-                        <option value="Old-New">Oldest to newest</option>
                         <option value="New-Old">Newest to oldest</option>
+                        <option value="Old-New">Oldest to newest</option>
                     </select>
                 </div>
 

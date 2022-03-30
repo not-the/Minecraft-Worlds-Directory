@@ -1,3 +1,20 @@
+1.12 - 3/29/2022
+New:
+- Added 4 images to Terralith CO-OP and gave it an end date
+- Added 133 images to Finna SMP
+- Added a world: "JJ's Hunger Games"
+
+Updates:
+- Copying a link to an image now gives you the URL to the image itself instead of a URL that auto opens to it
+- Fixed some Youtube iFrames being the wrong width
+- Added support for notices at the top of world pages
+- Default image sort is now New -> Old instead of the reverse
+- Fixed the summary elements in the statistics viewer having a gap above them when stickied
+
+Performance:
+- Switched parallax functions to use window.requestAnimationFrame()
+- Switched content header parallax over to using transforms instead of margins
+
 1.11 - 1/31/2022
 - Fixed a bug where the "x items were hidden" message wouldn't go away when the number of hidden items was 0
 - Keyboard navigation: you are skipped to #content when it is opened
