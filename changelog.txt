@@ -1,3 +1,13 @@
+1.13 - 4/1/2022
+- Added a last updated line to the footer
+- Gave VF3 an end date :(
+- Added an option to disable background changes when worlds are hovered
+- Added a button that lets you favorite a background and keep it instead of getting a random background on page load
+- Putting search terms in the address bar will now work properly
+  Format:  https://worlds.notkal.com/?f=[filter name]?s=[sort by name]
+  Example: https://worlds.notkal.com/?s=chronological?f=vanilla
+  Order and capitalization are ignored and terms are separated by a ?
+
 1.12 - 3/29/2022
 New:
 - Added 4 images to Terralith CO-OP and gave it an end date

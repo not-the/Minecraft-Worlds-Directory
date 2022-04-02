@@ -281,7 +281,10 @@
             <!-- Title -->
             <div class="title_area">
                 <h1>Minecraft Worlds</h1>
-                <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel/arrow keys</b> to go to next/previous image</p> 
+                <p>Keyboard controls: <b>esc</b> to go back, <b>scroll wheel/arrow keys</b> to go to next/previous image</p>
+                <div id="bg_favorite" tabindex="0" role="button" title="Set background as favorite" onclick="pinBackground()">
+                    ☆
+                </div>
             </div>
 
             <!-- Filter -->
@@ -291,12 +294,12 @@
                     <option value="Relevant">All</option>
                     <!-- <option value="New-Old">Newest to oldest</option>
                     <option value="Old-New">Oldest to newest</option> -->
-                    <option value="Vanilla">Vanilla</option>
-                    <option value="Modded">Modded</option>
-                    <option value="Singleplayer">Singleplayer</option>
-                    <option value="Multiplayer">Multiplayer</option>
-                    <option value="World_download">World Download</option>
-                    <option value="Statistics">Statistics</option>
+                    <option value="vanilla">Vanilla</option>
+                    <option value="modded">Modded</option>
+                    <option value="singleplayer">Singleplayer</option>
+                    <option value="multiplayer">Multiplayer</option>
+                    <option value="world_download">World Download</option>
+                    <option value="statistics">Statistics</option>
                 </select>
             </div>
 
@@ -304,10 +307,10 @@
             <div class="sort_container" style="margin-right: 8px;">
                 <p style="padding-top: 16px"><b>Sort by:</b></p>
                 <select name="list_order" id="list_order">
-                    <option value="Relevant">Relevant</option>
-                    <option value="Chronological">Chronological</option>
-                    <option value="Screen_Count">Number of screenshots</option>
-                    <option value="Videos">Show all videos</option>
+                    <option value="relevant">Relevant</option>
+                    <option value="chronological">Chronological</option>
+                    <option value="screen_count">Number of screenshots</option>
+                    <option value="videos">Show all videos</option>
                     <!-- <option value="Screens">Show all screenshots</option> -->
                 </select>
             </div>
@@ -561,11 +564,14 @@
                 <b>Options:</b><br>
                 <label for="disable_parallax" onclick="toggleParallax()">
                     <input type="checkbox" id="disable_parallax"> Disable parallax
+                </label><br>
+                <label for="disable_hover_bg" onclick="toggleHoverBG()">
+                    <input type="checkbox" id="disable_hover_bg"> Disable background changes
                 </label>
-                <br>
+                <br><br>
                 <div class="social_container flex">
-                    <a href="https://www.notkal.com/" title="not">
-                        <img src="./images/pineapple.png" alt="My website" class="social_img">
+                    <a href="https://www.notkal.com/" title="https://www.notkal.com/">
+                        <img src="./images/pineapple.png" alt="https://www.notkal.com/" class="social_img">
                     </a>
                     <a href="https://github.com/not-the" title="Github">
                         <img src="./images/github.png" alt="Github" class="social_img">
@@ -576,6 +582,7 @@
             </div>
             
         </div>
+        <p class="secondary_text weight100 center italic">Last updated 4/1/2022</p>
     </footer>
 
 

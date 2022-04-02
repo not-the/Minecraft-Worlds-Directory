@@ -1286,7 +1286,7 @@ const pageData = [
         pack_download: "",
     
         startDate: "9-10-2021",
-        endDate: "Present",
+        endDate: "1-10-2022",
         version: "1.12.2",
         modded: "Voxel Fields 3 modpack",
     
@@ -1829,7 +1829,7 @@ for(w = 0; w < pageData.length; w++) {
 }
 
 const sort_order = {
-    Relevant: [
+    relevant: [
         '#All',
         'Finna SMP',
         'Immersive Portals House',
@@ -1849,7 +1849,7 @@ const sort_order = {
         'UHC',
         "JJ's Hunger Games",
     ],
-    Chronological: [
+    chronological: [
         '#2021',
         'Terralith CO-OP',
         'Voxel Fields 3',
@@ -1875,7 +1875,7 @@ const sort_order = {
         'UHC',
         "JJ's Hunger Games",
     ],
-    Screen_Count: [
+    screen_count: [
         '#All',
         'Finna SMP',
         'Terralith CO-OP',

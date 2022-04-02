@@ -1,6 +1,10 @@
 // Shorthand
 //#region 
 function dom(sel) {return document.querySelector(sel);}
+function store(key, value) {
+    if(value) {localStorage.setItem(key, value);}
+    else {return localStorage.getItem(key);}
+}
 
 // Page elements
 // const galleryScrollArea = dom('#gallery_scroll_area');
@@ -29,6 +33,7 @@ const backdrop =        dom('#backdrop');
 // Buttons
 const copyLinkButton =  dom('#copy_link');
 const contentBack =     dom('#content_back');
+const pinButton = dom('#bg_favorite');
 
 // Info
 const title =           dom('#title');
@@ -126,14 +131,14 @@ content.onscroll = () => {
 }
 function parallax() {
     window.requestAnimationFrame(() => {
-        if(localStorage.getItem('disable_parallax') == 'true') return;
+        if(store('disable_parallax') == 'true') return;
         bigBackground.style.top = '-' + window.scrollY * 0.3 + 'px';
     });
 }
 function contentParallax() {
     window.requestAnimationFrame(() => {
         if(content.scrollTop > 500) return;
-        if(localStorage.getItem('disable_parallax') == 'true') return;
+        if(store('disable_parallax') == 'true') return;
         headerImageOffset.style.filter = `brightness(${100 - (content.scrollTop / 20)}%)`;
         headerImageOffset.style.transform = `translateY(${content.scrollTop * 0.5}px)`;
     });
@@ -164,11 +169,7 @@ onmousemove = e => {
     }, 2000);
 }
 
-// List filter event listener
-sortBy.addEventListener('change', e => {
-    console.log(`Sorting by ${sortBy.value}`);
-    populateList();
-});
+// var search_raw = [false, false];
 // List sort order
 orderSort.addEventListener('change', e => {
     console.log(`Sorting by ${orderSort.value}`);
@@ -176,6 +177,15 @@ orderSort.addEventListener('change', e => {
     if(orderSort.value != 'Videos' && orderSort.value != 'Screens') {populateList();}
     else if(orderSort.value == 'Videos') {populateListVideos();}
     // else {populateListImages();}
+    // search_raw[0] = `s=${orderSort.value}`;
+    // document.location.search = search_raw.filter(Boolean).join('?');
+});
+// List filter event listener
+sortBy.addEventListener('change', e => {
+    console.log(`Filtering by ${sortBy.value}`);
+    populateList();
+    // search_raw[1] = `f=${sortBy.value}`;
+    // document.location.search = search_raw.filter(Boolean).join('?');
 });
 // Image sorting
 var imageSortValue = 'New-Old';
@@ -239,17 +249,17 @@ function populateList() {
             if(world.name != compare[si] ) continue;
 
             // Vanilla sort: Skip modded
-            if(sortBy.value == 'Vanilla' && !(world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
+            if(sortBy.value == 'vanilla' && !(world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
             // Modded sort: Skip vanilla
-            else if(sortBy.value == 'Modded' && (world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
+            else if(sortBy.value == 'modded' && (world.modded == 'Vanilla' || world.modded == 'Vanilla Snapshot') ) continue;
             // World download filter
-            else if(sortBy.value == 'World_download' && world.download == '') continue;
+            else if(sortBy.value == 'world_download' && world.download == '') continue;
             // Singleplayer filter
-            else if(sortBy.value == 'Singleplayer' && !(world.mode == 'Singleplayer') ) continue;
+            else if(sortBy.value == 'singleplayer' && !(world.mode == 'Singleplayer') ) continue;
             // Multiplayer filter
-            else if(sortBy.value == 'Multiplayer' && !(world.mode == 'Multiplayer') ) continue;
+            else if(sortBy.value == 'multiplayer' && !(world.mode == 'Multiplayer') ) continue;
             // Statistics filter
-            else if(sortBy.value == 'Statistics' && world.stats == false) continue;
+            else if(sortBy.value == 'statistics' && world.stats == false) continue;
 
 
             resultCount++;
@@ -449,38 +459,43 @@ function closeContent() {
 
 // Big background on mouse over
 var bigBackgroundID;
-function bigBackgroundSrc(num, animate, any) {
+var bgURL;
+function bigBackgroundSrc(num, animate, any, override=false) {
+    if(store('disable_hover_bg') == 'true' && any != true) return;
+
     let d = pageData[num];
+    let src;
 
     // Only change if new bg is different
-    if(bigBackgroundID !== num) {
+    if(num !== bigBackgroundID) {
         bigBackgroundID = num;
         // Set big background
         if(!any) {
-            bigBackground.style.background =
-            `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
-            linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/${d.name}/${d.images[ d.header_image ]}')`;
+            src = `images/${d.name}/${d.images[ d.header_image ]}`;
         } else {
             // Random non-header image
             let roll = Math.floor(Math.random() * d.images.length);
-
-            bigBackground.style.background =
-            `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
-            linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
-            url('images/${d.name}/${d.images[ roll ]}')`;
+            src = `images/${d.name}/${d.images[ roll ]}`;
         }
+        if(override != false) { src = override; }
+        bgURL = src;
+
+        bigBackground.style.background =
+        `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
+        linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
+        url('${src}')`;
 
         // Animate
         if(animate != 'no') {
             bigBackground.classList.remove('big_background_animate');
             bigBackground.classList.add('big_background_animate');
-    
+
             setTimeout(() => {
                 bigBackground.classList.remove('big_background_animate');
             }, 500);
         }
     }
+
 }
 
 // Image viewer button navigation
@@ -704,6 +719,27 @@ function copyLink(url = 'auto-page') {
     // copyMe.value = '';
 }
 
+// Favorite background
+function pinBackground() {
+    if(store('pinned') == null || store('pinned') == 'false') {
+        console.log(bgURL);
+        pinHTML(true);
+        store('pinned', bgURL);
+    } else {
+        pinHTML(false);
+        store('pinned', 'false');
+    }
+}
+function pinHTML(state = false) {
+    if(state == true) {
+        pinButton.innerText = '★';
+        pinButton.classList.add('set');
+    } else {
+        pinButton.innerText = '☆';
+        pinButton.classList.remove('set');
+    }
+}
+
 // Run when page loads -----------------------------------
 // Now off because the page no longer generates html on page load, only when filters/sort is applied
 populateList();
@@ -712,23 +748,33 @@ populateList();
 let randomBG;
 function rollBG() {
     // Give preset image if first page visit
-    if(localStorage.getItem('first_visit') == null) {
+    if(store('first_visit') == null) {
         bigBackground.style.background =
         `linear-gradient(0deg, var(--content-bg) 0%, transparent 60%),
         linear-gradient(30deg, var(--content-bg) 40%, transparent 100%),
         url("${featuredIMG}")`;
 
-        localStorage.setItem('first_visit', 'false');
+        store('first_visit', 'false');
         return;
     }
 
     randomBG = Math.floor(Math.random() * pageData.length);
-
     if(pageData[randomBG].images.length == 0) rollBG();
-    
     bigBackgroundSrc(randomBG, 'no', true);
 }
-rollBG();
+
+// Set background
+if(store('pinned') == null || store('pinned') == 'false') {
+    // Random
+    rollBG();
+} else {
+    // Pinned
+    let fav = store('pinned');
+    // console.log(fav);
+    pinHTML(true);
+    bigBackgroundSrc(0, false, true, fav);
+}
+
 
 console.log(randomBG);
 
@@ -924,8 +970,6 @@ function toast(text) {
 }
 
 
-
-
 // URL Handling
 //#region 
 
@@ -975,8 +1019,20 @@ if(document.location.hash) {
 
 
 // Set filter if search parameter is used
-if(document.location.search) {
-    sortBy.value = document.location.search.substring(1);
+// Sort by : list_order
+// Filter  : list_sort
+let search = document.location.search;
+if(search) {
+    search = search.substring(1);
+    let terms = search.split('?');
+    // console.log(terms);
+    for(i in terms) {
+        let term = terms[i];
+        let type = term[0] == 'f' ? sortBy : term[0] == 's' ? orderSort : null;
+        if(type == null) continue;
+        term = term.substring(2);
+        type.value = term.toLowerCase();
+    }
     populateList();
 }
 //#endregion
@@ -990,21 +1046,25 @@ if(document.location.search) {
 const checkboxParallax = dom('#disable_parallax');
 function toggleParallax() {
     let state = checkboxParallax.checked;
-    localStorage.setItem('disable_parallax', state);
+    store('disable_parallax', `${state}`);
 
-    if(state == true) {
-        bigBackground.style.top = '0px';
-    } else {
-        parallax();
-    }
-
+    if(state == true) { bigBackground.style.top = '0px'; }
+    else { parallax(); }
+}
+// Disable parallax
+const checkboxHover = dom('#disable_hover_bg');
+function toggleHoverBG() {
+    let state = checkboxHover.checked;
+    store('disable_hover_bg', `${state}`);
 }
 
 // Restore settings on load
-if(localStorage.getItem('disable_parallax') != null) {
-    checkboxParallax.checked = localStorage.getItem('disable_parallax') == 'true' ? true : false;
+if(store('disable_parallax') != null) {
+    checkboxParallax.checked = store('disable_parallax') == 'true' ? true : false;
 }
-
+if(store('disable_hover_bg') != null) {
+    checkboxHover.checked = store('disable_hover_bg') == 'true' ? true : false;
+}
 
 // Comma big numbers
 // https://stackoverflow.com/a/2901298/11039898
