@@ -1,3 +1,11 @@
+1.14 - 4/4/2022
+- Fixed some sort/filter options not working
+- Added an active category (when sorting by relevant)
+- Closing the image viewer after pressing F to enter fullscreen will now take you out of fullscreen
+- Videos sort moved to new type dropdown
+- Gave the statistics menu backdrop a blur effect
+- Made the backdrop blur effect work in webkit browsers
+
 1.13 - 4/1/2022
 - Added a last updated line to the footer
 - Gave VF3 an end date :(

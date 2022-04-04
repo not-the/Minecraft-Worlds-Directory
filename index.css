@@ -123,7 +123,10 @@ select {
     color: white;
     box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
 }
-select:disabled {
+select:disabled,
+label p.disabled {
+    opacity: 1;
+    filter: brightness(70%);
     cursor: not-allowed;
 }
 option {
@@ -302,6 +305,7 @@ p {
 
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     /* transition */
 
     visibility: hidden;
@@ -638,7 +642,8 @@ select:hover*/ {
     height: 240px;
     margin-bottom: 8px;
 }
-.info_area, #small_gallery {
+.info_area,
+.small_gallery {
     width: 100%;
 }
 #description {
@@ -688,22 +693,25 @@ th {
     max-width: 80%;
 }
 
-#small_gallery {
+.small_gallery {
     width: calc(100% - 100px);
     position: relative;
     padding: 20px 0;
     margin-top: 16px;
     margin-bottom: 32px;
 }
+#main_list .small_gallery {
+    width: 100%;
+}
 
-#small_gallery img {
+.small_gallery img {
     /* overflow: hidden; */
     /* object-fit: cover; */
     width: 50%;
     cursor: zoom-in;
     /* padding: 6px; */
 }
-#small_gallery img:hover {
+.small_gallery img:hover {
     filter: brightness(110%);
 }
 #image_viewer {
@@ -723,6 +731,8 @@ th {
     width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 #enlarged {
     object-fit: cover;
@@ -822,7 +832,8 @@ footer .column:not(:last-of-type) {
 
     background-color: var(--content-bg);
     /* background-color: rgba(29, 29, 29, 0.6);
-    backdrop-filter: blur(10px); */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(12px);*/
 
     border: 1px solid rgb(46, 46, 46);
     box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
@@ -853,7 +864,7 @@ footer .column:not(:last-of-type) {
 .stats_player_select {
     position: absolute;
     right: 32px;
-    top: 87px;
+    top: 60px;
     user-select: none;
 
     display: flex;
@@ -992,10 +1003,10 @@ footer .column:not(:last-of-type) {
     #content h1 {
         font-size: 24pt;
     }
-    #small_gallery {
+    .small_gallery {
         padding-top: 0;
     }
-    #small_gallery img {
+    .small_gallery img {
         width: 100%;
     }
     .world_item {
@@ -1014,6 +1025,7 @@ footer .column:not(:last-of-type) {
     .sort_container {
         margin-top: 6px;
         float: none;
+        display: unset;
     }
     #content .sort_container {
         margin: 0 50px !important;

@@ -20,8 +20,12 @@ const viewerInfo =      dom('#viewer_info');
 const viewerTooltip =   dom('#viewer_tooltip');
 
 const imageSort =       dom('#image_sort');
-const sortBy =          dom('#list_sort');
-const orderSort =       dom('#list_order');
+const listType =        dom('#list_type');  // list type
+const orderSort =       dom('#list_order'); // sort by
+const orderSortL =      dom('#list_order_label');
+const sortBy =          dom('#list_sort');  // filter
+const sortByL =          dom('#list_sort_label');
+
 const mainList =        dom('#main_list');
 const numberHidden =    dom('#number_hidden');
 
@@ -169,13 +173,41 @@ onmousemove = e => {
     }, 2000);
 }
 
-// var search_raw = [false, false];
-// List sort order
+// List type
+listType.addEventListener('change', e => { list(); });
+function list() {
+    // console.log(`Type: ${orderSort.value}`);
+    let value = listType.value;
+
+    if(value == 'worlds') {
+        populateList();
+        orderSort.disabled = false;
+        orderSortL.classList.remove('disabled');
+        sortBy.disabled = false;
+        sortByL.classList.remove('disabled');
+    }
+    else {
+        orderSort.disabled = true;
+        orderSortL.classList.add('disabled');
+        sortBy.disabled = true;
+        sortByL.classList.add('disabled');
+    }
+
+    // if(value == 'screens') {
+    //     populateListImages();
+    // }
+    if(value == 'videos') {
+        populateListVideos();
+    }
+
+
+}
+// List sort by
 orderSort.addEventListener('change', e => {
     console.log(`Sorting by ${orderSort.value}`);
 
-    if(orderSort.value != 'Videos' && orderSort.value != 'Screens') {populateList();}
-    else if(orderSort.value == 'Videos') {populateListVideos();}
+    if(orderSort.value != 'videos' && orderSort.value != 'screens') {populateList();}
+    else if(orderSort.value == 'videos') {populateListVideos();}
     // else {populateListImages();}
     // search_raw[0] = `s=${orderSort.value}`;
     // document.location.search = search_raw.filter(Boolean).join('?');
@@ -183,7 +215,7 @@ orderSort.addEventListener('change', e => {
 // List filter event listener
 sortBy.addEventListener('change', e => {
     console.log(`Filtering by ${sortBy.value}`);
-    populateList();
+    list();
     // search_raw[1] = `f=${sortBy.value}`;
     // document.location.search = search_raw.filter(Boolean).join('?');
 });
@@ -264,8 +296,8 @@ function populateList() {
 
             resultCount++;
 
-            let blurb = orderSort.value == 'Screen_Count' ? `${world.images.length} screenshots`
-            : sortBy.value == 'Modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
+            let blurb = orderSort.value == 'screen_count' ? `${world.images.length} screenshots`
+            : sortBy.value == 'modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
 
             listHTML +=
             `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
@@ -289,7 +321,7 @@ function populateList() {
     mainList.innerHTML = listHTML;
     console.log(resultCount, pageData.length, pageData.length - resultCount);
 
-    if(resultCount != pageData.length && orderSort.value != 'Videos') {
+    if(resultCount != pageData.length && orderSort.value != 'videos') {
         console.log("Some results are hidden");
         numberHidden.innerText = `${pageData.length - resultCount} items were hidden because they did not match your filter`;
     } else {
@@ -320,10 +352,10 @@ function populateListVideos() {
 
 // Populate list with images
 // function populateListImages() {
-//     var listHTML = '';
+//     var listHTML = '<div class="small_gallery">';
 
 //     // Loop list to find next item
-//     for(di = 0; di < pageData.length; di++) {
+//     for(di = 0; di < 1; di++) {
 //         let world = pageData[di];
 
 //         if(world.images.length < 1) continue;
@@ -332,13 +364,14 @@ function populateListVideos() {
 //         // Images loop
 //         for(let vi = 0; vi < world.images.length; vi++) {
 //             selection = di;
-//             listHTML += loadImages(mainList);
+//             listHTML += loadImages(mainList, true);
 //         }
 //     }
+//     mainList.innerHTML = listHTML;
 // }
 
 // Load images
-function loadImages(destination = smallGallery) {
+function loadImages(destination = smallGallery, only_return = false) {
     let imagesList = pageData[selection].images;
     var imgHTML = "";
 
@@ -369,15 +402,15 @@ function loadImages(destination = smallGallery) {
                     loading="lazy">`;
             }
         }
-
-
-        destination.innerHTML = imgHTML;
-        // return imgHTML;
-    } else {
-        destination.innerHTML = '<p style="text-align: center">No images available</p>';
-        // return '<p style="text-align: center">No images available</p>';
+    } else if(only_return == false) {
+        let imgHTML = '<p style="text-align: center">No images available</p>';
     }
-    
+
+    // To page
+    if(only_return == false) {
+        destination.innerHTML = imgHTML;
+    }
+    return imgHTML;
 }
 
 // Open item from list
@@ -572,6 +605,7 @@ function copyImageURL() {
 // Close enlarged image
 function closeImage() {
     viewerOpen = false;
+    document.exitFullscreen();
 
     // Enable content scroll
     content.classList.remove('overflow_hidden');

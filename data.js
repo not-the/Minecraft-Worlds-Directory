@@ -632,13 +632,9 @@ const pageData = [
             40: "Creeper in the base",
             42: "Ryguy and Woff1's base",
             43: "Pool prank",
-            
-
 
             104: "Shaders: Complementary",
-
             147: "Shaders: Complementary",
-
             140: "Shaders: Complementary",
             141: "Shaders: Complementary",
             142: "Shaders: Complementary",
@@ -647,16 +643,12 @@ const pageData = [
             145: "Shaders: Complementary",
             146: "Shaders: Complementary",
             147: "Shaders: Complementary",
-
             153: "Shaders: Complementary",
-
             156: "Shaders: Complementary",
             157: "Shaders: Complementary",
             158: "Shaders: Complementary",
             159: "Shaders: Complementary",
-
             173: "Shaders: Complementary",
-
             173: "Shaders: Complementary",
             174: "Shaders: Complementary",
             175: "Shaders: Complementary",
@@ -1830,8 +1822,9 @@ for(w = 0; w < pageData.length; w++) {
 
 const sort_order = {
     relevant: [
-        '#All',
+        '#Active',
         'Finna SMP',
+        '#All',
         'Immersive Portals House',
         'Terralith CO-OP',
         'Stone Tool Survival',

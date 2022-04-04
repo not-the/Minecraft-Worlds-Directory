@@ -225,7 +225,7 @@
                 </div>
 
                 <!-- Gallery -->
-                <div id="small_gallery" class="content_margin wrap">
+                <div id="small_gallery" class="small_gallery content_margin wrap">
                     <button id="load_images" onclick="loadImages()">
                         Load Images
                     </button>
@@ -287,32 +287,54 @@
                 </div>
             </div>
 
-            <!-- Filter -->
-            <div class="sort_container">
-                <p style="padding-top: 16px"><b>Filter:</b></p>
-                <select name="list_sort" id="list_sort">
-                    <option value="Relevant">All</option>
-                    <!-- <option value="New-Old">Newest to oldest</option>
-                    <option value="Old-New">Oldest to newest</option> -->
-                    <option value="vanilla">Vanilla</option>
-                    <option value="modded">Modded</option>
-                    <option value="singleplayer">Singleplayer</option>
-                    <option value="multiplayer">Multiplayer</option>
-                    <option value="world_download">World Download</option>
-                    <option value="statistics">Statistics</option>
-                </select>
-            </div>
+            <!-- Dropdowns -->
+            <div class="sort_container flex">
 
-            <!-- Sort -->
-            <div class="sort_container" style="margin-right: 8px;">
-                <p style="padding-top: 16px"><b>Sort by:</b></p>
-                <select name="list_order" id="list_order">
-                    <option value="relevant">Relevant</option>
-                    <option value="chronological">Chronological</option>
-                    <option value="screen_count">Number of screenshots</option>
-                    <option value="videos">Show all videos</option>
-                    <!-- <option value="Screens">Show all screenshots</option> -->
-                </select>
+                <!-- TYPE -->
+                <div style="margin-right: 8px;">
+                    <label for="list_type">
+                        <p style="padding-top: 16px"><b>Type:</b></p>
+                        <select name="list_type" id="list_type">
+                            <option value="worlds">Worlds</option>
+                            <!-- <option value="timeline">Timeline</option> -->
+                            <!-- <option value="screens">Screenshots</option> -->
+                            <option value="videos">Videos</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!-- Filter -->
+                <div style="margin-right: 8px;">
+                    <label for="list_order">
+                        <p style="padding-top: 16px" id="list_order_label"><b>Sort by:</b></p>
+                        <select name="list_order" id="list_order">
+                            <option value="relevant">Relevant</option>
+                            <option value="chronological">Chronological</option>
+                            <option value="screen_count">Number of screenshots</option>
+                            <!-- <option value="videos">Show all videos</option> -->
+                            <!-- <option value="Screens">Show all screenshots</option> -->
+                        </select>
+                    </label>
+                </div>
+
+                <!-- Sort -->
+                <div>
+                    <label for="list_sort">
+                        <p style="padding-top: 16px" id="list_sort_label"><b>Filter:</b></p>
+                        <select name="list_sort" id="list_sort">
+                            <option value="Relevant">All</option>
+                            <!-- <option value="New-Old">Newest to oldest</option>
+                            <option value="Old-New">Oldest to newest</option> -->
+                            <option value="vanilla">Vanilla</option>
+                            <option value="modded">Modded</option>
+                            <option value="singleplayer">Singleplayer</option>
+                            <option value="multiplayer">Multiplayer</option>
+                            <option value="world_download">World Download</option>
+                            <option value="statistics">Statistics</option>
+                        </select>
+                    </label>
+                </div>
+
             </div>
 
 
