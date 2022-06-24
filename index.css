@@ -567,6 +567,8 @@ button {
     text-decoration: none;
 
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
 }
 #content .buttons_container {
     float: right;

@@ -347,7 +347,7 @@ const pageData = [
 
         startDate: "6-18-2021",
         endDate: "Present",
-        version: "1.17",
+        version: "1.18",
         modded: "Vanilla",
 
         videos: [
@@ -1808,6 +1808,37 @@ const pageData = [
         ],
         stats: false,
     },
+
+    // Finna SMP realm Creative world
+    {
+        name: "Creative Realm",
+        alt_names: [],
+        description: "desc",
+        owners: "JJCVIP",
+        mode: "Multiplayer",
+        gamemode: "Creative",
+        
+        download: "",
+        pack_download: "",
+    
+        startDate: "N/A",
+        endDate: "N/A",
+        version: "1.18",
+        modded: "Vanilla",
+    
+        videos: [],
+        header_image: 0,
+        images: [],
+        image_caption: {},
+        image_credit: {},
+        players: [
+            "JJCVIP",
+            "NotNone",
+            "Hollow14"
+        ],
+        stats: false,
+        notice: notices.info,
+    },
 ]
 
 // Determine number of unlisted players
@@ -1824,6 +1855,7 @@ const sort_order = {
     relevant: [
         '#Active',
         'Finna SMP',
+        'Creative Realm',
         '#All',
         'Immersive Portals House',
         'Terralith CO-OP',
@@ -1843,6 +1875,9 @@ const sort_order = {
         "JJ's Hunger Games",
     ],
     chronological: [
+        '#2022',
+        'Creative Realm',
+
         '#2021',
         'Terralith CO-OP',
         'Voxel Fields 3',
@@ -1885,6 +1920,7 @@ const sort_order = {
         'UHC',
         'Voxel Fields',
         "JJ's Hunger Games",
+        'Creative Realm',
     ],
 };
 

@@ -293,28 +293,8 @@ function populateList() {
             // Statistics filter
             else if(sortBy.value == 'statistics' && world.stats == false) continue;
 
-
             resultCount++;
-
-            let blurb = orderSort.value == 'screen_count' ? `${world.images.length} screenshots`
-            : sortBy.value == 'modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
-
-            listHTML +=
-            `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
-                <!-- Click Detection -->
-                <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
-            
-                <!-- Download -->
-                <a class="download_button list_dl ${world.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${world.download == '' ? '' : `href="${world.download}"`}>
-                    ${world.download == '' ? 'No Download' : `World Download`}
-                </a>
-            
-                <!-- Title -->
-                <h2 class="title">
-                    ${world.name}
-                </h2>
-                <p class="mini_info">${blurb}</p>
-            </div>`;
+            listHTML += worldHTML(world);
         }
     }
 
@@ -336,10 +316,12 @@ function populateListVideos() {
     // Loop list to find next item
     for(di = 0; di < pageData.length; di++) {
         let world = pageData[di];
-
         if(world.videos.length < 1) continue;
 
-        listHTML += `<h2 class="list_separator">${world.name}</h2><br>`;
+        listHTML += `<h2 class="list_separator">${world.name}</h2>`;
+        listHTML += worldHTML(world);
+        listHTML += '<br/>';
+
         // Videos loop
         for(let vi = 0; vi < world.videos.length; vi++) {
             let video = world.videos[vi];
@@ -369,6 +351,27 @@ function populateListVideos() {
 //     }
 //     mainList.innerHTML = listHTML;
 // }
+
+/** World item HTML template */
+function worldHTML(world) {
+    let blurb = orderSort.value == 'screen_count' ? `${world.images.length} screenshots`
+    : sortBy.value == 'modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
+    return `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
+        <!-- Click Detection -->
+        <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
+    
+        <!-- Download -->
+        <a class="download_button list_dl ${world.download == '' ? 'disabled' : ''}" id="download${di}" target="_blank" rel="noopener noreferrer" ${world.download == '' ? '' : `href="${world.download}"`}>
+            ${world.download == '' ? 'No Download' : `World Download`}
+        </a>
+    
+        <!-- Title -->
+        <h2 class="title">
+            ${world.name}
+        </h2>
+        <p class="mini_info">${blurb}</p>
+    </div>`;
+}
 
 // Load images
 function loadImages(destination = smallGallery, only_return = false) {
@@ -574,6 +577,7 @@ function viewImage(id) {
 
 // Set enlarged image
 function viewImageSrc() {
+    // enlarged.src = `./images/blank.png`;
     let d = pageData[selection];
 
     // File info
@@ -605,7 +609,9 @@ function copyImageURL() {
 // Close enlarged image
 function closeImage() {
     viewerOpen = false;
-    document.exitFullscreen();
+    try   {document.exitFullscreen();}
+    catch (error) { console.warn(error); }
+    
 
     // Enable content scroll
     content.classList.remove('overflow_hidden');
