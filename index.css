@@ -788,15 +788,17 @@ footer .column:not(:last-of-type) {
     bottom: 20px;
     right: 0;
     /* justify-content: middle; */
-    padding: 4px;
+    padding: 10px;
     margin-top: 8px;
     background-color: var(--content-bg);
     border-radius: 50px;
     width: fit-content;
 }
 .social_img {
-    width: 48px;
-    padding: 6px;
+    box-sizing: content-box;
+    width: 32px;
+    height: 32px;
+    padding: 0 5px;
     filter: brightness(80%);
 
     transition-property: transform, filter;
