@@ -344,6 +344,7 @@ p {
     transform: translateX(-50%);
 
     visibility: hidden;
+    transition: filter 0.2s ease;
 }
 .content_in {
     animation: content_slide 0.2s ease;
@@ -859,16 +860,17 @@ footer .column:not(:last-of-type) {
     height: 160px;
     width: 100%;
 
+    word-wrap: break-word;
+
     /* background: linear-gradient(0deg, var(--content-bg) 0%, transparent 100%), url('./images/Vanilla servor/2020-07-07_14.04.24.png');
     background-position: center; */
 }
 
 .stats_player_select {
-    position: absolute;
-    right: 32px;
-    top: 60px;
-    user-select: none;
+    margin-left: auto;
+    margin-top: 24px;
 
+    user-select: none;
     display: flex;
 }
 .player_select_arrow {
@@ -881,7 +883,6 @@ footer .column:not(:last-of-type) {
 .player_select_arrow.disabled {
     cursor: unset;
     opacity: 0.3;
-    pointer-events: none;
 }
 #stats_player_head {
     box-sizing: content-box;
@@ -1080,4 +1081,6 @@ footer .column:not(:last-of-type) {
         height: 100vh;
         border: none;
     }
+    .stats_player_select { margin: 12px auto 0; }
+    .stats_title_container > div.flex { flex-direction: column; }
 }

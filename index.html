@@ -29,18 +29,21 @@
                         <img src="images/arrow.png" alt="Back Button" id="back_arrow" class="rotate90">Back
                     </div>
                 </div>
-                <!-- Title -->
-                <div>
-                    <h2 id="stats_username"></h2>
-                    <p class="secondary_text weight100">
-                        Statistics for <b id="stats_world">world name</b>
-                    </p>
-                </div>
-                <!-- Player navigation -->
-                <div class="stats_player_select">
-                    <img src="./images/arrow.png" alt="Previous" title="Previous" class="player_select_arrow rotate90" id="stats_nav_left" onclick="statsNav('previous')">
-                    <img src="./images/skin/NotNone.png" alt="Skin" id="stats_player_head">
-                    <img src="./images/arrow.png" alt="Next" title="Next" class="player_select_arrow rotate270" id="stats_nav_right" onclick="statsNav('next')">
+
+                <div class="flex">
+                    <!-- Title -->
+                    <div>
+                        <h2 id="stats_username"></h2>
+                        <p class="secondary_text weight100">
+                            Statistics for <b id="stats_world">world name</b>
+                        </p>
+                    </div>
+                    <!-- Player navigation -->
+                    <div class="stats_player_select">
+                        <img src="./images/arrow.png" alt="Previous" title="Previous" class="player_select_arrow rotate90" id="stats_nav_left" onclick="statsNav('previous')" role="button" tabindex="0">
+                        <img src="./images/skin/NotNone.png" alt="Skin" id="stats_player_head">
+                        <img src="./images/arrow.png" alt="Next" title="Next" class="player_select_arrow rotate270" id="stats_nav_right" onclick="statsNav('next')" role="button" tabindex="0">
+                    </div>
                 </div>
             </div><br>
 
@@ -63,7 +66,7 @@
             <br>
 
             <!-- Raw statistics -->
-            <b>Raw Data: </b><span style="float: right;" class="hover_underline pointer" id="stats_collapse_all" onclick="collapseAll()">Collapse all</span>
+            <b>Raw Data: </b><span style="float: right;" class="hover_underline pointer" id="stats_collapse_all" onclick="collapseAll()" role="button" tabindex="0">Collapse all</span>
             <div id="stats_table"></div>
         </div>
     </div>

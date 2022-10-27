@@ -1,3 +1,7 @@
+1.15.1 - 10/27/2022
+- The navigation buttons and the expand all button in the statistics viewer are now keyboard focusable
+- Fixed statistics navigation overlapping the username on smaller screens
+
 1.15 - 6/3/2022
 - New world: Creative Realm
 - Type: Videos will now display relevant worlds

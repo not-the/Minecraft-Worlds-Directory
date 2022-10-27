@@ -71,19 +71,16 @@ body.addEventListener('keydown', e => {
     // console.log(e.key);
 
     // Enter to select (For accessibility / keyboard navigation)
-    if(e.code == 'Enter') {
-        document.activeElement.click();
-    }
+    if(
+        e.code == 'Enter' &&
+        document.activeElement.tagName != 'summary'
+    )
 
     // Escape to go back
     if(e.code == "Escape") {
-        if(statsOpen) {
-            closeStats();
-        } else if(viewerOpen) {
-            closeImage();
-        } else if(contentOpen) {
-            closeContent();
-        }
+        if(statsOpen) closeStats();
+        else if(viewerOpen) closeImage();
+        else if(contentOpen) closeContent();
     }
 
     // While image viewer is open
@@ -952,9 +949,11 @@ function statsNav(direction) {
     let d = pageData[selection];
     let num = statsSelection;
 
-    if(direction == 'previous' && !(num == 0)) {
+    if(direction == 'previous') {
+        if(num == 0) return;
         num--;
     } else if(num != d.players.length - d.unlisted_players - 1) {
+        if(num == d.players.length - d.unlisted_players - 1) return;
         num++;
     }
 
