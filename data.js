@@ -1265,7 +1265,7 @@ const pageData = [
     // Voxel Fields (1 or 2, not sure) server, short lived, glass ceiling
     // World is likely lost but I would have to check
 
-    // VF3 Server Kal/Liam
+    // VF3 Server
     {
         name: "Voxel Fields 3",
         alt_names: ["VF3"],
@@ -1420,7 +1420,7 @@ const pageData = [
         stats: false,
     },
 
-    // VF2+ Server Kal/Aidan/JJ bridge airship
+    // VF2+ Server bridge airship
     {
         name: "Voxel Fields 2 Plus",
         alt_names: ["VF2+"],
@@ -1555,7 +1555,7 @@ const pageData = [
         stats: false,
     },
 
-    // Voxel Fields 1.6.4 Kal/Liam/Vio
+    // Voxel Fields 1.6.4
     {
         name: "Voxel Fields",
         alt_names: [],
@@ -1813,7 +1813,7 @@ const pageData = [
     {
         name: "Creative Realm",
         alt_names: [],
-        description: "desc",
+        description: "Finna SMP creative world",
         owners: "JJCVIP",
         mode: "Multiplayer",
         gamemode: "Creative",
@@ -1839,6 +1839,40 @@ const pageData = [
         stats: false,
         notice: notices.info,
     },
+
+    // All The Mods 7
+    {
+        name: "ATM7",
+        alt_names: ["All The Mods 7"],
+        description: 'All The Mods 7 server',
+        owners: "Hollow14",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
+        download: "",
+        pack_download: "",
+    
+        startDate: "December 9, 2022",
+        endDate: "Present",
+        version: "1.18.2",
+        modded: "All The Mods 7 modpack",
+    
+        videos: [],
+        header_image: 0,
+        images: [
+
+        ],
+        image_caption: {},
+        image_credit: {},
+
+        players: [
+            "Hollow14",
+            "NotNone",
+            "timandy1",
+            "JJCVIP",
+        ],
+        stats: false,
+    },
 ]
 
 // Determine number of unlisted players
@@ -1854,6 +1888,7 @@ for(w = 0; w < pageData.length; w++) {
 const sort_order = {
     relevant: [
         '#Active',
+        'ATM7',
         'Finna SMP',
         'Creative Realm',
         '#All',
@@ -1876,6 +1911,7 @@ const sort_order = {
     ],
     chronological: [
         '#2022',
+        'ATM7',
         'Creative Realm',
 
         '#2021',
@@ -1921,6 +1957,7 @@ const sort_order = {
         'Voxel Fields',
         "JJ's Hunger Games",
         'Creative Realm',
+        'ATM7',
     ],
 };
 
