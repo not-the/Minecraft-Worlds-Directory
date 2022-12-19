@@ -1858,7 +1858,7 @@ const pageData = [
         modded: "All The Mods 7 modpack",
     
         videos: [],
-        header_image: 0,
+        header_image: 8,
         images: [
             '2022-12-09_15.34.03.png',
             '2022-12-09_17.10.49.png',

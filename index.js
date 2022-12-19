@@ -779,7 +779,7 @@ function pinHTML(state = false) {
 
 // Run when page loads -----------------------------------
 // Now off because the page no longer generates html on page load, only when filters/sort is applied
-populateList();
+// populateList();
 
 // Pick a random big background image
 let randomBG;
