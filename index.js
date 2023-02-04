@@ -2,8 +2,8 @@
 //#region 
 function dom(sel) {return document.querySelector(sel);}
 function store(key, value) {
-    if(value) {localStorage.setItem(key, value);}
-    else {return localStorage.getItem(key);}
+    if(value) localStorage.setItem(key, value);
+    else return localStorage.getItem(key);
 }
 
 // Page elements
