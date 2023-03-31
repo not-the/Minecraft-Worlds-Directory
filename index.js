@@ -758,14 +758,9 @@ function copyLink(url = 'auto-page') {
 
 // Favorite background
 function pinBackground() {
-    if(store('pinned') == null || store('pinned') == 'false') {
-        console.log(bgURL);
-        pinHTML(true);
-        store('pinned', bgURL);
-    } else {
-        pinHTML(false);
-        store('pinned', 'false');
-    }
+    let state = (store('pinned') == null || store('pinned') == 'false');
+    pinHTML(state);
+    store('pinned', state ? bgURL : 'false');
 }
 function pinHTML(state = false) {
     if(state) {
