@@ -841,7 +841,7 @@ function openStats(player, num) {
     let raw;
     try { raw = get(`./stats/${d.name}/${mcUUID[player]}.json`, true); }
     catch (error) {
-        console.error(error);
+        console.warn(error);
         closeStats();
         toast();
     }

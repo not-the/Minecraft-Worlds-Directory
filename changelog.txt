@@ -1,3 +1,8 @@
+1.16.6 - 7/25/2023
+- Added 146 new screenshots to Finna SMP
+- Added 144 new screenshots to BBHP
+- Gave BBHP an end date
+
 1.16.5 - 3/30/2023
 - New world: BBHP
 - Added 67 new screenshots to ATM7 and gave it an end date :(
