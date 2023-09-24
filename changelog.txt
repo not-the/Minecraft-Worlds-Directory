@@ -1,3 +1,7 @@
+1.16.7 - 9/24/2023
+- Added 4 new screenshots to Finna SMP
+- Added 85 new screenshots to Creative realm
+
 1.16.6 - 7/25/2023
 - Added 146 new screenshots to Finna SMP
 - Added 144 new screenshots to BBHP
