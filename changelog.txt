@@ -1,3 +1,8 @@
+1.16.8 - 12/15/2023
+- New world: GT:NH
+    + 3 screenshots
+- Support for colons in world names
+
 1.16.7 - 9/24/2023
 - Added 4 new screenshots to Finna SMP
 - Added 85 new screenshots to Creative realm

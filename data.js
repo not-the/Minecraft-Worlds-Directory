@@ -2809,6 +2809,42 @@ const pageData = [
         ],
         stats: false,
     },
+
+    // GregTech New Horizons
+    {
+        name: "GregTech: New Horizons",
+        alt_names: ["GregTech: New Horizons"],
+        description: 'GREG',
+        owners: "NotNone",
+        mode: "Multiplayer",
+        gamemode: "Survival",
+
+        download: "",
+        pack_download: "https://www.curseforge.com/minecraft/modpacks/gt-new-horizons",
+    
+        startDate: "December 14, 2023",
+        endDate: "Present",
+        version: "1.7.10",
+        modded: "GT New Horizons",
+    
+        videos: [],
+        header_image: 2,
+        images: [
+            "2023-12-14_18.53.32.png",
+            "2023-12-14_19.01.12.png",
+            "2023-12-15_20.56.05.png",
+        ],
+        image_caption: {},
+        image_credit: {},
+
+        players: [
+            "NotNone",
+            "JJCVIP",
+            "Hollow14",
+            "timandy1"
+        ],
+        stats: false,
+    },
 ]
 
 // Determine number of unlisted players
@@ -2824,6 +2860,7 @@ for(w = 0; w < pageData.length; w++) {
 const sort_order = {
     relevant: [
         '#Active',
+        'GregTech: New Horizons',
         'Finna SMP',
         'Creative Realm',
 
@@ -2849,6 +2886,7 @@ const sort_order = {
     ],
     chronological: [
         '#2023',
+        'GregTech: New Horizons',
         'BBHP',
 
         '#2022',
@@ -2883,8 +2921,8 @@ const sort_order = {
     screen_count: [
         '#All',
         'Finna SMP',
-        'Terralith CO-OP',
         'ATM7',
+        'Terralith CO-OP',
         'BBHP',
         'Voxel Fields 3',
         'ATM3R',
@@ -2900,6 +2938,7 @@ const sort_order = {
         'UHC',
         'Voxel Fields',
         "JJ's Hunger Games",
+        'GregTech: New Horizons',
     ],
 };
 

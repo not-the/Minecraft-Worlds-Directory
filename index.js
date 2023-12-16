@@ -66,6 +66,11 @@ const stats_collapse_all = dom('#stats_collapse_all');
 //#endregion
 
 
+function getImageFolderName(name) {
+    return name.replace(':', '');
+}
+
+
 // Keyboard controls
 body.addEventListener('keydown', e => {
     // console.log(e.key);
@@ -86,8 +91,8 @@ body.addEventListener('keydown', e => {
     // While image viewer is open
     if(viewerOpen) {
         // Image viewer arrow keys
-        if(e.code == "ArrowLeft") { viewerScroll('up'); }
-        else if(e.code == "ArrowRight") { viewerScroll('down'); }
+        if(e.code == "ArrowLeft") viewerScroll('up');
+        else if(e.code == "ArrowRight") viewerScroll('down');
 
         // F to fullscreen
         if(e.code == 'KeyF') {
@@ -203,8 +208,8 @@ function list() {
 orderSort.addEventListener('change', e => {
     console.log(`Sorting by ${orderSort.value}`);
 
-    if(orderSort.value != 'videos' && orderSort.value != 'screens') {populateList();}
-    else if(orderSort.value == 'videos') {populateListVideos();}
+    if(orderSort.value != 'videos' && orderSort.value != 'screens') populateList();
+    else if(orderSort.value == 'videos') populateListVideos();
     // else {populateListImages();}
     // search_raw[0] = `s=${orderSort.value}`;
     // document.location.search = search_raw.filter(Boolean).join('?');
@@ -353,7 +358,7 @@ function populateListVideos() {
 function worldHTML(world) {
     let blurb = orderSort.value == 'screen_count' ? `${world.images.length} screenshots`
     : sortBy.value == 'modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
-    return `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${world.name}/${world.images[ world.header_image ]}')">
+    return `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${getImageFolderName(world.name)}/${world.images[ world.header_image ]}')">
         <!-- Click Detection -->
         <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
     
@@ -379,29 +384,8 @@ function loadImages(destination = smallGallery, only_return = false) {
         // When there are images available 'Old-New' 'New-Old'
         // for(ii = 0; ii < imagesList.length; ii++) {...}
 
-        if(imageSortValue == 'Old-New') {
-            for(ii = 0; ii < imagesList.length; ii++) {
-                // console.log(imagesList[ii]);
-                imgHTML += `<img
-                    src="images/${pageData[selection].name}/${imagesList[ii]}"
-                    alt="${imagesList[ii]}"
-                    id="image${ii}"
-                    title="${imagesList[ii]}"
-                    onclick="viewImage(${ii})"
-                    loading="lazy">`;
-            }
-        } else {
-            for(ii = imagesList.length - 1; ii >= 0; ii--) {
-                // console.log(imagesList[ii]);
-                imgHTML += `<img
-                    src="images/${pageData[selection].name}/${imagesList[ii]}"
-                    alt="${imagesList[ii]}"
-                    id="image${ii}"
-                    title="${imagesList[ii]}"
-                    onclick="viewImage(${ii})"
-                    loading="lazy">`;
-            }
-        }
+        if(imageSortValue == 'Old-New') for(ii = 0; ii < imagesList.length; ii++) imgHTML += html(imagesList, ii);
+        else for(ii = imagesList.length - 1; ii >= 0; ii--) imgHTML += html(imagesList, ii);
     } else if(only_return == false) {
         let imgHTML = '<p style="text-align: center">No images available</p>';
     }
@@ -411,6 +395,16 @@ function loadImages(destination = smallGallery, only_return = false) {
         destination.innerHTML = imgHTML;
     }
     return imgHTML;
+
+    function html(imagesList, ii) {
+        return `<img
+            src="images/${getImageFolderName(pageData[selection].name)}/${imagesList[ii]}"
+            alt="${imagesList[ii]}"
+            id="image${ii}"
+            title="${imagesList[ii]}"
+            onclick="viewImage(${ii})"
+            loading="lazy">`;
+    }
 }
 
 // Open item from list
@@ -504,11 +498,11 @@ function bigBackgroundSrc(num, animate, any, override=false) {
         bigBackgroundID = num;
         // Set big background
         if(!any) {
-            src = `images/${d.name}/${d.images[ d.header_image ]}`;
+            src = `images/${getImageFolderName(d.name)}/${d.images[ d.header_image ]}`;
         } else {
             // Random non-header image
             let roll = Math.floor(Math.random() * d.images.length);
-            src = `images/${d.name}/${d.images[ roll ]}`;
+            src = `images/${getImageFolderName(d.name)}/${d.images[ roll ]}`;
         }
         if(override != false) { src = override; }
         bgURL = src;
@@ -593,13 +587,13 @@ function viewImageSrc() {
     
 
     // Change image
-    enlarged.src = `images/${d.name}/${d.images[imageID]}`;
+    enlarged.src = `images/${getImageFolderName(d.name)}/${d.images[imageID]}`;
 }
 function copyImageURL() {
     // Page hash link
-    // copyLink(`${ document.location.href.split('#')[0]}#${pageData[selection].name.split(' ').join('_') }/${imageID}`);
+    // copyLink(`${ document.location.href.split('#')[0]}#${getImageFolderName(pageData[selection].name).split(' ').join('_') }/${imageID}`);
     let d = pageData[selection];
-    copyLink(`${ document.location.href.split('#')[0]}images/${pageData[selection].name.split(' ').join('%20')}/${d.images[imageID]}`);
+    copyLink(`${ document.location.href.split('#')[0]}images/${getImageFolderName(pageData[selection].name).split(' ').join('%20')}/${d.images[imageID]}`);
     dom("#copy_image_url").classList.add('copied');
 }
 
@@ -632,7 +626,7 @@ function fillPage(num) {
     // console.log(players);
 
     // Header Image
-    headerImage.src = d.images.length > 0 ? `images/${d.name}/${d.images[ d.header_image ]}` : `images/blank.png`;
+    headerImage.src = d.images.length > 0 ? `images/${getImageFolderName(d.name)}/${d.images[ d.header_image ]}` : `images/blank.png`;
     headerImage.title = d.images[ d.header_image ];
     title.innerText = `${d.name}`;
     description.innerText = `${d.description}`;
@@ -774,7 +768,7 @@ function pinHTML(state = false) {
 
 // Run when page loads -----------------------------------
 // Now off because the page no longer generates html on page load, only when filters/sort is applied
-// populateList();
+populateList();
 
 // Pick a random big background image
 let randomBG;
