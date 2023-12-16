@@ -1,3 +1,7 @@
+1.16.9 - 12/15/2023
+- Static HTML
+- CSS focus-visible
+
 1.16.8 - 12/15/2023
 - New world: GT:NH
     + 3 screenshots
