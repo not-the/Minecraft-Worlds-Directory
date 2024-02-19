@@ -1,3 +1,6 @@
+1.17 - 2/18/2024
+- Moved screenshots from /images to /
+
 1.16.9 - 12/15/2023
 - Static HTML
 - CSS focus-visible

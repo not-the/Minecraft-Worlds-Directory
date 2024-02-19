@@ -358,7 +358,7 @@ function populateListVideos() {
 function worldHTML(world) {
     let blurb = orderSort.value == 'screen_count' ? `${world.images.length} screenshots`
     : sortBy.value == 'modded' ? world.modded : `${world.startDate} to ${world.endDate}`;
-    return `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('images/${getImageFolderName(world.name)}/${world.images[ world.header_image ]}')">
+    return `<div id="${world.name.split(' ').join('_')}" class="world_item" style="background: ${world.header_image || world.header_image == 0 ? 'linear-gradient(90deg, rgb(39, 39, 39) 20%, transparent 100%),' : ''} url('${getImageFolderName(world.name)}/${world.images[ world.header_image ]}')">
         <!-- Click Detection -->
         <div class="open_area" onclick="openContent(${di})" onmouseover="bigBackgroundSrc(${di})" tabindex=0></div>
     
@@ -398,7 +398,7 @@ function loadImages(destination = smallGallery, only_return = false) {
 
     function html(imagesList, ii) {
         return `<img
-            src="images/${getImageFolderName(pageData[selection].name)}/${imagesList[ii]}"
+            src="${getImageFolderName(pageData[selection].name)}/${imagesList[ii]}"
             alt="${imagesList[ii]}"
             id="image${ii}"
             title="${imagesList[ii]}"
@@ -498,11 +498,11 @@ function bigBackgroundSrc(num, animate, any, override=false) {
         bigBackgroundID = num;
         // Set big background
         if(!any) {
-            src = `images/${getImageFolderName(d.name)}/${d.images[ d.header_image ]}`;
+            src = `${getImageFolderName(d.name)}/${d.images[ d.header_image ]}`;
         } else {
             // Random non-header image
             let roll = Math.floor(Math.random() * d.images.length);
-            src = `images/${getImageFolderName(d.name)}/${d.images[ roll ]}`;
+            src = `${getImageFolderName(d.name)}/${d.images[ roll ]}`;
         }
         if(override != false) { src = override; }
         bgURL = src;
@@ -587,13 +587,13 @@ function viewImageSrc() {
     
 
     // Change image
-    enlarged.src = `images/${getImageFolderName(d.name)}/${d.images[imageID]}`;
+    enlarged.src = `${getImageFolderName(d.name)}/${d.images[imageID]}`;
 }
 function copyImageURL() {
     // Page hash link
     // copyLink(`${ document.location.href.split('#')[0]}#${getImageFolderName(pageData[selection].name).split(' ').join('_') }/${imageID}`);
     let d = pageData[selection];
-    copyLink(`${ document.location.href.split('#')[0]}images/${getImageFolderName(pageData[selection].name).split(' ').join('%20')}/${d.images[imageID]}`);
+    copyLink(`${ document.location.href.split('#')[0]}/${getImageFolderName(pageData[selection].name).split(' ').join('%20')}/${d.images[imageID]}`);
     dom("#copy_image_url").classList.add('copied');
 }
 
@@ -626,7 +626,7 @@ function fillPage(num) {
     // console.log(players);
 
     // Header Image
-    headerImage.src = d.images.length > 0 ? `images/${getImageFolderName(d.name)}/${d.images[ d.header_image ]}` : `images/blank.png`;
+    headerImage.src = d.images.length > 0 ? `/${getImageFolderName(d.name)}/${d.images[ d.header_image ]}` : `images/blank.png`;
     headerImage.title = d.images[ d.header_image ];
     title.innerText = `${d.name}`;
     description.innerText = `${d.description}`;
@@ -768,7 +768,7 @@ function pinHTML(state = false) {
 
 // Run when page loads -----------------------------------
 // Now off because the page no longer generates html on page load, only when filters/sort is applied
-// populateList();
+populateList();
 
 // Pick a random big background image
 let randomBG;
