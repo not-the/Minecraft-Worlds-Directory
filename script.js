@@ -542,7 +542,7 @@ class ImgInfo extends HTMLElement {
         </div>
         <div class="right">
             <p class="alt_text">${caption}</p>
-            <p>Source: <strong>NotNone</strong></p>
+            <p>Source: <strong>${data.image_credit?.[index+1] ?? 'NotNone'}</strong></p>
         </div>
         `;
     }

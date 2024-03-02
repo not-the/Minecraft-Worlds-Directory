@@ -185,10 +185,18 @@
             "393": "Shaders: Rethinking Voxels",
             "394": "Shaders: Rethinking Voxels",
             "395": "Shaders: Rethinking Voxels",
-            "396": "Shaders: Rethinking Voxels"
+            "401": "Sildur's Enhanced Default (with miscellaneous depth buffer enabled)",
+            "402": "Sildur's Enhanced Default (with miscellaneous depth buffer enabled)"
+
         },
         "image_credit": {
-            "115": "Gunther_The_God"
+            "115": "Gunther_The_God",
+            "401": "Hollow14",
+            "402": "Hollow14",
+            "403": "Hollow14",
+            "404": "Hollow14",
+            "405": "Hollow14",
+            "406": "Hollow14"
         },
         "players": [
             "NotNone",
