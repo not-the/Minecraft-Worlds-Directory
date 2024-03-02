@@ -199,7 +199,13 @@ class WorldPage extends HTMLElement {
 
         let players = '';
         for(let p of data.players) {
-            players += `
+            // Unlisted
+            if(p === 'Unlisted') players += `
+            <span class="gray">${p}</span>\n
+            `;
+
+            // Player
+            else players += `
             <span role="button" tabindex="0" onclick="viewStats('${name}', '${p}')">
                 ${p === data.owners ? '<g-icon data-icon="crown" data-title="Server Owner" class="small" style="--fill: gold;"></g-icon>' : ''}
                 ${p}

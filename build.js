@@ -47,5 +47,5 @@ for(let w of worlds) {
 
 }
 
-// fs.writeFileSync('./data/images.json', JSON.stringify(output));
+fs.writeFileSync('./data/images.json', JSON.stringify(output));
 
