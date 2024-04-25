@@ -1,3 +1,7 @@
+2.1 - 4/25/2024
+- Website completely redone from scratch in ReactJS
+- Statistics leaderboards
+
 2.0 - 3/1/2024   (Unfinished)
 - Website completely redone from scratch to use custom HTML elements and AJAX navigation
 

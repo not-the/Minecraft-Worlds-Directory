@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Worlds</title>
+    <link rel="icon" href="%PUBLIC_URL%/icon.png" />
+
+    <!-- SEO -->
+    <meta name="robots" content="none, noindex, nofollow, noarchive, noimageindex">
+
+    <!-- Meta -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+</head>
+<body>
+    <div id="root"></div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Client JS -->
+    <script>
+        // Navigation
+        let homePos = { left:0, top:0 };
+        window.navigation.addEventListener("navigate", event => {
+            // Remember scroll position
+            const from = location.pathname;
+            if(from === '/') homePos = { left:0, top:window.scrollY };
+
+            // Update position
+            const to = new URL(event.destination.url).pathname;
+            window.scrollTo(to === '/' ? homePos : { left:0, top:0 });
+        })
+
+        // Scroll
+        document.addEventListener('scroll', event => {
+            requestAnimationFrame(() => {
+                document.getElementById("bg_image").style.transform = `translateY(${window.scrollY*0.6}px)`;
+
+                if(window.scrollY >= 400) return;
+                let headerImg = document.querySelector("#world header > img");
+                if(headerImg) {
+                    headerImg.style.transform = `translateY(${window.scrollY*0.4}px)`;
+                    headerImg.style.filter = `brightness(${100 - (window.scrollY / 20)}%)`;
+                }
+            })
+})
+
+        // Keydown
+        document.addEventListener('keydown', event => {
+            if(event.key === 'Enter') document.activeElement.click();
+        })
+    </script>
+</body>
+</html>
