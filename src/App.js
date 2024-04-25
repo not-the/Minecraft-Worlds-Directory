@@ -13,7 +13,8 @@ import ImgEnlarged from './ImgEnlarged'
 import PlayerStats from './PlayerStats'
 
 import worlds from './data/worlds.json'
-import { getFriendlyName, getName, getHeaderURL } from './functions'
+import images from './data/images.json'
+import { getFriendlyName, getName, getHeaderURL, randomInt, arrayRandom } from './functions'
 
 // Menus
 let viewer, setViewer; // Image viewer
@@ -26,7 +27,13 @@ export {
 }
 
 export default function App() {
-    [bg_src, set_bg_src] = useState(`https://worlds.notkal.com${getHeaderURL("Finna SMP")}`);
+    // Random BG image
+    // let randomWorld = arrayRandom(Object.keys(images));
+    let randomWorld = arrayRandom(["Terralith CO-OP", "Creative Realm"]);
+    let randomHeader = `/${getFriendlyName(randomWorld)}/${arrayRandom(images[randomWorld])}`;
+
+    // BG image state
+    [bg_src, set_bg_src] = useState(randomHeader);
     let bg_image_style = { "--image": `url('${bg_src}')` };
 
     // Image viewer state
