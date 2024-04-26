@@ -16,13 +16,37 @@ const imageThumbnail = require('image-thumbnail');
 const path = require('path');
 
 // Get world folders
-const dir_blacklist = [".git", "thumb", "node_modules"];
-function getFolders(source="./") {
-    return fs.readdirSync(source, { withFileTypes: true })
-        .filter(item => item.isDirectory() && !dir_blacklist.includes(item.name))
-        .map(item => item.name);
-}
-const worlds = getFolders('./');
+// const dir_blacklist = [".git", "thumb", "node_modules"];
+// function getFolders(source="./") {
+//     return fs.readdirSync(source, { withFileTypes: true })
+//         .filter(item => item.isDirectory() && !dir_blacklist.includes(item.name))
+//         .map(item => item.name);
+// }
+// const worlds = getFolders('./');
+const worlds = [
+    "#Active",
+    "GregTech: New Horizons",
+    "Finna SMP",
+    "Creative Realm",
+    "#All",
+    "BBHP",
+    "ATM7",
+    "Immersive Portals House",
+    "Terralith CO-OP",
+    "Stone Tool Survival",
+    "Vanilla servor",
+    "1.17 Creative Server",
+    "Create-ish",
+    "Nether Nomads",
+    "ATM3R",
+    "Voxel Fields 3",
+    "Voxel Fields 2 Plus",
+    "Voxel Fields 2",
+    "Voxel Fields",
+    "#Other",
+    "UHC",
+    "JJ's Hunger Games"
+]
 
 
 /** Get filename friendly version of world name */
